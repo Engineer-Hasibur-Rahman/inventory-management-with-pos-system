@@ -24,7 +24,7 @@ class CategoryController extends Controller
    // add Category view page
    public function AddCategory()
    {
-    if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
+    if(is_null($this->user)|| !$this->user->can('product.delete')){
         abort('403','You dont have acces!!!!');
     }
 
@@ -36,6 +36,9 @@ class CategoryController extends Controller
 
         public function StoreCategory(Request $request)
         {
+            if(is_null($this->user)|| !$this->user->can('product.delete')){
+                abort('403','You dont have acces!!!!');
+            }
             $validateData = $request->validate([
                 'category_name' => 'required',
 
@@ -50,7 +53,7 @@ class CategoryController extends Controller
                 'alert-type' => 'info',
               );
 
-              return redirect()->back()->with($notification);
+              return redirect()->route('category.list')->with($notification);
 
 
 
@@ -59,18 +62,27 @@ class CategoryController extends Controller
 
    public function CategoryList()
    {
+    if(is_null($this->user)|| !$this->user->can('product.delete')){
+        abort('403','You dont have acces!!!!');
+    }
     $categories  = Category::all();
        return view('category.CategoryList',compact('categories'));
    }
 
    public function EditCategory($id)
 {
+    if(is_null($this->user)|| !$this->user->can('product.delete')){
+        abort('403','You dont have acces!!!!');
+    }
     $category = Category::find($id);
     return view('category.CategoryEdit',compact('category'));
 }
 
 public function UpdateCategory(Request $request,$id)
 {
+    if(is_null($this->user)|| !$this->user->can('product.delete')){
+        abort('403','You dont have acces!!!!');
+    }
     $validateData = $request->validate([
     'category_name' => 'required',
 
@@ -83,10 +95,15 @@ public function UpdateCategory(Request $request,$id)
         'alert-type' => 'success',
       );
 
+
       return redirect('category/list')->with($notification);
+
 }
 public function DeleteCategory($id)
 {
+    if(is_null($this->user)|| !$this->user->can('product.delete')){
+        abort('403','You dont have acces!!!!');
+    }
     Category::destroy($id);
     return redirect('category/list');
 

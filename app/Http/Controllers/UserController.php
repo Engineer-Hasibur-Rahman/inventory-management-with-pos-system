@@ -86,7 +86,7 @@ public function loginview(){
     // add admin view page
     public function AddAdmin()
     {
-        if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+        if(is_null($this->user) || !$this->user->can('admin.create')){
             abort('403','You dont have acces!!!!');
         }
 
@@ -124,7 +124,7 @@ if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->
 
 public function StoreAdmin(AdminRequest $request)
 {
-    if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+    if(is_null($this->user) || !$this->user->can('admin.create') ){
         abort('403','You dont have acces!!!!');
     }
 
@@ -161,7 +161,7 @@ public function StoreAdmin(AdminRequest $request)
     // admin list View page
     public function AdminList()
     {
-        if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+        if(is_null($this->user) || !$this->user->can('admin.view')){
             abort('403','You dont have acces!!!!');
         }
 
@@ -176,7 +176,7 @@ public function StoreAdmin(AdminRequest $request)
 
     public function EditAdmin($id)
     {
-        if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+        if(is_null($this->user) || !$this->user->can('admin.update')){
             abort('403','You dont have acces!!!!');
         }
         $admin = Admin::find($id);
@@ -186,7 +186,7 @@ public function StoreAdmin(AdminRequest $request)
 // update admin
 public function UpdateAdmin(Request $request,$id)
 {
-    if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+    if(is_null($this->user) || !$this->user->can('admin.update')){
         abort('403','You dont have acces!!!!');
     }
 
@@ -216,7 +216,7 @@ public function UpdateAdmin(Request $request,$id)
 // delete admin
 public function DeleteAdmin($id)
 {
-    if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
+    if(is_null($this->user) || !$this->user->can('admin.delete') ){
         abort('403','You dont have acces!!!!');
     }
     
@@ -231,17 +231,30 @@ public function DeleteAdmin($id)
 
  // manager View
  public function ManagerView(){
+    if(is_null($this->user) || !$this->user->can('user.view') ){
+        abort('403','You dont have acces!!!!');
+    }
+
         $managers = Manager::latest()->get();
         return view('Manager.AddManager',compact('managers'));
 } // end mathod
 
 public function Managershow(){
+
+    if(is_null($this->user) || !$this->user->can('user.view') ){
+        abort('403','You dont have acces!!!!');
+    }
     $Managershow = Manager::latest()->get();
     return view('Manager.Manager_show',compact('Managershow'));
 }
 
 
 public function ManagerStore(ManagerRequest $request){
+
+
+    if(is_null($this->user) || !$this->user->can('user.create') ){
+        abort('403','You dont have acces!!!!');
+    }
 // validation
     $request->validate([
 
@@ -314,6 +327,12 @@ public function ManagerStore(ManagerRequest $request){
 
     public function ManagerUpdate(Request $request){
 
+
+
+        if(is_null($this->user) || !$this->user->can('user.update') ){
+            abort('403','You dont have acces!!!!');
+        }
+
         $manager_id = $request->id;
        $old_img = $request->old_img;
 
@@ -370,9 +389,15 @@ public function ManagerStore(ManagerRequest $request){
    // Delete Slider
     public function destroy($id){
 
-        $manager=Manager::where('id', $id)->get()->first();
-        $managerDelete=$manager->email;
+
+//         $manager=Manager::where('id', $id)->get()->first();
+//         $managerDelete=$manager->email;
         $adminmanagerDeleteDelete=User::where('email', $managerDelete)->delete();
+
+        if(is_null($this->user) || !$this->user->can('user.update') ){
+            abort('403','You dont have acces!!!!');
+        }
+
         $manager = Manager::findOrFail($id)->delete();
 
           $notification = array(
