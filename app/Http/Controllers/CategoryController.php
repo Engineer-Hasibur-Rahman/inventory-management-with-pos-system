@@ -53,7 +53,7 @@ class CategoryController extends Controller
                 'alert-type' => 'info',
               );
 
-              return redirect()->back()->with($notification);
+              return redirect()->route('category.list')->with($notification);
 
 
 
@@ -95,7 +95,7 @@ public function UpdateCategory(Request $request,$id)
         'alert-type' => 'success',
       );
 
-      return redirect()->back()->with($notification);
+      return redirect()->route('category.list')->with($notification);
 }
 public function DeleteCategory($id)
 {
