@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-//construc for curruent user
+//construc for curruent user from the auth
 
 public $user;
 public function __construct()
@@ -89,7 +89,7 @@ return $next($request);
 }
 public function EditProduct($id)
 {
-    if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
+    if(is_null($this->user) || !$this->user->can('product.update') ){
         abort('403','You dont have acces!!!!');
     }
     $product = Product::find($id);
@@ -99,7 +99,7 @@ public function EditProduct($id)
 
 public function UpdateProduct(Request $request,$id)
 {
-    if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
+    if(is_null($this->user) || !$this->user->can('product.update')){
         abort('403','You dont have acces!!!!');
     }
       $validateData = $request->validate([
@@ -138,8 +138,8 @@ public function UpdateProduct(Request $request,$id)
         }
 public function DeleteProduct($id)
 {
-    if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
-        abort('403','You dont have acces!!!!');
+    if(is_null($this->user) || !$this->user->can('product.delete') ){
+        abort('403','You dont have acces!!!!'); //abort error for role dont have product delete permission
     }
     Product::destroy($id);
     $notification = array(
