@@ -219,7 +219,10 @@ public function DeleteAdmin($id)
     if(is_null($this->user) || !$this->user->can('admin.create') || !$this->user->can('admin.update') || !$this->user->can('admin.delete') || !$this->user->can('admin.view')){
         abort('403','You dont have acces!!!!');
     }
-
+    
+    $admin=Admin::where('id', $id)->get()->first();
+   $adminDelete=$admin->email;
+   $adminDelete=User::where('email', $adminDelete)->delete();
     Admin::destroy($id);
     return redirect('admin/list');
 
@@ -366,6 +369,10 @@ public function ManagerStore(ManagerRequest $request){
 
    // Delete Slider
     public function destroy($id){
+
+        $manager=Manager::where('id', $id)->get()->first();
+        $managerDelete=$manager->email;
+        $adminmanagerDeleteDelete=User::where('email', $managerDelete)->delete();
         $manager = Manager::findOrFail($id)->delete();
 
           $notification = array(
