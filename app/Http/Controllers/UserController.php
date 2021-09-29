@@ -10,6 +10,7 @@ use App\Models\Manager;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Product;
+use Spatie\Permission\Models\Role;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -144,7 +145,7 @@ public function StoreAdmin(AdminRequest $request)
                     'alert-type' => 'success',
                 );
 
-                User::insert([
+                $user_id=User::insertGetId([
 
                 'name'=>$request->username,
                 'email'=>$request->email,
@@ -152,6 +153,11 @@ public function StoreAdmin(AdminRequest $request)
                 'role'=> 2,
 
           ]);
+
+     $user = User::find($user_id);
+
+     $user->assignRole('admin');
+
 
                 return redirect('/admin/list')->with($notification);
 
@@ -219,7 +225,7 @@ public function DeleteAdmin($id)
     if(is_null($this->user) || !$this->user->can('admin.delete') ){
         abort('403','You dont have acces!!!!');
     }
-    
+
     $admin=Admin::where('id', $id)->get()->first();
    $adminDelete=$admin->email;
    $adminDelete=User::where('email', $adminDelete)->delete();
@@ -298,7 +304,7 @@ public function ManagerStore(ManagerRequest $request){
          'password.required' => 'Input The password in Sucessyfuly',
 
       ]);
-      User::insert([
+      $user_id=User::insertGetId([
 
         'name'=>$request->username,
         'email'=>$request->email,
@@ -306,6 +312,11 @@ public function ManagerStore(ManagerRequest $request){
         'role'=> 3,
 
   ]);
+  $user = User::find($user_id);
+
+  $user->assignRole('Manager');
+
+
 
 
       $notification = array(
