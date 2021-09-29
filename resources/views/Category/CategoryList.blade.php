@@ -36,7 +36,8 @@
                                       
                                        <td>
                                    <a href="/edit/category/{{$cat->id}}" class="btn btn-primary">Edit</a>
-                                   <a href="/delete/category/{{$cat->id}}" class="btn btn-danger">Delete</a>
+                                   <!-- id delete for sweetalert -->
+                                   <a href="/delete/category/{{$cat->id}}" class="btn btn-danger" id="delete">Delete</a>
                                        </td>
                                    </tr>
                                    @endforeach

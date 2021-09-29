@@ -334,8 +334,8 @@ public function ManagerStore(ManagerRequest $request){
         'message' =>  'Manager Add Sucessyfuly',
         'alert-type' => 'success'
     );
-
-    return redirect()->back()->with($notification);
+    //redirect to show_manager page
+    return redirect('/show')->with($notification);
 
 
 

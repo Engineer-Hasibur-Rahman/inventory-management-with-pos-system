@@ -77,7 +77,7 @@ return $next($request);
         'alert-type' => 'success',
       );
 
-      return redirect()->back()->with($notification);
+      return redirect('/show/product')->with($notification);
 
     }
   public function showProduct(){

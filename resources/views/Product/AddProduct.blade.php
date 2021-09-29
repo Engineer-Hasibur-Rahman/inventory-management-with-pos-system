@@ -36,7 +36,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="squ_code" class="form-label">Squ code<span class="text-danger">*</span></label>
-                        <input type="text" name="squ_code" parsley-trigger="change" required placeholder="Enter squ_code" class="form-control" id="squ_code" />
+
+                        <input type="text" name="squ_code" parsley-trigger="change"  placeholder="Enter squ_code" class="form-control" id="squ_code" />
                         @error('squ_code')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
@@ -44,15 +45,15 @@
 
                     <div class="mb-3">
                         <label for="product_image" class="form-label"> Product Image<span class="text-danger">*</span></label>
-                        <input type="file" name="image" parsley-trigger="change" required placeholder="Upload product_image" class="form-control" id="product_image" />
+                        <input type="file" name="image" parsley-trigger="change" placeholder="Upload product_image" class="form-control" id="product_image" />
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Product Proce<span class="text-danger">*</span></label>
-                        <input type="text" name="price" parsley-trigger="change" required placeholder="Enter  price" class="form-control" id="price" />
+                        <label for="price" class="form-label">Product Price<span class="text-danger">*</span></label>
+                        <input type="text" name="price" parsley-trigger="change"  placeholder="Enter  price" class="form-control" id="price" />
                     </div>
                     <div class="mb-3">
                         <label for="count" class="form-label">Product Count<span class="text-danger">*</span></label>
-                        <input type="text" name="count" parsley-trigger="change" required placeholder="Enter product_code" class="form-control" id="count" />
+                        <input type="text" name="count" parsley-trigger="change"  placeholder="Enter count" class="form-control" id="count" />
                         @error('count')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
@@ -60,7 +61,7 @@
                     <div class="mb-3">
                     <h5>Category Select <span class="text-danger">*</span></h5>
                 <div class="controls">
-                         <select name="category_id" class="form-control" required="" >
+                         <select name="category_id" class="form-control"   >
                     <option value="" selected="" disabled="">Select Category</option>
                      @foreach($categories as $category)
                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
