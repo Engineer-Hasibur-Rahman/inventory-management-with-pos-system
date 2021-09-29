@@ -77,7 +77,10 @@ return $next($request);
         'alert-type' => 'success',
       );
 
+     
+
       return redirect()->route('show.product')->with($notification);
+
 
     }
   public function showProduct(){

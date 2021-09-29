@@ -64,7 +64,7 @@ $user =Auth::user()
                                         @if ( $user->can('product.update') && $user->can('product.update'))
                                    <a href="/edit/product/{{$product->id}}" class="btn btn-primary">Edit</a>
                                    {{-- <button class="btn btn-danger"  id="message" onclick="delete({{$product->id}})">Delete</button> --}}
-                                   <a href="{{route('delete.product',$product->id)}}" id="delete" class="btn btn-danger">Delete</a>
+                                   <a href="{{route('delete.product',$product->id)}}" id="delete" class="btn btn-danger" id="delete">Delete</a>
                                    @endif
                                        </td>
                                    </tr>

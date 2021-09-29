@@ -29,7 +29,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="avatar-lg rounded-circle bg-soft-primary border-primary border">
-                                                    <i class="fe-heart font-22 avatar-title text-primary"></i>
+                                                    <i class="fe-user font-22 avatar-title text-primary"></i>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -49,7 +49,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="avatar-lg rounded-circle bg-soft-success border-success border">
-                                                    <i class="fe-shopping-cart font-22 avatar-title text-success"></i>
+                                                    <i class="fe-user font-22 avatar-title text-success"></i>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -69,7 +69,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="avatar-lg rounded-circle bg-soft-info border-info border">
-                                                    <i class="fe-bar-chart-line- font-22 avatar-title text-info"></i>
+                                                    <i class="fe-shopping-cart font-22 avatar-title text-info"></i>
                                                 </div>
                                             </div>
                                             <div class="col-6">

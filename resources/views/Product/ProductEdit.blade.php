@@ -36,6 +36,10 @@
                         <label for="product_image" class="form-label"> Product Image<span class="text-danger">*</span></label>
                         <input type="file" name="image" value="{{$product->image}}" parsley-trigger="change" required placeholder="Upload product_image" class="form-control" id="product_image" />
                     </div>
+                    <div class="card">
+                            <img src="{{asset($product->product_image)}}" class="card-img-top" style="height: 130px; width: 280px;">
+
+                    </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Product Proce<span class="text-danger">*</span></label>
                         <input type="text" name="price" value="{{$product->price}}" parsley-trigger="change" required placeholder="Enter  price" class="form-control" id="price" />
@@ -48,7 +52,7 @@
                     <h5>Category Select <span class="text-danger">*</span></h5>
                 <div class="controls">
                          <select name="category_id" class="form-control" required="" >
-                    <option value="" selected="" disabled="">Select Brand</option>
+                    <option value="" selected="" disabled="">{{ $product->category->category_name }}</option>
                      @foreach($categories as $category)
                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                              @endforeach
@@ -75,4 +79,8 @@
         </div>
     </div>
  </div>
+
+
+
+
 @endsection
