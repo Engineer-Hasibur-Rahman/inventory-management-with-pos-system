@@ -29,7 +29,7 @@
                          @enderror
                     </div>
                     <div class="text-end">
-                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                        <button class="btn btn-primary waves-effect waves-light" type="submit">CategorySubmit</button>
                         <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                     </div>
                 </form>

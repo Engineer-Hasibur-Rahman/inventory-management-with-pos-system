@@ -77,7 +77,7 @@ return $next($request);
         'alert-type' => 'success',
       );
 
-      return redirect()->back()->with($notification);
+      return redirect()->route('show.product')->with($notification);
 
     }
   public function showProduct(){
@@ -133,7 +133,7 @@ public function UpdateProduct(Request $request,$id)
             'alert-type' => 'success',
           );
 
-          return redirect()->back()->with($notification);
+          return redirect()->route('show.product')->with($notification);
 
         }
 public function DeleteProduct($id)
