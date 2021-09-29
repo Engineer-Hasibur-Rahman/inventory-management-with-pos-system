@@ -11,6 +11,10 @@ class PdfController extends Controller
     // create pdf view page
     public function CreatePdf()
     {
+
+    if(is_null($this->user) || !$this->user->can('admin.createPdf') ){
+        abort('403','You dont have acces!!!!');
+    }
        $product=Product::all();
        return view('pdf',compact('product'));
     //    $pdf = PDF::loadView('pdf', $product);
@@ -21,13 +25,16 @@ class PdfController extends Controller
 
     public function download()
     {
+        if(is_null($this->user) || !$this->user->can('admin.createPdf') ){
+            abort('403','You dont have acces!!!!');
+        }
        $product=Product::all();
-     
+
        $pdf = PDF::loadView('pdf',compact('product') );
        return $pdf->download('product.pdf');
        return view('pdf',compact('product'));
     }
-   
-   
-    
+
+
+
 }
