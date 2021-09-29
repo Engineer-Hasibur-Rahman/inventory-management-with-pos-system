@@ -71,7 +71,7 @@
 
                                      <a href="{{ route('manager.edit',$manager->id) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
 
-                           <a href="{{ route('manager.delete', $manager->id ) }}" class="btn btn-danger btn-sm" id="#">Delete</a>
+                           <a href="{{ route('manager.delete', $manager->id ) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -37,12 +37,8 @@ public function loginview(){
     return view('auth.login');
 
         }
-
-
         public function loginverify(Request $req){
             $validated = $req->validate([
-
-
 
             'email' => 'required|email|max:255',
             'password' => 'required'
@@ -55,26 +51,17 @@ public function loginview(){
                     $admin  = Auth::user();
                     $admin  = User::find($admin->id);
 
-
-
-
-
                         return redirect()->route('dashboard');
 
                 }
 
-
                 else{
-
-
                 session()->flash('error','invalid credetials');
                 return back();
 
                 }
 
         }
-
-
 
     public function Dashboard(){
 
@@ -85,12 +72,8 @@ public function loginview(){
         $product=Product::all();
         $productCount=$product->count();
 
-
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
-
-
-
 
     public function logout(){
          Auth::logout();
@@ -98,26 +81,7 @@ public function loginview(){
         return redirect()->route('user.login');
 
     }
-
-
-
-
-
 //echangable add
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // add admin view page
     public function AddAdmin()
@@ -164,7 +128,6 @@ public function StoreAdmin(AdminRequest $request)
         abort('403','You dont have acces!!!!');
     }
 
-
                 $admin= new Admin;
                 $admin->username=$request->username;
                 $admin->fullname=$request->fullname;
@@ -190,10 +153,9 @@ public function StoreAdmin(AdminRequest $request)
 
           ]);
 
-                return redirect()->back()->with($notification);
+                return redirect('/admin/list')->with($notification);
 
 }
-
 
 
     // admin list View page
@@ -245,11 +207,11 @@ public function UpdateAdmin(Request $request,$id)
         }
             $admin->save();
             $notification = array(
-                'message' => 'Admin Edited Sucessyfuly',
+                'message' => 'Admin Updated Sucessyfuly',
                 'alert-type' => 'success',
             );
 
-  return redirect()->back()->with($notification);
+            return redirect('/admin/list')->with($notification);
 }
 // delete admin
 public function DeleteAdmin($id)
@@ -257,7 +219,10 @@ public function DeleteAdmin($id)
     if(is_null($this->user) || !$this->user->can('admin.delete') ){
         abort('403','You dont have acces!!!!');
     }
-
+    
+    $admin=Admin::where('id', $id)->get()->first();
+   $adminDelete=$admin->email;
+   $adminDelete=User::where('email', $adminDelete)->delete();
     Admin::destroy($id);
     return redirect('admin/list');
 
@@ -347,7 +312,7 @@ public function ManagerStore(ManagerRequest $request){
         'message' =>  'Manager Add Sucessyfuly',
         'alert-type' => 'success'
     );
-    //redirect to show_manager page
+
     return redirect('/show')->with($notification);
 
 
@@ -423,6 +388,11 @@ public function ManagerStore(ManagerRequest $request){
 
    // Delete Slider
     public function destroy($id){
+
+
+//         $manager=Manager::where('id', $id)->get()->first();
+//         $managerDelete=$manager->email;
+        $adminmanagerDeleteDelete=User::where('email', $managerDelete)->delete();
 
         if(is_null($this->user) || !$this->user->can('user.update') ){
             abort('403','You dont have acces!!!!');
