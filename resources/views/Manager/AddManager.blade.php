@@ -41,6 +41,7 @@
                        @if($errors->has('email'))
                        <div style="color:red"> {{$errors->first('email')}}</div>
                        @endif
+                       <h5 style="color: red">{{session('msg')}}</h5>
                    </div>
                    <div class="mb-3">
                        <label for="image" class="form-label">Image<span class="text-danger">*</span></label>

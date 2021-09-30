@@ -123,8 +123,15 @@ if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->
 
     // admin store
 
-public function StoreAdmin(AdminRequest $request)
+public function StoreAdmin(AdminRequest   $request)
 {
+$admin = User::where('email', $request->email)
+->first();
+if($admin){
+$request->session()->flash('msg', 'Email is already exist');
+return view('admin.AddAdmin');
+}
+else{
     if(is_null($this->user) || !$this->user->can('admin.create') ){
         abort('403','You dont have acces!!!!');
     }
@@ -157,7 +164,7 @@ public function StoreAdmin(AdminRequest $request)
      $user = User::find($user_id);
 
      $user->assignRole('admin');
-
+        }
 
                 return redirect('/admin/list')->with($notification);
 
@@ -195,7 +202,8 @@ public function UpdateAdmin(Request $request,$id)
     if(is_null($this->user) || !$this->user->can('admin.update')){
         abort('403','You dont have acces!!!!');
     }
-
+    $email=Admin::where('id', $id)->get()->first();
+    $email=$email->email;
 
     $admin=Admin::find($id);
     $admin->username=$request->username;
@@ -212,6 +220,16 @@ public function UpdateAdmin(Request $request,$id)
             $admin->image=$newImageName;
         }
             $admin->save();
+
+ 
+            User::where('email', $email)
+            ->update([
+                'name'=>$request->username,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password),
+      
+          ]);
+
             $notification = array(
                 'message' => 'Admin Updated Sucessyfuly',
                 'alert-type' => 'success',
@@ -257,6 +275,14 @@ public function Managershow(){
 
 public function ManagerStore(ManagerRequest $request){
 
+
+    $manager = User::where('email', $request->email)
+    ->first();
+    if($manager){
+    $request->session()->flash('msg', 'Email is already exist');
+    return view('Manager.AddManager');
+    }
+    else{
 
     if(is_null($this->user) || !$this->user->can('user.create') ){
         abort('403','You dont have acces!!!!');
@@ -323,7 +349,7 @@ public function ManagerStore(ManagerRequest $request){
         'message' =>  'Manager Add Sucessyfuly',
         'alert-type' => 'success'
     );
-
+    }
     return redirect('/show')->with($notification);
 
 
@@ -347,6 +373,10 @@ public function ManagerStore(ManagerRequest $request){
         $manager_id = $request->id;
        $old_img = $request->old_img;
 
+       $email=Manager::where('id', $manager_id)->get()->first();
+       $email=$email->email;
+     
+
 
         if ($request->file('image')) {
 
@@ -362,13 +392,27 @@ public function ManagerStore(ManagerRequest $request){
         'fullname' => $request->fullname,
         'email' => $request->email,
         'image' => $save_url,
-
-
-
         ]);
 
+        // $email=Manager::where('id', $manager_id)->get()->first();
+        // $email=$email->email;
+       
+        User::where('email', $email)
+        ->update([
+            'name'=>$request->username,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+  
+      ]);
+        // User::findOrFail($email)->update([
+        //     'name'=>$request->username,
+        //     'email'=>$request->email,
+        //     'password'=>Hash::make($request->password),
+        //     ]);
+    
+
         $notification = array(
-            'message' => 'image img Updated Successfully',
+            'message' => 'Manager Updated Successfully',
             'alert-type' => 'info'
         );
     return redirect()->route('show.manager')->with($notification);
@@ -387,7 +431,7 @@ public function ManagerStore(ManagerRequest $request){
 
         ]);
           $notification = array(
-            'message' => 'image img Updated Successfully',
+            'message' => 'Manager Updated Successfully',
             'alert-type' => 'info'
         );
 
@@ -401,18 +445,19 @@ public function ManagerStore(ManagerRequest $request){
     public function destroy($id){
 
 
-//         $manager=Manager::where('id', $id)->get()->first();
-//         $managerDelete=$manager->email;
-        $adminmanagerDeleteDelete=User::where('email', $managerDelete)->delete();
+
 
         if(is_null($this->user) || !$this->user->can('user.update') ){
             abort('403','You dont have acces!!!!');
         }
 
+    $manager=Manager::where('id', $id)->get()->first();
+     $managerDelete=$manager->email;
+     $managerDelete=User::where('email', $managerDelete)->delete();
         $manager = Manager::findOrFail($id)->delete();
 
           $notification = array(
-            'message' => 'image img Delete Successfully',
+            'message' => 'Manager Delete Successfully',
             'alert-type' => 'info'
         );
 
