@@ -35,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image<span class="text-danger">*</span></label>
-                        <input type="file" name="image" parsley-trigger="change" required placeholder="Upload Image" class="form-control" id="image" />
+                        <input type="file" name="image" parsley-trigger="change"  placeholder="Upload Image" class="form-control" id="image" />
                     </div>
                   
                 
