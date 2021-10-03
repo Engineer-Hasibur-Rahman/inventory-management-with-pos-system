@@ -39,11 +39,23 @@ public function loginview(){
 
         }
         public function loginverify(Request $req){
-            $validated = $req->validate([
+            $req->validate([
 
-            'email' => 'required|email|max:255',
-            'password' => 'required'
-            ]);
+
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required',
+
+              ],
+                [
+
+
+                 'email.required' => 'Input The email in Sucessyfuly',
+                 'password.required' => 'Input The password in Sucessyfuly',
+                 'exists:users'=> 'invalid email',
+
+
+
+              ]);
 
                 $creds = $req->only('email','password');
             // dd( Auth::guard('superadmin')->attempt( $creds));
@@ -57,7 +69,7 @@ public function loginview(){
                 }
 
                 else{
-                session()->flash('error','invalid credetials');
+                    $req->session()->flash('error','invalid creditial');
                 return back();
 
                 }
