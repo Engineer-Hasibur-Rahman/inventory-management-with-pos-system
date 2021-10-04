@@ -44,10 +44,12 @@
            <!-- third party js ends -->
            <!-- Datatables init -->
            <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
+          
         <!-- App js-->
         <script src="{{ asset('/assets/js/app.min.js')}}"></script>
         <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
  <!-- noster notify js function  start -->
         <script>
@@ -81,6 +83,40 @@
 
         </script>
 
+   
+  
+
+<script>
+    $(document).ready(function(){
+        ProductView();
+        function ProductView()
+        {
+            $.ajax({
+                    url: "{{ url('/view') }}/",
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                      if(data['products']>1){
+                        console.log(data);
+                        $('#audioBox')[0].muted="false";
+                        $('#audioBox')[0].play();
+                        
+                        // $('#audioBox').get(0).load();
+                        // $('#audioBox').get(0).play();
+                        // var audio = new Audio('C:\xampp\htdocs\invent\inventory-management\public\music.mp3');
+                        // audio.play();
+                        // $('audio').get(0).load();
+                        // $('audio').get(0).load();
+                        // $('audio').get(0).play();
+                        // // $('#source')[0].play;
+                        // $('audio')[0].muted="false";
+                      }
+                      
+                    },
+                });
+        }
+    })
+</script> 
 
 
          <script>
@@ -108,7 +144,14 @@
         }); // document end
     }); // main funcations end
 </script>
-
+<script>
+    document.getElementById('notification').muted = false;
+    document.getElementById('notification').play();
+</script>
+<script>
+        var audio = require('simple-audio');
+        audio.playSound('foo');
+</script>
 <!-- noster notify js function  End -->
 
   </body>  <!-- end body-->

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
-
+ use App\Events\MyEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -119,12 +119,27 @@ Route::post('/update/change/password/', [AdminController::class, 'AdminUpdateCha
 
 });
 
+Route::get('/notifications',[UserController::class,'Notification'])->name('notification');
 
 
 
 
 
+Route::get('test', function () {
+    event(new App\Events\MyEvent('notification'));
+    return "Event has been sent!";
+});
 
+
+Route::get('/sender',function(){
+    return view ('notification.Sender');
+});
+Route::post('/sender',function(){
+    $text=request()->text;
+    event(new MyEvent($text));
+});
+
+Route::get('/view', [ProductController::class, 'ProductView'])->name('product');
 //Admin route
 
 
@@ -194,3 +209,8 @@ Route::post('/update/change/password/', [AdminController::class, 'AdminUpdateCha
 
 });
 */
+
+    
+    
+
+

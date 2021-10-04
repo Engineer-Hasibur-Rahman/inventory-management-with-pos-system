@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\StockNotification;
 
 class ProductController extends Controller
 {
@@ -76,13 +78,17 @@ return $next($request);
         'message' => 'Product Add Sucessyfuly',
         'alert-type' => 'success',
       );
+      // foreach (User::all() as $admin) {
+      //       $admin->notify(new StockNotification($product));
+      // }
+      // event(new MyEvent($product));
 
       return redirect('/show/product')->with($notification);
 
     }
   public function showProduct(){
 
-
+    
     $products = Product::all();
 
     return view('Product.ProductList', compact('products'));
@@ -150,6 +156,25 @@ public function DeleteProduct($id)
     return redirect()->back()->with($notification);
 
   }
+
+
+  //for testing audio
+
+  public function ProductView(){
+    $products=Product::all()->count();
+    
+    return response()-> json(
+        [
+            'products'=>$products,
+        ]
+    );
+}
+
+//check product count for notification
+
+
+
+
 
 }
 

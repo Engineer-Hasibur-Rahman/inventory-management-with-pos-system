@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use App\Notifications\StockNotification;
 
 class UserController extends Controller
 {
@@ -82,8 +83,44 @@ public function loginview(){
         $adminCount=$admin->count();
         $manager=Manager::all();
         $manageCount=$manager->count();
-        $product=Product::all();
-        $productCount=$product->count();
+       
+        $admins=User::all();
+        $products=Product::all();
+        $productCount=$products->count();
+        $products=Product::all();
+        foreach ($products as $product) {
+            $allProduct=$product->count;
+            if($allProduct>5){
+                foreach ($admins as $admin) {
+                $admin->notify(new StockNotification($product));
+            }
+        }
+          
+        }
+        // foreach ($products as $product) {
+        //     dd($product);
+        //     $allProduct=$product->count;
+            
+        //     $productName=$product->name;
+        //     //dd($admins);
+        //     // if(session::set())
+            
+        //     if($allProduct>5 && $productName){
+        //         foreach ($admins as $admin) {
+                   
+
+                    
+        //            $admin->notify(new StockNotification($product));
+                 
+               
+
+        //         }
+                 
+                    
+        //     }
+        //   break;
+        // }
+        
 
 
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
@@ -419,4 +456,18 @@ public function ManagerStore(ManagerRequest $request){
 
 //  Manager end///
 
+public function Notification(){
+    return view ('notification.Notification');
 }
+
+
+ // 
+ 
+
+
+
+}
+
+
+
+
