@@ -77,13 +77,13 @@ public function loginview(){
 
         }
 
-<<<<<<< HEAD
-    public function Dashboard(){
-=======
+
+   
+
 
 
     public function NotificationAlart(){
->>>>>>> update
+
 
         $admins=User::all();
         $products=Product::all();
@@ -144,6 +144,7 @@ public function loginview(){
 
 
 
+
     public function Dashboard(){
 
         $admin=Admin::all();
@@ -161,24 +162,14 @@ public function loginview(){
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
 
-<<<<<<< HEAD
-=======
 
-
-
-
-
-
-
-
->>>>>>> update
     public function logout(){
          Auth::logout();
         //Auth::user()->logout();
         return redirect()->route('user.login');
 
     }
-//echangable add
+
 
     // add admin view page
     public function AddAdmin()
@@ -190,32 +181,32 @@ public function loginview(){
         return view('admin.AddAdmin');
     }
 
-/*
-
- "admin.createPdf",
-        //admin permission
-           "admin.create",
-           "admin.update",
-           "admin.delete",
-           "admin.view",
-
-        //user permission
-           "user.create",
-           "user.update",
-           "user.delete",
-           "user.view",
-           //product permission
-           "product.create",
-           "product.update",
-           "product.delete",
-           "product.view"
 
 
-if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
-    abort('403','You dont have acces!!!!');
-}
+//  "admin.createPdf",
+//         //admin permission
+//            "admin.create",
+//            "admin.update",
+//            "admin.delete",
+//            "admin.view",
 
-*/
+//         //user permission
+//            "user.create",
+//            "user.update",
+//            "user.delete",
+//            "user.view",
+//            //product permission
+//            "product.create",
+//            "product.update",
+//            "product.delete",
+//            "product.view"
+
+
+// if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
+//     abort('403','You dont have acces!!!!');
+// }
+
+
 
     // admin store
 
@@ -570,12 +561,12 @@ public function Notification(){
 }
 
 
- //
+        }
 
 
 
 
-}
+
 
 
 

@@ -38,10 +38,23 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-                     <div class="text-end p-4">
-                        <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">ProductSubmit</button>
-                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
+                    
+                       <div class="mb-3">
+                    <h5>Category Select <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                         <select name="category_id" class="form-control"  >
+                    <option>Select Category</option>
+                     @foreach($categories as $category)
+                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                             @endforeach
+                         </select>
+                          @error('category_id')
+                             <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                     </div>
+
                     </div>
+
                     </div>
                     <div class="col-lg-6" >
 
@@ -66,23 +79,15 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-                    <div class="mb-3">
-                    <h5>Category Select <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                         <select name="category_id" class="form-control"  >
-                    <option>Select Category</option>
-                     @foreach($categories as $category)
-                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                             @endforeach
-                         </select>
-                          @error('category_id')
-                             <span class="text-danger">{{ $message }}</span>
-                     @enderror
-                     </div>
-
-                    </div>
+                 
 
                    
+                    </div>
+
+
+                     <div class=" text-center p-4">
+                        <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">ProductSubmit</button>
+                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                     </div>
                     </div>
                 </form>
