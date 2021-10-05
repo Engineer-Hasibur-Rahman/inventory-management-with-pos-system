@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
-
+ use App\Events\MyEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,6 +98,8 @@ Route::get('/downloadpdf', [PdfController::class, 'download'])->name('download')
 Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('superadmin.admin_change_password');
 ////Admin update password
 Route::post('/update/change/password/', [AdminController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
+Route::get('/notifications',[UserController::class,'Notification'])->name('notification');
+
 });
 
 

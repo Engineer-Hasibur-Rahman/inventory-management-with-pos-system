@@ -5,6 +5,9 @@
 
  @section('admin')
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
   <div class="content-page">
                 <div class="content">
 
@@ -36,7 +39,18 @@
                                                 <div class="text-end">
                                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$adminCount}}</span></h3>
                                                     <p class="text-muted mb-1 text-truncate">Total Admin</p>
+                                                    {{-- <audio id="audioBox" src="{{asset('asstets/noti/audio1.wav')}}">
+                                                        erdrfyhrtf
+                                                    </audio> --}}
                                                 </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <audio id="audioBox" controls="controls" src="{{asset('music.mp3')}}"> </audio>
+                                        
+
+                                                
+
+                                                
                                             </div>
                                         </div> <!-- end row-->
                                     </div>
@@ -82,7 +96,7 @@
                                     </div>
                                 </div> <!-- end widget-rounded-circle-->
                             </div> <!-- end col-->
-
+                      
                             <div class="col-md-6 col-xl-3">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">

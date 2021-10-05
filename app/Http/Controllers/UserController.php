@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use App\Notifications\StockNotification;
 
 class UserController extends Controller
 {
@@ -76,18 +77,101 @@ public function loginview(){
 
         }
 
+<<<<<<< HEAD
+    public function Dashboard(){
+=======
+
+
+    public function NotificationAlart(){
+>>>>>>> update
+
+        $admins=User::all();
+        $products=Product::all();
+
+
+
+        foreach ($products as $product) {
+            $allProduct=$product->count;
+
+
+            if($product->stock_alart!=1 && $allProduct<5){
+
+
+                foreach ($admins as $admin) {
+                 $admin->notify(new StockNotification($product));
+                }
+
+                Product::Where('id',$product->id)->Update(['stock_alart'=>1]);
+           }
+
+
+
+
+        }
+        // foreach ($products as $product) {
+        //     dd($product);
+        //     $allProduct=$product->count;
+
+        //     $productName=$product->name;
+        //     //dd($admins);
+        //     // if(session::set())
+
+        //     if($allProduct>5 && $productName){
+        //         foreach ($admins as $admin) {
+
+
+
+        //            $admin->notify(new StockNotification($product));
+
+
+
+        //         }
+
+
+        //     }
+        //   break;
+        // }
+
+
+
+
+
+
+
+
+    }
+
+
+
+
     public function Dashboard(){
 
         $admin=Admin::all();
         $adminCount=$admin->count();
         $manager=Manager::all();
         $manageCount=$manager->count();
-        $product=Product::all();
-        $productCount=$product->count();
+        $products=Product::all();
+        $productCount=$products->count();
+
+       $this->NotificationAlart();
+
+
+
 
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> update
     public function logout(){
          Auth::logout();
         //Auth::user()->logout();
@@ -481,4 +565,18 @@ public function ManagerStore(ManagerRequest $request){
 
 //  Manager end///
 
+public function Notification(){
+    return view ('notification.Notification');
 }
+
+
+ //
+
+
+
+
+}
+
+
+
+

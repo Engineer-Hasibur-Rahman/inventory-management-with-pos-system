@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\StockNotification;
 
 class ProductController extends Controller
 {
@@ -68,6 +70,12 @@ return $next($request);
       $product->product_code=$request->product_code;
       $product->squ_code=$request-> squ_code;
       $product->count=$request->count;
+      if($request->count<5){
+
+        $product->stock_alart=0;
+
+
+      }
 
       $product->product_image= $save_url;
       $product->product_satus= 1;
@@ -76,6 +84,10 @@ return $next($request);
         'message' => 'Product Add Sucessyfuly',
         'alert-type' => 'success',
       );
+      // foreach (User::all() as $admin) {
+      //       $admin->notify(new StockNotification($product));
+      // }
+      // event(new MyEvent($product));
 
      
 
@@ -128,6 +140,13 @@ public function UpdateProduct(Request $request,$id)
           $product->squ_code=$request-> squ_code;
           $product->count=$request->count;
 
+          if($request->count<5){
+
+            $product->stock_alart=0;
+
+
+          }
+
           $product->product_image= $save_url;
           $product->product_satus= 1;
           $product->save();
@@ -153,6 +172,25 @@ public function DeleteProduct($id)
     return redirect()->back()->with($notification);
 
   }
+
+
+  //for testing audio
+
+  public function ProductView(){
+    $products=Product::all()->count();
+
+    return response()-> json(
+        [
+            'products'=>$products,
+        ]
+    );
+}
+
+//check product count for notification
+
+
+
+
 
 }
 
