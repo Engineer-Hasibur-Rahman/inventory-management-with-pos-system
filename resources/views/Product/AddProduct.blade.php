@@ -38,35 +38,10 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-                     <div class="text-end p-4">
-                        <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">ProductSubmit</button>
-                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
-                    </div>
-                    </div>
-                    <div class="col-lg-6" >
-
-                    <div class="mb-3">
-                        <label for="image" class="form-label"> Product Image<span class="text-danger">*</span></label>
-                        <input type="file" name="image" parsley-trigger="change"  placeholder="Upload product_image" class="form-control" id="image" />
-                          @error('image')
-                         <span class="text-danger">{{ $message }}</span>
-                         @enderror
-                    </div>
-                    {{-- <div class="mb-3">
-                        <label for="price" class="form-label">Product Proce<span class="text-danger">*</span></label>
-                        <input type="text" name="price" parsley-trigger="change"  placeholder="Enter  price" class="form-control" id="price" />
-                         @error('price')
-                         <span class="text-danger">{{ $message }}</span>
-                         @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="count" class="form-label">Product Count<span class="text-danger">*</span></label>
-                        <input type="text" name="count" parsley-trigger="change"  placeholder="Enter product_Count" class="form-control" id="count" />
-                        @error('count')
-                         <span class="text-danger">{{ $message }}</span>
-                         @enderror
-                    </div> --}}
-                    <div class="mb-3">
+                    
+                    
+                    
+                       <div class="mb-3">
                     <h5>Category Select <span class="text-danger">*</span></h5>
                     <div class="controls">
                          <select name="category_id" class="form-control"  >
@@ -82,7 +57,29 @@
 
                     </div>
 
+                    </div>
+                    
+                    
+                    <div class="col-lg-6" >
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label"> Product Image<span class="text-danger">*</span></label>
+                        <input type="file" name="image" parsley-trigger="change"  placeholder="Upload product_image" class="form-control" id="image" />
+                          @error('image')
+                         <span class="text-danger">{{ $message }}</span>
+                         @enderror
+                    </div>
+            
+                    
+       
+
                    
+                    </div>
+
+
+                     <div class=" text-center p-4">
+                        <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">ProductSubmit</button>
+                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                     </div>
                     </div>
                 </form>

@@ -18,6 +18,7 @@
                     <span class="badge bg-danger rounded-circle noti-icon-badge">{{auth()->user()->notifications()->count()}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+
                     @foreach (auth()->user()->notifications as $noti)
 
 
