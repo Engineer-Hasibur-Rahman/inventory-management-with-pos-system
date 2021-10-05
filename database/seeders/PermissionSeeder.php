@@ -57,6 +57,7 @@ $manager = Role::create(['name'=>'Manager']);
 
 
         //user permission
+        "admin.createPdf",
            "user.create",
            "user.update",
            "user.delete",

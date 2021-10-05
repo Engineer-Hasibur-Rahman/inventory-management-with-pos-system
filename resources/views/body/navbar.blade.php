@@ -18,7 +18,7 @@
                     <span class="badge bg-danger rounded-circle noti-icon-badge">{{auth()->user()->notifications()->count()}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-lg">
-                    @foreach (auth()->user()->notifications as $noti)
+                    @foreach (auth()->user()->unreadNotifications as $noti)
                         
                    
 
@@ -45,6 +45,10 @@
                     <!-- item-->
                     <div class="dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome !</h6>
+                    </div>
+
+                    <div class="dropdown-header noti-title">
+                        <a href="{{route('superadmin.admin_change_password')}}">password reset</a>
                     </div>
 
 

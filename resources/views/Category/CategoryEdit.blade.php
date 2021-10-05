@@ -17,7 +17,7 @@
 
        <div class="card">
            <div class="card-body">
-               <h3 class="header-title">Add Category</h3>
+               <h3 class="header-title">Update Category</h3>
                
                <form action="{{url('/update/category/'.$category->id)}}" method="POST" class="parsley-examples">
                @csrf
@@ -26,7 +26,7 @@
                        <input type="text" name="category_name" value="{{$category->category_name}}" parsley-trigger="change" required placeholder="Enter Category name" class="form-control" id="category_name" />
                    </div>
                    <div class="text-end">
-                       <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                       <button class="btn btn-primary waves-effect waves-light" type="submit">CategoryUpdate</button>
                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                    </div>
                </form>

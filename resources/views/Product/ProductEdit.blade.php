@@ -16,7 +16,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title">Add Manager</h3>
+                <h3 class="header-title">Update Product</h3>
 
                 <form method="POST" action= "{{url('/update/product/'.$product->id)}}"   class="parsley-examples" enctype="multipart/form-data">
                     @csrf
@@ -66,7 +66,7 @@
 
 
                     <div class="text-end">
-                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                        <button class="btn btn-primary waves-effect waves-light" type="submit">ProductUpdate</button>
                         <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                     </div>
                 </form>
