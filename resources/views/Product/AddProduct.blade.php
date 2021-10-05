@@ -61,7 +61,7 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="price" class="form-label">Product Proce<span class="text-danger">*</span></label>
                         <input type="text" name="price" parsley-trigger="change"  placeholder="Enter  price" class="form-control" id="price" />
                          @error('price')
@@ -75,7 +75,7 @@
                         @error('count')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                     <h5>Category Select <span class="text-danger">*</span></h5>
                 <div class="controls">
