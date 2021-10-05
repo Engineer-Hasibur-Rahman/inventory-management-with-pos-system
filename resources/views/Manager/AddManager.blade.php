@@ -13,7 +13,7 @@
 
 
 <div class="row">
-   <div class="col-lg-6">
+   <div class="col-lg-12">
 
        <div class="card">
            <div class="card-body">
@@ -21,6 +21,9 @@
                
                <form method="POST" action="{{route('manager.store')}}"   class="parsley-examples" enctype="multipart/form-data">
                    @csrf
+                   <div class="row">
+                     <div class="col-lg-6" >
+
                    <div class="mb-3">
                        <label for="userName" class="form-label">User Name<span class="text-danger">*</span></label>
                        <input type="text" name="username" parsley-trigger="change" class="form-control" id="userName" />
@@ -41,8 +44,9 @@
                        @if($errors->has('email'))
                        <div style="color:red"> {{$errors->first('email')}}</div>
                        @endif
-                       <h5 style="color: red">{{session('msg')}}</h5>
                    </div>
+                   </div>
+                    <div class="col-lg-6" >
                    <div class="mb-3">
                        <label for="image" class="form-label">Image<span class="text-danger">*</span></label>
                        <input type="file" name="image" parsley-trigger="change"  class="form-control" id="image" />
@@ -67,8 +71,10 @@
                   
                
                    <div class="text-end">
-                       <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                       <button class="btn btn-primary waves-effect waves-light" type="submit">ManagerSubmit</button>
                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
+                   </div>
+                   </div>
                    </div>
                </form>
            </div>
