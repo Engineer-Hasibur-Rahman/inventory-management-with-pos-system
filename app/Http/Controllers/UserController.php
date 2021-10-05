@@ -78,17 +78,11 @@ public function loginview(){
         }
 
 
-   
-
-
 
     public function NotificationAlart(){
-
-
+      
         $admins=User::all();
         $products=Product::all();
-
-
 
         foreach ($products as $product) {
             $allProduct=$product->count;
@@ -161,6 +155,7 @@ public function loginview(){
 
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
+
 
 
     public function logout(){
