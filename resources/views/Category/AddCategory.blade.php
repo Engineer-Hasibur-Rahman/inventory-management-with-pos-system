@@ -9,7 +9,7 @@
     <div class="content">
 
         <!-- Start Content-->
-        <div class="container-fluid">
+        <div class="container p-4">
 
 
  <div class="row">
