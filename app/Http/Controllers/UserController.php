@@ -77,13 +77,10 @@ public function loginview(){
 
         }
 
-<<<<<<< HEAD
-    public function Dashboard(){
-=======
 
 
-    public function NotificationAlart(){
->>>>>>> update
+    public function NotificationAlart()
+    {
 
         $admins=User::all();
         $products=Product::all();
@@ -161,8 +158,6 @@ public function loginview(){
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -171,7 +166,6 @@ public function loginview(){
 
 
 
->>>>>>> update
     public function logout(){
          Auth::logout();
         //Auth::user()->logout();
