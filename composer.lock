@@ -1261,18 +1261,6 @@
         },
         {
             "name": "laravel/serializable-closure",
-<<<<<<< HEAD
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "64f91a70e2e41617d0fb96fe86132959bbb0d550"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/64f91a70e2e41617d0fb96fe86132959bbb0d550",
-                "reference": "64f91a70e2e41617d0fb96fe86132959bbb0d550",
-=======
             "version": "v1.0.2",
             "source": {
                 "type": "git",
@@ -1283,7 +1271,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/679e24d36ff8b9be0e36f5222244ec8602e18867",
                 "reference": "679e24d36ff8b9be0e36f5222244ec8602e18867",
->>>>>>> update
                 "shasum": ""
             },
             "require": {
@@ -1329,11 +1316,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-<<<<<<< HEAD
-            "time": "2021-09-29T09:20:19+00:00"
-=======
             "time": "2021-09-29T13:25:52+00:00"
->>>>>>> update
         },
         {
             "name": "laravel/tinker",

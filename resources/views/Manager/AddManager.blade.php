@@ -70,10 +70,11 @@
                        @endif  </div>
                   
                
-                   <div class="text-end">
+                   
+                   </div>
+                   <div class="text-center p-4 mr-3">
                        <button class="btn btn-primary waves-effect waves-light" type="submit">ManagerSubmit</button>
                        <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
-                   </div>
                    </div>
                    </div>
                </form>
