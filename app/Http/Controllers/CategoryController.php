@@ -91,11 +91,13 @@ public function UpdateCategory(Request $request,$id)
     $category->category_name=$request->category_name;
     $category->save();
     $notification = array(
-        'message' => 'Category Edited Sucessyfuly',
+        'message' => 'Category Updated Sucessyfuly',
         'alert-type' => 'success',
       );
 
-      return redirect()->route('category.list')->with($notification);
+
+      return redirect('category/list')->with($notification);
+
 }
 public function DeleteCategory($id)
 {

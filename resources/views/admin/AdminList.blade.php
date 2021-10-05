@@ -48,7 +48,7 @@
                                        
                                         <td>
                                     <a href="/edit/admin/{{$admin->id}}" class="btn btn-primary">Edit</a>
-                                    <a href="/delete/admin/{{$admin->id}}" class="btn btn-danger">Delete</a>
+                                    <a href="/delete/admin/{{$admin->id}}" class="btn btn-danger" id="delete">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -62,4 +62,7 @@
         </div>
     </div>
  </div>
+ <script>
+     
+ </script>
 @endsection

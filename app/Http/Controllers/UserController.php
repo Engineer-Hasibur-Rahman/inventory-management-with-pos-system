@@ -10,6 +10,7 @@ use App\Models\Manager;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Product;
+use Spatie\Permission\Models\Role;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -38,16 +39,24 @@ public function loginview(){
     return view('auth.login');
 
         }
-
-
         public function loginverify(Request $req){
-            $validated = $req->validate([
+            $req->validate([
+
+
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required',
+
+              ],
+                [
+
+
+                 'email.required' => 'Input The email in Sucessyfuly',
+                 'password.required' => 'Input The password in Sucessyfuly',
+                 'exists:users'=> 'invalid email',
 
 
 
-            'email' => 'required|email|max:255',
-            'password' => 'required'
-            ]);
+              ]);
 
                 $creds = $req->only('email','password');
             // dd( Auth::guard('superadmin')->attempt( $creds));
@@ -56,26 +65,17 @@ public function loginview(){
                     $admin  = Auth::user();
                     $admin  = User::find($admin->id);
 
-
-
-
-
                         return redirect()->route('dashboard');
 
                 }
 
-
                 else{
-
-
-                session()->flash('error','invalid credetials');
+                    $req->session()->flash('error','invalid creditial');
                 return back();
 
                 }
 
         }
-
-
 
     public function Dashboard(){
 
@@ -122,12 +122,8 @@ public function loginview(){
         // }
         
 
-
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
-
-
-
 
     public function logout(){
          Auth::logout();
@@ -135,26 +131,7 @@ public function loginview(){
         return redirect()->route('user.login');
 
     }
-
-
-
-
-
 //echangable add
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // add admin view page
     public function AddAdmin()
@@ -195,12 +172,18 @@ if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->
 
     // admin store
 
-public function StoreAdmin(AdminRequest $request)
+public function StoreAdmin(AdminRequest   $request)
 {
+$admin = User::where('email', $request->email)
+->first();
+if($admin){
+$request->session()->flash('msg', 'Email is already exist');
+return view('admin.AddAdmin');
+}
+else{
     if(is_null($this->user) || !$this->user->can('admin.create') ){
         abort('403','You dont have acces!!!!');
     }
-
 
                 $admin= new Admin;
                 $admin->username=$request->username;
@@ -218,7 +201,7 @@ public function StoreAdmin(AdminRequest $request)
                     'alert-type' => 'success',
                 );
 
-                User::insert([
+                $user_id=User::insertGetId([
 
                 'name'=>$request->username,
                 'email'=>$request->email,
@@ -227,10 +210,14 @@ public function StoreAdmin(AdminRequest $request)
 
           ]);
 
-                return redirect()->back()->with($notification);
+     $user = User::find($user_id);
+
+     $user->assignRole('admin');
+        }
+
+                return redirect('/admin/list')->with($notification);
 
 }
-
 
 
     // admin list View page
@@ -264,7 +251,8 @@ public function UpdateAdmin(Request $request,$id)
     if(is_null($this->user) || !$this->user->can('admin.update')){
         abort('403','You dont have acces!!!!');
     }
-
+    $email=Admin::where('id', $id)->get()->first();
+    $email=$email->email;
 
     $admin=Admin::find($id);
     $admin->username=$request->username;
@@ -281,12 +269,22 @@ public function UpdateAdmin(Request $request,$id)
             $admin->image=$newImageName;
         }
             $admin->save();
+
+ 
+            User::where('email', $email)
+            ->update([
+                'name'=>$request->username,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password),
+      
+          ]);
+
             $notification = array(
-                'message' => 'Admin Edited Sucessyfuly',
+                'message' => 'Admin Updated Sucessyfuly',
                 'alert-type' => 'success',
             );
 
-  return redirect()->back()->with($notification);
+            return redirect('/admin/list')->with($notification);
 }
 // delete admin
 public function DeleteAdmin($id)
@@ -295,6 +293,9 @@ public function DeleteAdmin($id)
         abort('403','You dont have acces!!!!');
     }
 
+    $admin=Admin::where('id', $id)->get()->first();
+   $adminDelete=$admin->email;
+   $adminDelete=User::where('email', $adminDelete)->delete();
     Admin::destroy($id);
     return redirect('admin/list');
 
@@ -323,6 +324,14 @@ public function Managershow(){
 
 public function ManagerStore(ManagerRequest $request){
 
+
+    $manager = User::where('email', $request->email)
+    ->first();
+    if($manager){
+    $request->session()->flash('msg', 'Email is already exist');
+    return view('Manager.AddManager');
+    }
+    else{
 
     if(is_null($this->user) || !$this->user->can('user.create') ){
         abort('403','You dont have acces!!!!');
@@ -370,7 +379,7 @@ public function ManagerStore(ManagerRequest $request){
          'password.required' => 'Input The password in Sucessyfuly',
 
       ]);
-      User::insert([
+      $user_id=User::insertGetId([
 
         'name'=>$request->username,
         'email'=>$request->email,
@@ -378,13 +387,18 @@ public function ManagerStore(ManagerRequest $request){
         'role'=> 3,
 
   ]);
+  $user = User::find($user_id);
+
+  $user->assignRole('Manager');
+
+
 
 
       $notification = array(
         'message' =>  'Manager Add Sucessyfuly',
         'alert-type' => 'success'
     );
-    //redirect to show_manager page
+    }
     return redirect('/show')->with($notification);
 
 
@@ -408,6 +422,10 @@ public function ManagerStore(ManagerRequest $request){
         $manager_id = $request->id;
        $old_img = $request->old_img;
 
+       $email=Manager::where('id', $manager_id)->get()->first();
+       $email=$email->email;
+     
+
 
         if ($request->file('image')) {
 
@@ -423,13 +441,27 @@ public function ManagerStore(ManagerRequest $request){
         'fullname' => $request->fullname,
         'email' => $request->email,
         'image' => $save_url,
-
-
-
         ]);
 
+        // $email=Manager::where('id', $manager_id)->get()->first();
+        // $email=$email->email;
+       
+        User::where('email', $email)
+        ->update([
+            'name'=>$request->username,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+  
+      ]);
+        // User::findOrFail($email)->update([
+        //     'name'=>$request->username,
+        //     'email'=>$request->email,
+        //     'password'=>Hash::make($request->password),
+        //     ]);
+    
+
         $notification = array(
-            'message' => 'image img Updated Successfully',
+            'message' => 'Manager Updated Successfully',
             'alert-type' => 'info'
         );
     return redirect()->route('show.manager')->with($notification);
@@ -448,7 +480,7 @@ public function ManagerStore(ManagerRequest $request){
 
         ]);
           $notification = array(
-            'message' => 'image img Updated Successfully',
+            'message' => 'Manager Updated Successfully',
             'alert-type' => 'info'
         );
 
@@ -461,14 +493,20 @@ public function ManagerStore(ManagerRequest $request){
    // Delete Slider
     public function destroy($id){
 
+
+
+
         if(is_null($this->user) || !$this->user->can('user.update') ){
             abort('403','You dont have acces!!!!');
         }
 
+    $manager=Manager::where('id', $id)->get()->first();
+     $managerDelete=$manager->email;
+     $managerDelete=User::where('email', $managerDelete)->delete();
         $manager = Manager::findOrFail($id)->delete();
 
           $notification = array(
-            'message' => 'image img Delete Successfully',
+            'message' => 'Manager Delete Successfully',
             'alert-type' => 'info'
         );
 

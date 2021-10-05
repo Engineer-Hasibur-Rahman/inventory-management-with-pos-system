@@ -22,7 +22,7 @@ class AdminRequest extends FormRequest
         return [
                 'username'=> 'required',
                 'fullname'=> 'required',
-                'email'=> 'required',
+                'email'=> 'required|unique:admins',
                 'image'=> 'required',
                 'password'=> 'required',
                 'repassword'=> 'required',

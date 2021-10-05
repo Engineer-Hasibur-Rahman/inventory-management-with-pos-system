@@ -22,7 +22,7 @@ class ManagerRequest extends FormRequest
         return [
                 'username'=> 'required',
                 'fullname'=> 'required',
-                'email'=> 'required',
+                'email'=> 'required|unique:managers',
                 'image'=> 'required',
                 'password'=> 'required',
                 'repassword'=> 'required',
