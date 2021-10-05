@@ -77,54 +77,101 @@ public function loginview(){
 
         }
 
+<<<<<<< HEAD
+    public function Dashboard(){
+=======
+
+
+    public function NotificationAlart(){
+>>>>>>> update
+
+        $admins=User::all();
+        $products=Product::all();
+
+
+
+        foreach ($products as $product) {
+            $allProduct=$product->count;
+
+
+            if($product->stock_alart!=1 && $allProduct<5){
+
+
+                foreach ($admins as $admin) {
+                 $admin->notify(new StockNotification($product));
+                }
+
+                Product::Where('id',$product->id)->Update(['stock_alart'=>1]);
+           }
+
+
+
+
+        }
+        // foreach ($products as $product) {
+        //     dd($product);
+        //     $allProduct=$product->count;
+
+        //     $productName=$product->name;
+        //     //dd($admins);
+        //     // if(session::set())
+
+        //     if($allProduct>5 && $productName){
+        //         foreach ($admins as $admin) {
+
+
+
+        //            $admin->notify(new StockNotification($product));
+
+
+
+        //         }
+
+
+        //     }
+        //   break;
+        // }
+
+
+
+
+
+
+
+
+    }
+
+
+
+
     public function Dashboard(){
 
         $admin=Admin::all();
         $adminCount=$admin->count();
         $manager=Manager::all();
         $manageCount=$manager->count();
-       
-        $admins=User::all();
         $products=Product::all();
         $productCount=$products->count();
-        $products=Product::all();
-        foreach ($products as $product) {
-            $allProduct=$product->count;
-            if($allProduct>5){
-                foreach ($admins as $admin) {
-                $admin->notify(new StockNotification($product));
-            }
-        }
-          
-        }
-        // foreach ($products as $product) {
-        //     dd($product);
-        //     $allProduct=$product->count;
-            
-        //     $productName=$product->name;
-        //     //dd($admins);
-        //     // if(session::set())
-            
-        //     if($allProduct>5 && $productName){
-        //         foreach ($admins as $admin) {
-                   
 
-                    
-        //            $admin->notify(new StockNotification($product));
-                 
-               
+       $this->NotificationAlart();
 
-        //         }
-                 
-                    
-        //     }
-        //   break;
-        // }
-        
+
+
 
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> update
     public function logout(){
          Auth::logout();
         //Auth::user()->logout();
@@ -523,8 +570,8 @@ public function Notification(){
 }
 
 
- // 
- 
+ //
+
 
 
 

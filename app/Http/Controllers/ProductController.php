@@ -70,6 +70,12 @@ return $next($request);
       $product->product_code=$request->product_code;
       $product->squ_code=$request-> squ_code;
       $product->count=$request->count;
+      if($request->count<5){
+
+        $product->stock_alart=0;
+
+
+      }
 
       $product->product_image= $save_url;
       $product->product_satus= 1;
@@ -91,7 +97,7 @@ return $next($request);
     }
   public function showProduct(){
 
-    
+
     $products = Product::all();
 
     return view('Product.ProductList', compact('products'));
@@ -134,6 +140,13 @@ public function UpdateProduct(Request $request,$id)
           $product->squ_code=$request-> squ_code;
           $product->count=$request->count;
 
+          if($request->count<5){
+
+            $product->stock_alart=0;
+
+
+          }
+
           $product->product_image= $save_url;
           $product->product_satus= 1;
           $product->save();
@@ -165,7 +178,7 @@ public function DeleteProduct($id)
 
   public function ProductView(){
     $products=Product::all()->count();
-    
+
     return response()-> json(
         [
             'products'=>$products,

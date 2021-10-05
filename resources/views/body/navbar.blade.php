@@ -18,16 +18,22 @@
                     <span class="badge bg-danger rounded-circle noti-icon-badge">{{auth()->user()->notifications()->count()}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+<<<<<<< HEAD
                     @foreach (auth()->user()->unreadNotifications as $noti)
                         
                    
+=======
+                    @foreach (auth()->user()->notifications as $noti)
+
+
+>>>>>>> update
 
                     <!-- item-->
-                  
+
                     <!-- All-->
                     <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                        {{$noti->data['product']['name'] , $noti->data['admin']['email']}}
-                       
+                        {{"Stock alart for"." ".$noti->data['product']['name'], $noti->data['admin']['email']}}
+
                     </a>
                     @endforeach
 

@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('count');
             $table->integer('product_satus')->default(0);
+            $table->tinyInteger('stock_alart')->default(0);
             $table->timestamps();
         });
     }
