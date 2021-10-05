@@ -46,7 +46,7 @@
                                         <th>User Name</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
-                                        <th>Action</th>
+                                        <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
                             
@@ -55,11 +55,14 @@
                                     @foreach($Managershow as $manager)
                                     <tr>
                                         <td> 
-                                            <div class="avatar-sm mx-auto mb-4">
+                                            <!-- <div class="avatar-sm mx-auto mb-4">
                                                 <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-16">
                                                     <img src="{{ asset($manager->image) }}" alt="" class="img-thumbnail rounded-circle">
                                                 </span>
-                                            </div>
+                                            </div> -->
+                                       
+                                                    <img src="{{ asset($manager->image) }}" alt="" class="img-thumbnail" height="90" width="90">
+                                               
 
                                 
                                         </td>
@@ -67,11 +70,11 @@
                                         <td>{{$manager->fullname}}</td>
                                         <td>{{$manager->email}}</td>
                                        
-                                        <td>
+                                        <td class="text-end">
 
-                                     <a href="{{ route('manager.edit',$manager->id) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
+                                     <a href="{{ route('manager.edit',$manager) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
 
-                           <a href="{{ route('manager.delete', $manager->id ) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
+                           <a href="{{ route('manager.delete', $manager->id ) }}" class="btn btn-danger btn-sm" id="#">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
