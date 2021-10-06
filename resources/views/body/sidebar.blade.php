@@ -169,7 +169,6 @@ $user =Auth::user()
 
 
 
-<<<<<<< HEAD
 
                             >Purchase List</a>
                             </li>
@@ -185,9 +184,9 @@ $user =Auth::user()
 
             </ul>
 
-=======
+
            </ul>
->>>>>>> 15e17abcb914e665d42c6dbccaa948ac64e96c0a
+
         </div>
         <!-- End Sidebar -->
 

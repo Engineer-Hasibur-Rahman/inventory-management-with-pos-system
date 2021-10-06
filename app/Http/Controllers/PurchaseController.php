@@ -38,7 +38,7 @@ class PurchaseController extends Controller
          ]);
         $purchase= new Purchase;
         $purchase->product_id=$request->product_id;
-        $purchase->supplier_id=1;
+        $purchase->supplier_id=$request->supplier_id;
         $purchase->purchase_date=$request->purchase_date;
         $purchase->product_quantity=$request->product_quantity;
         $purchase->purchase_price=$request->purchase_price;
@@ -99,7 +99,7 @@ class PurchaseController extends Controller
    
             $purchase=Purchase::find($id);
             $purchase->product_id=$request->product_id;
-            $purchase->supplier_id=1;
+            $purchase->supplier_id=$request->supplier_id;
             $purchase->purchase_date=$request->purchase_date;
             $purchase->product_quantity=$request->product_quantity;
             $purchase->purchase_price=$request->purchase_price;

@@ -106,7 +106,7 @@ Route::get('/notifications',[UserController::class,'Notification'])->name('notif
 });
 
 
-<<<<<<< HEAD
+
 ///// purchase start///
 Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
@@ -114,7 +114,7 @@ Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->nam
 Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
 Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
 Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');
-=======
+
 /// Supplier start ////
 Route::get('/add/supplier', [SupplierController::class, 'SupplierView'])->name('add.Supplier');
 
@@ -134,5 +134,3 @@ Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Suppl
 /// Supplier end////
 
 
- 
->>>>>>> 15e17abcb914e665d42c6dbccaa948ac64e96c0a
