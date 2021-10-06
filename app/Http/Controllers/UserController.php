@@ -45,17 +45,14 @@ public function loginview(){
 
 
                 'email' => 'required|email|exists:users,email',
-                'password' => 'required',
+                'password' => 'required|exists:users',
 
               ],
                 [
 
 
-                 'email.required' => 'Input The email in Sucessyfuly',
-                 'password.required' => 'Input The password in Sucessyfuly',
-                 'exists:users'=> 'invalid email',
-
-
+                 'email.required' => 'Cant Emty The field',
+                 'password.required' => 'Cant Emty field',
 
               ]);
 
