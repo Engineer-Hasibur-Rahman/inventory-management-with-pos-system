@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Product;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -40,7 +41,7 @@ public function loginview(){
 
         }
         public function loginverify(Request $req){
-            $req->validate([
+            $validator = Validator::make($req->all(), [
 
 
                 'email' => 'required|email|exists:users,email',
@@ -70,8 +71,12 @@ public function loginview(){
                 }
 
                 else{
-                    $req->session()->flash('error','invalid creditial');
-                return back();
+
+
+
+
+
+                return back()->withErrors($validator) ->withInput();;
 
                 }
 
@@ -80,7 +85,7 @@ public function loginview(){
 
 
     public function NotificationAlart(){
-      
+
         $admins=User::all();
         $products=Product::all();
 
@@ -303,13 +308,13 @@ public function UpdateAdmin(Request $request,$id)
         }
             $admin->save();
 
- 
+
             User::where('email', $email)
             ->update([
                 'name'=>$request->username,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
-      
+
           ]);
 
             $notification = array(
@@ -457,7 +462,7 @@ public function ManagerStore(ManagerRequest $request){
 
        $email=Manager::where('id', $manager_id)->get()->first();
        $email=$email->email;
-     
+
 
 
         if ($request->file('image')) {
@@ -478,20 +483,20 @@ public function ManagerStore(ManagerRequest $request){
 
         // $email=Manager::where('id', $manager_id)->get()->first();
         // $email=$email->email;
-       
+
         User::where('email', $email)
         ->update([
             'name'=>$request->username,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-  
+
       ]);
         // User::findOrFail($email)->update([
         //     'name'=>$request->username,
         //     'email'=>$request->email,
         //     'password'=>Hash::make($request->password),
         //     ]);
-    
+
 
         $notification = array(
             'message' => 'Manager Updated Successfully',
