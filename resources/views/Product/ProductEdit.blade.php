@@ -48,7 +48,7 @@
                     <h5>Category Select <span class="text-danger">*</span></h5>
                 <div class="controls">
                          <select name="category_id" class="form-control" required="" >
-                    <option value="" selected="" disabled="">Select Brand</option>
+                    <option value="" selected="" disabled="">{{ $product->category->category_name}}</option>
                      @foreach($categories as $category)
                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                              @endforeach

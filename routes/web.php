@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\HomeController;
  use App\Http\Controllers\UserController;
  use App\Http\Controllers\CategoryController;
+ use App\Http\Controllers\PurchaseController;
+ 
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
@@ -103,3 +105,10 @@ Route::get('/notifications',[UserController::class,'Notification'])->name('notif
 });
 
 
+///// purchase start///
+Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
+Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
+Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->name('store.purchase');
+Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
+Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');

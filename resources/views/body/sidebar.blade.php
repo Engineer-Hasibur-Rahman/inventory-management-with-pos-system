@@ -164,7 +164,44 @@ $user =Auth::user()
                 </li>
 
 
+                <li>
+                    <a href="#purchase" data-bs-toggle="collapse">
+                        <i class="fas fa-box"></i>
+                        <span> Purchase </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="purchase">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a
+                                    href="{{ route('add.purchase') }}"
 
+
+
+
+
+
+
+
+                               > Purchase</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ route('show.purchase') }}"
+
+
+
+
+
+
+
+                            >Purchase List</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
 
 
 
