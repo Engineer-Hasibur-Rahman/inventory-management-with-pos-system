@@ -13,7 +13,7 @@
                     <div class="card">
 
 
-                            @if(session('update'))
+                           <!--  @if(session('update'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               <strong>{{session('update')}}</strong> 
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -26,7 +26,7 @@
                               <strong>{{session('delete')}}</strong> 
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            @endif
+                            @endif -->
 
 
                         <div class="card-body">
@@ -49,11 +49,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach( $suppliers as  $supplier)
+                                    @foreach($suppliers as  $supplier)
                                     <tr>
                                         <td> 
-                                                    <img src="{{ asset($supplier->image) }}" alt="" class="img-thumbnail" height="90" width="90">
-                                
+                                         <img src="{{ asset($supplier->image) }}" alt="" class="img-thumbnail" height="90" width="90">
                                         </td>
                                         <td>{{$supplier->name}}</td>
                                         <td>{{$supplier->father_name}}</td>
@@ -66,9 +65,9 @@
                                        
                                         <td class="text-end">
 
-                                     <a href="#" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
+                                     <a href="{{url('supplier/edit/'.$supplier->id)}}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
 
-                                     <a href="" class="btn btn-danger btn-sm" id="#">Delete</a>
+                                     <a href="{{url('supplier/destroy/'.$supplier->id)}}" id="delete" class="btn btn-danger btn-sm" >Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

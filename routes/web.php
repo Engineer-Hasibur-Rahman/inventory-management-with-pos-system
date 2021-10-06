@@ -112,13 +112,14 @@ Route::get('/show/supplier', [SupplierController::class, 'Suppliershow'])->name(
 Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
 
 
-// Route::get('/supplier/edit/{id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
+Route::get('/supplier/edit/{supplier_id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
+Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name('SupplierUpdate');
 
 
 
 
-// Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name('SupplierUpdate');
-Route::get('/supplier/delete/{id}', [SupplierController::class, 'destroy'])->name('Supplier.delete');
+// Route::get('/supplier/delete/{id}', [SupplierController::class, 'destroy'])->name('Supplier.delete');
+Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
 /// Supplier end////
 
 

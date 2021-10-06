@@ -14,7 +14,7 @@
 
 
 
-                <form method="POST" action="{{ route('Supplier.edit') }}"class="parsley-examples" enctype="multipart/form-data">
+                <form method="POST" action="{{route('SupplierUpdate',$suppliers->id)}}"class="parsley-examples" enctype="multipart/form-data">
 
                     @csrf
 
