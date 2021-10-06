@@ -56,12 +56,12 @@
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">Email address</label>
                                          <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autofocus>
+                                         @error('email')
+                                         <p class="text-danger">{{ $message}}</p>
+                                         @enderror
                                     </div>
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
+
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
@@ -71,12 +71,11 @@
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
+                                        @error('password')
+                                        <p class="text-danger">{{ $message}}</p>
+                                        @enderror
                                     </div>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
 
                                     <div class="mb-3">
                                         <div class="form-check">
