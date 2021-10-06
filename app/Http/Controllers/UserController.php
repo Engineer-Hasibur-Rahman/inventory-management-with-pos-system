@@ -80,7 +80,7 @@ public function loginview(){
 
 
     public function NotificationAlart(){
-      
+
         $admins=User::all();
         $products=Product::all();
 
@@ -98,46 +98,10 @@ public function loginview(){
                 Product::Where('id',$product->id)->Update(['stock_alart'=>1]);
            }
 
-
-
-
         }
-        // foreach ($products as $product) {
-        //     dd($product);
-        //     $allProduct=$product->count;
-
-        //     $productName=$product->name;
-        //     //dd($admins);
-        //     // if(session::set())
-
-        //     if($allProduct>5 && $productName){
-        //         foreach ($admins as $admin) {
-
-
-
-        //            $admin->notify(new StockNotification($product));
-
-
-
-        //         }
-
-
-        //     }
-        //   break;
-        // }
-
-
-
-
-
-
 
 
     }
-
-
-
-
 
     public function Dashboard(){
 
@@ -150,13 +114,8 @@ public function loginview(){
 
        $this->NotificationAlart();
 
-
-
-
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
-
-
 
     public function logout(){
          Auth::logout();
@@ -175,33 +134,6 @@ public function loginview(){
 
         return view('admin.AddAdmin');
     }
-
-
-
-//  "admin.createPdf",
-//         //admin permission
-//            "admin.create",
-//            "admin.update",
-//            "admin.delete",
-//            "admin.view",
-
-//         //user permission
-//            "user.create",
-//            "user.update",
-//            "user.delete",
-//            "user.view",
-//            //product permission
-//            "product.create",
-//            "product.update",
-//            "product.delete",
-//            "product.view"
-
-
-// if(is_null($this->user) || !$this->user->can('product.create') || !$this->user->can('product.update') || !$this->user->can('product.delete') || !$this->user->can('product.view')){
-//     abort('403','You dont have acces!!!!');
-// }
-
-
 
     // admin store
 
@@ -303,13 +235,13 @@ public function UpdateAdmin(Request $request,$id)
         }
             $admin->save();
 
- 
+
             User::where('email', $email)
             ->update([
                 'name'=>$request->username,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
-      
+
           ]);
 
             $notification = array(
@@ -457,7 +389,7 @@ public function ManagerStore(ManagerRequest $request){
 
        $email=Manager::where('id', $manager_id)->get()->first();
        $email=$email->email;
-     
+
 
 
         if ($request->file('image')) {
@@ -478,20 +410,20 @@ public function ManagerStore(ManagerRequest $request){
 
         // $email=Manager::where('id', $manager_id)->get()->first();
         // $email=$email->email;
-       
+
         User::where('email', $email)
         ->update([
             'name'=>$request->username,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-  
+
       ]);
         // User::findOrFail($email)->update([
         //     'name'=>$request->username,
         //     'email'=>$request->email,
         //     'password'=>Hash::make($request->password),
         //     ]);
-    
+
 
         $notification = array(
             'message' => 'Manager Updated Successfully',

@@ -36,28 +36,15 @@ return $next($request);
       return view('product.AddProduct',compact('categories'));
   }
 
-
-  // public function ProductList()
-  // {
-  //   $products=Product::all();
-  //     return view('product.ProductList',compact('products'));
-  // }
-
-
+// store product
   public function StoreProduct(Request $request)
   {
-
-
        $validateData = $request->validate([
            'name' => 'required',
            'price' => 'required',
            'product_code' => 'required',
            'squ_code' => 'required',
            'count' => 'required',
-
-
-
-
        ]);
       $image = $request->file('image');
       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -70,13 +57,10 @@ return $next($request);
       $product->product_code=$request->product_code;
       $product->squ_code=$request-> squ_code;
       $product->count=$request->count;
+
       if($request->count<5){
-
         $product->stock_alart=0;
-
-
       }
-
       $product->product_image= $save_url;
       $product->product_satus= 1;
       $product->save();
@@ -84,22 +68,10 @@ return $next($request);
         'message' => 'Product Add Sucessyfuly',
         'alert-type' => 'success',
       );
-      // foreach (User::all() as $admin) {
-      //       $admin->notify(new StockNotification($product));
-      // }
-      // event(new MyEvent($product));
-
-     
-
       return redirect()->route('show.product')->with($notification);
-
-
     }
   public function showProduct(){
-
-
     $products = Product::all();
-
     return view('Product.ProductList', compact('products'));
 }
 public function EditProduct($id)
@@ -124,9 +96,6 @@ public function UpdateProduct(Request $request,$id)
     'squ_code' => 'required',
     'count' => 'required',
 
-
-
-
 ]);
       $image = $request->file('image');
       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -143,8 +112,6 @@ public function UpdateProduct(Request $request,$id)
           if($request->count<5){
 
             $product->stock_alart=0;
-
-
           }
 
           $product->product_image= $save_url;
@@ -154,7 +121,6 @@ public function UpdateProduct(Request $request,$id)
             'message' => 'Product Edited Sucessyfuly',
             'alert-type' => 'success',
           );
-
           return redirect()->route('show.product')->with($notification);
 
         }
@@ -173,13 +139,12 @@ public function DeleteProduct($id)
 
   }
 
-
   //for testing audio
 
   public function ProductView(){
     $products=Product::all()->count();
 
-    return response()-> json(
+    return response()->json(
         [
             'products'=>$products,
         ]
@@ -187,10 +152,6 @@ public function DeleteProduct($id)
 }
 
 //check product count for notification
-
-
-
-
 
 }
 

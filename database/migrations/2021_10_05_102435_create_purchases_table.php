@@ -23,7 +23,6 @@ class CreatePurchasesTable extends Migration
             $table->string('supplier_price');
             $table->string('supplier_unit');
             $table->string('supplier_note');
-
             $table->timestamps();
         });
     }
