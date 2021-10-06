@@ -19,10 +19,6 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-lg">
 
-                   
-                        
-                   
-
                     @foreach (auth()->user()->notifications as $noti)
 
 

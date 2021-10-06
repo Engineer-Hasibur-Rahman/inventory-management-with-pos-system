@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Product;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -40,21 +41,18 @@ public function loginview(){
 
         }
         public function loginverify(Request $req){
-            $req->validate([
+            $validator = Validator::make($req->all(), [
 
 
                 'email' => 'required|email|exists:users,email',
-                'password' => 'required',
+                'password' => 'required|exists:users',
 
               ],
                 [
 
 
-                 'email.required' => 'Input The email in Sucessyfuly',
-                 'password.required' => 'Input The password in Sucessyfuly',
-                 'exists:users'=> 'invalid email',
-
-
+                 'email.required' => 'Cant Emty The field',
+                 'password.required' => 'Cant Emty field',
 
               ]);
 
@@ -70,25 +68,23 @@ public function loginview(){
                 }
 
                 else{
-                    $req->session()->flash('error','invalid creditial');
-                return back();
+
+
+
+
+
+                return back()->withErrors($validator) ->withInput();;
 
                 }
 
         }
 
 
-   
-
-
 
     public function NotificationAlart(){
 
-
         $admins=User::all();
         $products=Product::all();
-
-
 
         foreach ($products as $product) {
             $allProduct=$product->count;
@@ -161,6 +157,7 @@ public function loginview(){
 
         return view ('admin.index',compact('adminCount','manageCount','productCount'));
     }
+
 
 
     public function logout(){
@@ -308,13 +305,13 @@ public function UpdateAdmin(Request $request,$id)
         }
             $admin->save();
 
- 
+
             User::where('email', $email)
             ->update([
                 'name'=>$request->username,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
-      
+
           ]);
 
             $notification = array(
@@ -462,7 +459,7 @@ public function ManagerStore(ManagerRequest $request){
 
        $email=Manager::where('id', $manager_id)->get()->first();
        $email=$email->email;
-     
+
 
 
         if ($request->file('image')) {
@@ -483,20 +480,20 @@ public function ManagerStore(ManagerRequest $request){
 
         // $email=Manager::where('id', $manager_id)->get()->first();
         // $email=$email->email;
-       
+
         User::where('email', $email)
         ->update([
             'name'=>$request->username,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-  
+
       ]);
         // User::findOrFail($email)->update([
         //     'name'=>$request->username,
         //     'email'=>$request->email,
         //     'password'=>Hash::make($request->password),
         //     ]);
-    
+
 
         $notification = array(
             'message' => 'Manager Updated Successfully',
