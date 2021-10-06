@@ -16,8 +16,8 @@ class CreateSuppliersTable extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('fathername');
-            $table->string('mothername');
+            $table->string('father_name');
+            $table->string('mother_name');
             $table->string('permanent_address');
             $table->string('present_address');
             $table->string('email')->unique();
@@ -26,8 +26,6 @@ class CreateSuppliersTable extends Migration
             $table->string('image');
             $table->string('username');
             $table->string('password');
-            $table->string('product_name');
-            $table->integer('number_of_product');
             $table->timestamps();
         });
     }

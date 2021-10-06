@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
  
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
+ use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -105,6 +106,7 @@ Route::get('/notifications',[UserController::class,'Notification'])->name('notif
 });
 
 
+<<<<<<< HEAD
 ///// purchase start///
 Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
@@ -112,3 +114,25 @@ Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->nam
 Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
 Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
 Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');
+=======
+/// Supplier start ////
+Route::get('/add/supplier', [SupplierController::class, 'SupplierView'])->name('add.Supplier');
+
+Route::get('/show/supplier', [SupplierController::class, 'Suppliershow'])->name('show.Supplier');
+
+Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
+
+
+Route::get('/supplier/edit/{supplier_id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
+Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name('SupplierUpdate');
+
+
+
+
+// Route::get('/supplier/delete/{id}', [SupplierController::class, 'destroy'])->name('Supplier.delete');
+Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
+/// Supplier end////
+
+
+ 
+>>>>>>> 15e17abcb914e665d42c6dbccaa948ac64e96c0a
