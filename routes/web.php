@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\CategoryController;
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
+ use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -103,3 +104,23 @@ Route::get('/notifications',[UserController::class,'Notification'])->name('notif
 });
 
 
+/// Supplier start ////
+Route::get('/add/supplier', [SupplierController::class, 'SupplierView'])->name('add.Supplier');
+
+Route::get('/show/supplier', [SupplierController::class, 'Suppliershow'])->name('show.Supplier');
+
+Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
+
+
+Route::get('/supplier/edit/{supplier_id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
+Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name('SupplierUpdate');
+
+
+
+
+// Route::get('/supplier/delete/{id}', [SupplierController::class, 'destroy'])->name('Supplier.delete');
+Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
+/// Supplier end////
+
+
+ 

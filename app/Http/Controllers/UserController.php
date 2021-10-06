@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Product;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -40,21 +41,18 @@ public function loginview(){
 
         }
         public function loginverify(Request $req){
-            $req->validate([
+            $validator = Validator::make($req->all(), [
 
 
                 'email' => 'required|email|exists:users,email',
-                'password' => 'required',
+                'password' => 'required|exists:users',
 
               ],
                 [
 
 
-                 'email.required' => 'Input The email in Sucessyfuly',
-                 'password.required' => 'Input The password in Sucessyfuly',
-                 'exists:users'=> 'invalid email',
-
-
+                 'email.required' => 'Cant Emty The field',
+                 'password.required' => 'Cant Emty field',
 
               ]);
 
@@ -70,8 +68,12 @@ public function loginview(){
                 }
 
                 else{
-                    $req->session()->flash('error','invalid creditial');
-                return back();
+
+
+
+
+
+                return back()->withErrors($validator) ->withInput();;
 
                 }
 
