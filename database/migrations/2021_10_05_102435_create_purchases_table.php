@@ -15,6 +15,7 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+
             $table->string('supplier_id');
             $table->string('product_name');
             $table->string('product_image');
@@ -23,6 +24,7 @@ class CreatePurchasesTable extends Migration
             $table->string('supplier_price');
             $table->string('supplier_unit');
             $table->string('supplier_note');
+
             $table->timestamps();
         });
     }
