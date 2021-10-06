@@ -10,8 +10,8 @@ class Supplier extends Model
     use HasFactory;
      protected $fillable=[
         'name',
-        'fathername',
-        'mothername',
+        'father_name',
+        'mother_name',
         'permanent_address',
         'present_address',
         'email',
@@ -19,8 +19,7 @@ class Supplier extends Model
         'image',
         'username',
         'password',
-        'product_name',
-        'number_of_product',
+     
 
 
     ];
