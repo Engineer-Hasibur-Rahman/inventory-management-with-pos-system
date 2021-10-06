@@ -145,6 +145,8 @@
     });
   });// main funcations end
 </script>
+
+
 <script>
     document.getElementById('notification').muted = false;
     document.getElementById('notification').play();
