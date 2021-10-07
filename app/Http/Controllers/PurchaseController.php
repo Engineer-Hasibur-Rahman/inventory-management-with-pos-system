@@ -102,6 +102,8 @@ class PurchaseController extends Controller
 
 
   ]);
+  $product_id=Purchase::where('id', $id)->get()->first();
+    $product_id=$product_id->product_id;
 
             $purchase=Purchase::find($id);
             $purchase->product_id=$request->product_id;
@@ -112,6 +114,14 @@ class PurchaseController extends Controller
             $purchase->purchase_unit=$request->purchase_unit;
             $purchase->purchase_note=$request->purchase_note;
             $purchase->save();
+
+            Stock::where('product_id', $product_id)
+            ->update([
+                'product_id'=>$request->product_id,
+                'product_add_date'=>$request->purchase_date,
+                'product_stock_count'=>$request->product_quantity,
+          ]);
+
             $notification = array(
               'message' => 'Purcahse edited',
               'alert-type' => 'success',

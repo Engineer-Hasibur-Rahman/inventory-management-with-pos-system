@@ -20,22 +20,37 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
+                                        <th>Serial</th>
                                         <th>purchase_date</th>
                                         <th>product_name</th>
+                                        <th>product_Category</th>
                                         <th>product_quantity</th>
 
 
                                     </tr>
                                 </thead>
+                                @php
+                                $serial=0;
 
+                           @endphp
                                 <tbody>
                                     @foreach($stocks as $stock)
+
+                                    @php
+                                    $serial++;
+
+                               @endphp
                                     <tr>
 
-
+                                        <td>{{ $serial }}</td>
                                         <td>{{ $stock->product_add_date }}</td>
                                         <td>{{ $stock->product->name }}</td>
-                                        <td>{{ $stock->product_stock_count }}</td>
+                                        <td>{{ $stock->product->category->category_name }}</td>
+                                        @if ( $stock->product_stock_count <"5")
+                                         <td><a class="btn btn-danger ">{{ $stock->product_stock_count }}</a></td>
+                                         @else
+                                          <td><a class="btn btn-primary ">{{ $stock->product_stock_count }}</a></td>
+                                          @endif
                                     </tr>
                                     @endforeach
                                 </tbody>

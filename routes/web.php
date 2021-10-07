@@ -86,8 +86,9 @@ Route::get('/delete/product/{id}', [ProductController::class, 'DeleteProduct'])-
 
 /// manager start ////
 Route::get('/add/manager', [UserController::class, 'ManagerView'])->name('add.manager');
+Route::post('/add/manager', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/show', [UserController::class, 'Managershow'])->name('show.manager');
-Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
+// Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/edit/{id}', [UserController::class, 'ManagerEdit'])->name('manager.edit');
 Route::post('/edit/{id}', [UserController::class, 'ManagerUpdate'])->name('ManagerUpdate');
 Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
@@ -113,7 +114,8 @@ Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->nam
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
 Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->name('store.purchase');
 Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
-Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+Route::post('/edit/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+// Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
 Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');
 
 /// Supplier start ////
