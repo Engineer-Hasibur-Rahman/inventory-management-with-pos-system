@@ -16,7 +16,7 @@
                         <div class="col-lg-6" >
                     <div class="mb-3">
                         <label for="purchase_date" class="form-label">Purchase Date<span class="text-danger">*</span></label>
-                        <input type="text" name="purchase_date" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
+                        <input type="date" name="purchase_date" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
                         @error('purchase_date')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
@@ -62,24 +62,33 @@
                         <option>Select Product</option>
                          @foreach($products as $product)
                              <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            
+
                                  @endforeach
                              </select>
-                             
+
                          </div>
-                        
+
                         </div>
-                      
+
                     </div>
                     <div class="col-lg-6" >
-                   
-                    <div class="mb-3">
-                        <label for="purchase_unit" class="form-label">Product Unit<span class="text-danger">*</span></label>
-                        <input type="text" name="purchase_unit" parsley-trigger="change"  placeholder="Enter unit" class="form-control" id="purchase_unit" />
-                        @error('purchase_unit')
-                         <span class="text-danger">{{ $message }}</span>
-                         @enderror
-                    </div>
+                        <div class="mb-3">
+                            <h5>Product unit <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                 <select name="purchase_unit" class="form-control"  >
+                            <option selected="true" disabled="disabled">Select unit</option>
+
+                                 <option value="kg">KG</option>
+                                 <option value="gm">GM</option>
+                                 <option value="ltr">Ltr</option>
+                                 <option value="pcs">pcs</option>
+
+
+                                 </select>
+
+                             </div>
+
+                            </div>
                     <div class="mb-3">
                         <label for="purchase_note" class="form-label">Product Note<span class="text-danger">*</span></label>
                         <input type="text" name="purchase_note" parsley-trigger="change"  placeholder="Enter notes" class="form-control" id="purchase_note" />
