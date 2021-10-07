@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\UserController;
  use App\Http\Controllers\CategoryController;
  use App\Http\Controllers\PurchaseController;
- 
+ use App\Http\Controllers\PurchasePdfController;
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
@@ -112,7 +112,8 @@ Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->nam
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
 Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->name('store.purchase');
 Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
-Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+Route::post('/edit/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+// Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
 Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');
 
 /// Supplier start ////
@@ -134,3 +135,7 @@ Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Suppl
 /// Supplier end////
 
 
+//dom pdf
+
+Route::get('/get/purchase',[PurchasePdfController::class,'getPurchase'])->name('purchase.pdf');
+Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');

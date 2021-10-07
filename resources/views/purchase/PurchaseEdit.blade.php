@@ -11,13 +11,13 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="header-title">Edit Purchase</h3>
-                <form method="POST" action="{{route('store.purchase')}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
+                <form method="POST"  id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6" >
                     <div class="mb-3">
                         <label for="purchase_date" class="form-label">Purchase Date<span class="text-danger">*</span></label>
-                        <input type="text" name="purchase_date"  value="{{$purchase->purchase_date}}" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
+                        <input type="date" name="purchase_date"  value="{{$purchase->purchase_date}}" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
                         @error('purchase_date')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
