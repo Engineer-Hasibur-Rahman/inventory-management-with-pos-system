@@ -113,7 +113,8 @@ Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->nam
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
 Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->name('store.purchase');
 Route::get('/edit/purchase/{id}', [PurchaseController::class, 'EditPurchase'])->name('edit.purchase');
-Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+Route::post('/edit/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
+// Route::post('/update/purchase/{id}', [PurchaseController::class, 'UpdatePurchase'])->name('update.purchase');
 Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'])->name('delete.purchase');
 
 /// Supplier start ////
