@@ -105,7 +105,6 @@ class PurchaseController extends Controller
   $product_id=Purchase::where('id', $id)->get()->first();
     $product_id=$product_id->product_id;
 
-
             $purchase=Purchase::find($id);
             $purchase->product_id=$request->product_id;
             $purchase->supplier_id=$request->supplier_id;

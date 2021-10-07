@@ -52,28 +52,12 @@ $user =Auth::user()
                         <ul class="nav-second-level">
                             <li>
                                 <a
-
-                                        href="{{ route('add.manager') }}"
-
-
-
-
-
-
-
-
+                               href="{{ route('add.manager') }}"
                                    >Add Manager</a>
                             </li>
                             <li>
                                 <a
                                     href="{{ route('show.manager') }}"
-
-
-
-
-
-
-
                               >Manager list</a>
                             </li>
                         </ul>

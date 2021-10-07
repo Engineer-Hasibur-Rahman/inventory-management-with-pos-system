@@ -86,8 +86,9 @@ Route::get('/delete/product/{id}', [ProductController::class, 'DeleteProduct'])-
 
 /// manager start ////
 Route::get('/add/manager', [UserController::class, 'ManagerView'])->name('add.manager');
+Route::post('/add/manager', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/show', [UserController::class, 'Managershow'])->name('show.manager');
-Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
+// Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/edit/{id}', [UserController::class, 'ManagerEdit'])->name('manager.edit');
 Route::post('/edit/{id}', [UserController::class, 'ManagerUpdate'])->name('ManagerUpdate');
 Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
