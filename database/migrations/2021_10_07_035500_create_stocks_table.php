@@ -15,13 +15,12 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
+            $table->string('product_id');
             $table->date('product_add_date');
             $table->integer('product_stock_count');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreatePurchasesTable extends Migration
 {
     /**
@@ -15,20 +13,16 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-
-            $table->string('supplier_id');
-            $table->string('product_name');
-            $table->string('product_image');
-            $table->string('product_quantity');
-            $table->date('supplier_date');
-            $table->string('supplier_price');
-            $table->string('supplier_unit');
-            $table->string('supplier_note');
-
+            $table->integer('supplier_id');
+            $table->integer('product_id');
+            $table->date('purchase_date');
+            $table->integer('product_quantity');
+            $table->string('purchase_price');
+            $table->string('purchase_unit');
+            $table->string('purchase_note');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

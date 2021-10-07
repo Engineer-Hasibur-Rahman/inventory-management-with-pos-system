@@ -13,4 +13,8 @@ class Stock extends Model
         'product_add_date',
         'product_stock_count',
     ];
+
+    public function product(){
+    	return $this->belongsTo(Product::class,'product_id','id');
+    }
 }

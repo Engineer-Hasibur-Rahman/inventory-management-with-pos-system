@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\UserController;
  use App\Http\Controllers\CategoryController;
  use App\Http\Controllers\PurchaseController;
- 
+
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
+ use App\Http\Controllers\StockController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -133,4 +134,5 @@ Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name
 Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
 /// Supplier end////
 
-
+// stock view
+Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
