@@ -123,7 +123,7 @@ $user =Auth::user()
 
                    <li>
                     <a href="#sidebar4" data-bs-toggle="collapse">
-                        <i class="fas fa-box"></i>
+                        <i class="fas fa-cart-arrow-down"></i>
                         <span>Supplier</span>
                         <span class="menu-arrow"></span>
                     </a>
