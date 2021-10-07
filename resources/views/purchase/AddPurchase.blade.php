@@ -16,7 +16,7 @@
                         <div class="col-lg-6" >
                     <div class="mb-3">
                         <label for="purchase_date" class="form-label">Purchase Date<span class="text-danger">*</span></label>
-                        <input type="text" name="purchase_date" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
+                        <input type="date" name="purchase_date" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
                         @error('purchase_date')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
@@ -62,17 +62,17 @@
                         <option>Select Product</option>
                          @foreach($products as $product)
                              <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            
+
                                  @endforeach
                              </select>
-                             
+
                          </div>
-                        
+
                         </div>
-                      
+
                     </div>
                     <div class="col-lg-6" >
-                   
+
                     <div class="mb-3">
                         <label for="purchase_unit" class="form-label">Product Unit<span class="text-danger">*</span></label>
                         <input type="text" name="purchase_unit" parsley-trigger="change"  placeholder="Enter unit" class="form-control" id="purchase_unit" />
