@@ -28,7 +28,7 @@
                     <!-- All-->
                     <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
                         {{"Stock alart for"." ".$noti->data['product']['name'], $noti->data['admin']['email']}}
-
+                        <i class="far fa-times-circle"></i>
                     </a>
                     @endforeach
 

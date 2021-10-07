@@ -18,7 +18,11 @@
        <div class="card">
            <div class="card-body">
                <h3 class="header-title">Add Manager</h3>
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> 347821660e737683721e995fe066191c4a2e7b37
                <form method="POST" action=""   class="parsley-examples" enctype="multipart/form-data">
                    @csrf
                    <div class="row">
@@ -64,13 +68,13 @@
                    <div class="mb-3">
                        <label for="passWord2" class="form-label">Confirm Password <span class="text-danger">*</span></label>
                        <input data-parsley-equalto="#pass1" name="repassword" type="password"  class="form-control" id="passWord2" />
-                 
+
                        @if($errors->has('repassword'))
                        <div style="color:red"> {{$errors->first('repassword')}}</div>
                        @endif  </div>
-                  
-               
-                   
+
+
+
                    </div>
                    <div class="text-center p-4 mr-3">
                        <button class="btn btn-primary waves-effect waves-light" type="submit">ManagerSubmit</button>

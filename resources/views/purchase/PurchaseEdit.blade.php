@@ -83,7 +83,7 @@
 
 
                     <div class="col-lg-6" >
-                   
+
                     <div class="mb-3">
                         <label for="purchase_unit" class="form-label">Product Count<span class="text-danger">*</span></label>
                         <input type="text" name="purchase_unit"  value="{{$purchase->purchase_unit}}" parsley-trigger="change"  placeholder="Enter unit" class="form-control" id="purchase_unit" />

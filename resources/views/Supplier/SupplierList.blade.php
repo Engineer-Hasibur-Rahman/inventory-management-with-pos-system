@@ -13,7 +13,7 @@
                     <div class="card">
 
 
-                           <!--  @if(session('update'))
+                            @if(session('update'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               <strong>{{session('update')}}</strong> 
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -26,7 +26,7 @@
                               <strong>{{session('delete')}}</strong> 
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            @endif -->
+                            @endif
 
 
                         <div class="card-body">

@@ -48,7 +48,10 @@
                     <h5>Category Select <span class="text-danger">*</span></h5>
                 <div class="controls">
                          <select name="category_id" class="form-control" required="" >
-                    <option value="" selected="" disabled="">{{ $product->category->category_name}}</option>
+
+                    <option value="" selected="" disabled="">{{$product->category->category_name}}</option>
+
+
                      @foreach($categories as $category)
                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                              @endforeach
@@ -57,10 +60,7 @@
                              <span class="text-danger">{{ $message }}</span>
                      @enderror
                      </div>
-
                 </div>
-
-
                     <div class="text-end">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">ProductUpdate</button>
                         <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>

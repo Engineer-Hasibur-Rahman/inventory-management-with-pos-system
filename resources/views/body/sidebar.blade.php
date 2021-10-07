@@ -52,28 +52,12 @@ $user =Auth::user()
                         <ul class="nav-second-level">
                             <li>
                                 <a
-
-                                        href="{{ route('add.manager') }}"
-
-
-
-
-
-
-
-
+                               href="{{ route('add.manager') }}"
                                    >Add Manager</a>
                             </li>
                             <li>
                                 <a
                                     href="{{ route('show.manager') }}"
-
-
-
-
-
-
-
                               >Manager list</a>
                             </li>
                         </ul>
@@ -123,7 +107,7 @@ $user =Auth::user()
 
                    <li>
                     <a href="#sidebar4" data-bs-toggle="collapse">
-                        <i class="fas fa-box"></i>
+                        <i class="fas fa-cart-arrow-down"></i>
                         <span>Supplier</span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -151,24 +135,11 @@ $user =Auth::user()
                                 <a
                                     href="{{ route('add.purchase') }}"
 
-
-
-
-
-
-
-
                                > Purchase</a>
                             </li>
                             <li>
                                 <a
                                     href="{{ route('show.purchase') }}"
-
-
-
-
-
-
 
                             >Purchase List</a>
                             </li>
@@ -181,6 +152,31 @@ $user =Auth::user()
 
 
 
+                <li>
+                    <a href="#stock" data-bs-toggle="collapse">
+                        <i class="fas fa-box"></i>
+                        <span> Stock </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="stock">
+                        <ul class="nav-second-level">
+                            {{-- <li>
+                                <a
+                                    href="{{ route('add.purchase') }}"
+
+                               > Stock</a>
+                            </li> --}}
+                            <li>
+                                <a
+                                    href="{{ route('stock.list') }}"
+
+                            >Stock List</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
 
             </ul>
 

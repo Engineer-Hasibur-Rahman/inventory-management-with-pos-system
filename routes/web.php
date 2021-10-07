@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\UserController;
  use App\Http\Controllers\CategoryController;
  use App\Http\Controllers\PurchaseController;
+<<<<<<< HEAD
  use App\Http\Controllers\PurchasePdfController;
+=======
+
+>>>>>>> 347821660e737683721e995fe066191c4a2e7b37
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
+ use App\Http\Controllers\StockController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -85,8 +90,9 @@ Route::get('/delete/product/{id}', [ProductController::class, 'DeleteProduct'])-
 
 /// manager start ////
 Route::get('/add/manager', [UserController::class, 'ManagerView'])->name('add.manager');
+Route::post('/add/manager', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/show', [UserController::class, 'Managershow'])->name('show.manager');
-Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
+// Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/edit/{id}', [UserController::class, 'ManagerEdit'])->name('manager.edit');
 Route::post('/edit/{id}', [UserController::class, 'ManagerUpdate'])->name('ManagerUpdate');
 Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
@@ -134,8 +140,13 @@ Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name
 Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
 /// Supplier end////
 
+<<<<<<< HEAD
 
 //dom pdf
 
 Route::get('/get/purchase',[PurchasePdfController::class,'getPurchase'])->name('purchase.pdf');
 Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
+=======
+// stock view
+Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
+>>>>>>> 347821660e737683721e995fe066191c4a2e7b37
