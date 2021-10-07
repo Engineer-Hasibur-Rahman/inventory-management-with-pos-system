@@ -19,7 +19,7 @@
                     <div class="col-lg-6" >
                     <div class="mb-3">
                         <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                        <input type="date" name="name" parsley-trigger="change"  placeholder="Enter Your Name" class="form-control" id="product_code" />
+                        <input type="text" name="name" parsley-trigger="change"  placeholder="Enter Your Name" class="form-control" id="product_code" />
                         @error('name')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
