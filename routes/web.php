@@ -146,7 +146,7 @@ Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name(
 
 // stock
 Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
-// customer
+
 
 Route::get('/customer/list', [CustomerController::class, 'CustomerList'])->name('customer.list');
 
@@ -160,3 +160,6 @@ Route::post('/update-customer/{id}', [CustomerController::class, 'update']);
 // Route::get('/color/{id}/edit', 'TestController@update')->name('color.update');
 
 Route::get('delete-custmer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
+
+Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
+
