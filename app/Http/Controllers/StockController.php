@@ -19,4 +19,6 @@ class StockController extends Controller
         return view('stock.StockList')->with('stocks',$stocks);
 
     }
+
+  
 }

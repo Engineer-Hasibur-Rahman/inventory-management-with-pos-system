@@ -39,26 +39,15 @@
 
             <li>
                 <?php 
-                use App\Models\Product;
-                $products=Product::all()->count();
+                use App\Models\Stock;
+                $stocks=Stock::all()->count();
 
                 ?>
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="fe-box noti-icon"></i>
-                    <span class="badge bg-danger rounded-circle noti-icon-badge">{{$products}}</span>
+                    <span class="badge bg-danger rounded-circle noti-icon-badge">{{$stocks}}</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-lg">
-
-                 
-
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                
-
-                    </a>
-     
-
-                </div>
+             
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">

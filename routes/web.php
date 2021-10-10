@@ -8,12 +8,9 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\HomeController;
  use App\Http\Controllers\UserController;
  use App\Http\Controllers\CategoryController;
+ use App\Http\Controllers\CustomerController;
  use App\Http\Controllers\PurchaseController;
-<<<<<<< HEAD
  use App\Http\Controllers\PurchasePdfController;
-=======
-
->>>>>>> 347821660e737683721e995fe066191c4a2e7b37
  use App\Http\Controllers\ProductController;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
@@ -140,13 +137,26 @@ Route::post('/update/{id}', [SupplierController::class, 'SupplierUpdate'])->name
 Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Supplierdestroy']);
 /// Supplier end////
 
-<<<<<<< HEAD
 
 //dom pdf
 
 Route::get('/get/purchase',[PurchasePdfController::class,'getPurchase'])->name('purchase.pdf');
 Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
-=======
-// stock view
+
+
+// stock
 Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
->>>>>>> 347821660e737683721e995fe066191c4a2e7b37
+// customer
+
+Route::get('/customer/list', [CustomerController::class, 'CustomerList'])->name('customer.list');
+
+
+
+Route::post('/store', [CustomerController::class, 'CustomerStore'])->name('customer.store');
+Route::get('edit-customer/{id}', [CustomerController::class, 'edit']);
+// Route::get('/customer/customer/{customer_id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::get('fetch-customers', [CustomerController::class, 'fetchcustomer']);
+Route::post('/update-customer/{id}', [CustomerController::class, 'update']);
+// Route::get('/color/{id}/edit', 'TestController@update')->name('color.update');
+
+Route::get('delete-custmer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
