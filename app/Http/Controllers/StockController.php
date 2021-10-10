@@ -22,6 +22,7 @@ class StockController extends Controller
                                       ->with('suppliers',$suppliers);
 
     }
+
     public function StockSearch(Request $req){
 
 
@@ -57,6 +58,7 @@ else{
          ->with('suppliers',$suppliers);
 
     }
+
 
 
 

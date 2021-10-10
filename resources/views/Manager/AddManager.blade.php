@@ -18,7 +18,7 @@
        <div class="card">
            <div class="card-body">
                <h3 class="header-title">Add Manager</h3>
-
+               
                <form method="POST" action=""   class="parsley-examples" enctype="multipart/form-data">
                    @csrf
                    <div class="row">

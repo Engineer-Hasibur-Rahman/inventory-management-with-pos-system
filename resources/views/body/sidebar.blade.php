@@ -178,6 +178,32 @@ $user =Auth::user()
                     </div>
                 </li>
 
+                <li>
+                    <a href="#customer" data-bs-toggle="collapse">
+                        <i class="fas fa-box"></i>
+                        <span> customer </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="customer">
+                        <ul class="nav-second-level">
+                            {{-- <li>
+                                <a
+                                    href="{{ route('add.purchase') }}"
+
+                               > Stock</a>
+                            </li> --}}
+                            <li>
+                                <a
+                                    href="{{ route('customer.list') }}"
+
+                            >customer List</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
 
 
