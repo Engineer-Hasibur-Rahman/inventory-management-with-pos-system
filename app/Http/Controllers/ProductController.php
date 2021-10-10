@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Supplier;
+use App\Models\Stock;
 use App\Models\ProductReturn;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -42,9 +44,9 @@ return $next($request);
    // add return  Product view page
    public function showReturnProduct()
    {
-    $purchases = Purchase::with(['product'])->with(['supplier'])->get();
+       $purchases = Purchase::with(['product'])->with(['supplier'])->get();
 
-dd($purchases);
+
        return view('product.AddreturnProduct',compact('purchases'));
    }
 
@@ -90,22 +92,47 @@ dd($purchases);
 
     return view('Product.ReturnProductList');
 }
+  public function showretuenProductlist(){
+
+   $productreturn= ProductReturn::with(['product'])->with(['supplier'])->get();
+
+    dd( $productreturn);
+
+
+
+    return view('Product.ReturnProductList');
+}
 
 
 // store product
 public function StoreReturnProduct(Request $request)
 {
+
+
+// dd($request->all());
      $validateData = $request->validate([
          'product_name' => 'required',
-         'quantity' => 'required',
-         'suppliar_name' => 'required',
+         'quantity' => 'required'
+
 
      ]);
 
+     $stock_number=Stock::where('product_id',$request->product_name)->first();
+     //dd($stock_number);
+
     $returnproduct= new ProductReturn;
     $returnproduct->product_id=$request->product_name;
-    $returnproduct->supplier_id=$request->suppliar_name;
-    $returnproduct->return_quantiy=$request->quantity;
+    $returnproduct->supplier_id=$request->suppliar;
+
+        if($request->quantity > $stock_number->product_stock_count){
+            return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
+        }else{
+
+
+            $returnproduct->return_quantiy=$request->quantity;
+        }
+
+
 
     $returnproduct->save();
     $notification = array(
@@ -269,7 +296,32 @@ public function DeletereturnProduct($id)
     );
 }
 
-//check product count for notification
+//jquary get funtion
+
+
+
+
+public function GetSupliar($product_id){
+
+
+$suppliar_id=Purchase::where('product_id',$product_id)->get()->pluck('supplier_id');
+
+$supplier_names=Supplier::where('id',$suppliar_id)->select('name','id')->get();
+
+return response()->json(compact('supplier_names'));
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 }
 

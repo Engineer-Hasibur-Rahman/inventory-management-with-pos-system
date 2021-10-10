@@ -109,11 +109,12 @@ Route::get('/notifications',[UserController::class,'Notification'])->name('notif
 //return product crud
 
 Route::get('/add/returnproduct',   [ProductController::class,   'showReturnProduct'])->name('show.return.product');
-Route::get('/show/returnproduct',   [ProductController::class,   'showretuenProduct'])->name('show.return.productList');
+Route::get('/show/returnproduct',   [ProductController::class,   'showretuenProductlist'])->name('show.return.productList');
 Route::post('/add/returnproduct',  [ProductController::class, 'StoreReturnProduct'])->name('store.return.product');
 Route::get('/edit/returnproduct/{id}', [ProductController::class, 'EditReturnProduct'])->name('edit.return.product');
 Route::post('/update/returnproduct/{id}', [ProductController::class, 'UpdateReturnProduct'])->name('update.return.product');
 Route::get('/delete/returnproduct/{id}', [ProductController::class, 'DeletereturnProduct'])->name('delete.return.product');
+Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
 
 
 

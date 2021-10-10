@@ -17,24 +17,33 @@
                             <div class="mb-3">
                                 <h5>Product Name<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                     <select name="product_name" class="form-control"  >
-                                <option>Select Product</option>
-@foreach ($purchases as $purchase )
-<option  value="{{$purchase->product->id}}"  >{{$purchase->product->name}}</option>
-@endforeach
+                                     <select id="productId" name="product_name" class="form-control"  >
+                                        <option disabled selected >Select Product</option>
+                                            @foreach ($purchases as $purchase )
+                                            <option   value="{{$purchase->product->id}}"  >{{$purchase->product->name}}</option>
+                                            @endforeach
                                      </select>
+
                                       @error('product_name')
                                          <span class="text-danger">{{ $message }}</span>
-                                 @enderror
+                                    @enderror
                                  </div>
                                 </div>
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Return Quantity Amount<span class="text-danger">*</span></label>
                         <input type="text" name="quantity" parsley-trigger="change"  placeholder="Enter quantity for return" class="form-control" id="name" />
-                        @error('quantity')
+                        {{-- @error('quantity')
                          <span class="text-danger">{{ $message }}</span>
-                         @enderror
+                         @enderror --}}
+
+                        {{-- @isset($quantity)
+                            {{$quantity}}
+                        @endisset --}}
+                        @if (Session::has('quantity'))
+                        <span class="text-danger"> {{Session::get('quantity')}}</span>
+
+                        @endif
                     </div>
 
 
@@ -44,15 +53,12 @@
                         <div class="mb-3">
                             <h5>Suppliar name<span class="text-danger">*</span></h5>
                             <div class="controls">
-                                 <select name="suppliar" class="form-control"  >
-                            <option>Select supplier</option>
-                            @foreach ($purchases as $purchase )
-                            <option  value="{{$purchase->suppliar->id}}"  >{{$purchase->supplier->name}}</option>
-                            @endforeach
+                                <select name="suppliar" class="form-control " id="supply_select"  >
+                                     <option>Select supplier</option>
                                  </select>
                                   @error('suppliar_name')
                                      <span class="text-danger">{{ $message }}</span>
-                             @enderror
+                                  @enderror
                              </div>
                             </div>
                     </div>
@@ -70,4 +76,63 @@
     </div>
     </div>
  </div>
+
+
+ <script>
+
+
+
+
+
+
+
+
+$(function(){
+
+
+
+
+    $('#productId').change(function() {
+        document.getElementById('supply_select').innerHTML='';
+        let productid=$('#productId option:selected').val();
+       // alert(productid);
+    axios.get(`/get/Suppliarnamebyproduct/${productid}`)
+  .then(function ({data:{supplier_names}}) {
+    // handle success
+    console.log(supplier_names);
+       const supplierSelectBox  = document.getElementById('supply_select');
+
+       supplier_names.forEach(supplier=>{
+        const optionBox          = document.createElement('option');
+         optionBox.value=supplier.id;
+         optionBox.innerText=supplier.name;
+         supplierSelectBox.appendChild(optionBox);
+       })
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+});
+ </script>
 @endsection
