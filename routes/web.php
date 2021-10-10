@@ -138,3 +138,4 @@ Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Suppl
 
 // stock view
 Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
+Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');

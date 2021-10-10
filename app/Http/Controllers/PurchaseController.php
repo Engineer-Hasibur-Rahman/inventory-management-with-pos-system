@@ -47,6 +47,7 @@ class PurchaseController extends Controller
 
         $stock= new Stock;
         $stock->product_id=$request->product_id;
+        $stock->supplier_id=$request->supplier_id;
         $stock->product_add_date=$request->purchase_date;
         $stock->product_stock_count=$request->product_quantity;
         $stock->save();
@@ -118,6 +119,7 @@ class PurchaseController extends Controller
             Stock::where('product_id', $product_id)
             ->update([
                 'product_id'=>$request->product_id,
+                'supplier_id' =>$request->supplier_id,
                 'product_add_date'=>$request->purchase_date,
                 'product_stock_count'=>$request->product_quantity,
           ]);
