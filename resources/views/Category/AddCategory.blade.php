@@ -18,13 +18,13 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="header-title">Add Category</h3>
-                
+
                 <form action="{{url('/add/category')}}" method="POST" class="parsley-examples">
                 @csrf
                     <div class="mb-3">
                         <label for="category_name" class="form-label">Category Name<span class="text-danger">*</span></label>
-                        <input type="text" name="category_name" parsley-trigger="change"  placeholder="Enter Category name" class="form-control" id="category_name" />
-                        @error('category_name') 
+                        <input type="text" name="category_name" parsley-trigger="change" value="{{old('category_name')}}"  placeholder="Enter Category name" class="form-control" id="category_name" />
+                        @error('category_name')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>

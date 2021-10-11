@@ -141,10 +141,11 @@ Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'
 
 /// Supplier start ////
 Route::get('/add/supplier', [SupplierController::class, 'SupplierView'])->name('add.Supplier');
+Route::post('/add/supplier', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
 
 Route::get('/show/supplier', [SupplierController::class, 'Suppliershow'])->name('show.Supplier');
 
-Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
+// Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
 
 
 Route::get('/supplier/edit/{supplier_id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
