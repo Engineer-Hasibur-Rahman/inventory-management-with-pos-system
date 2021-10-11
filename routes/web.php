@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
+ use App\Http\Controllers\PosController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -183,3 +184,9 @@ Route::get('delete-customer/{id}', [CustomerController::class, 'destroy'])->name
 
 Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
 
+//// Sales////
+
+Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
+Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
+
+Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');

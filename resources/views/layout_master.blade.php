@@ -164,4 +164,65 @@
 <!-- noster notify js function  End -->
 
   </body>  <!-- end body-->
+  <script>
+
+    $( document ).ready(function() {
+        console.log( "ready!" );
+    
+      $('#categorySelect').on('change',function()
+      {
+        
+        var selectedVal = $("#categorySelect option:selected").val();
+        console.log(selectedVal);
+        $murl  = '{{url('/getProduct/')}}'+'/'+selectedVal; 
+        console.log($murl);
+  
+        $.ajax({
+              method:'GET',
+              url: $murl,
+              
+              dataType: 'json',
+              success: function (data) {
+  
+  
+  
+                  console.log(data);
+                  $( "#showProduct" ).empty();
+  
+                  $( data ).each(function( index ) {
+  
+                            
+                              
+                        $string=`<div class="col-sm-3">
+                            <div class="card bg-info ">
+                              <div class="card-body">
+                                <h5 class="card-title"> ${data[index].name}</h5>
+                              
+                                <center>
+                                  <img class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  " 
+                                   src=" /${data[index].product_image}" alt="Item picture">
+                                 <p class="card-text"> ${data[index].count}</p>
+                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p> 
+                              </center>
+                              
+                            </div>
+                          </div>
+                        </div>`;   
+              
+                                
+                        $( "#showProduct" ).append( $string);      
+  
+                    });
+  
+              },
+              error: function (data) {
+                  console.log(data);
+              }
+          });
+  
+      });
+  
+    });
+  
+  </script>
 </html>

@@ -17,8 +17,17 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
 
+
             $table->unsignedBigInteger('supplier_id');
+
+
+
+
             $table->unsignedBigInteger('purchases_id');
+
+
+
+
             $table->date('product_add_date');
             $table->integer('product_stock_count');
 
