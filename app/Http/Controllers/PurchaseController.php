@@ -60,9 +60,6 @@ class PurchaseController extends Controller
           'alert-type' => 'success',
         );
 
-
-
-
         return redirect()->route('show.purchase')->with($notification);
 
 

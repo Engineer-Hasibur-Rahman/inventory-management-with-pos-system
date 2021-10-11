@@ -38,16 +38,19 @@
 
 
             <li>
-                <?php 
+                <?php
                 use App\Models\Stock;
                 $stocks=Stock::all()->count();
 
                 ?>
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="fe-box noti-icon"></i>
-                    <span class="badge bg-danger rounded-circle noti-icon-badge">{{$stocks}}</span>
-                </a>
-             
+
+                    <a href="{{ route('stock.list') }}"  class="nav-link dropdown-toggle waves-effect waves-light aria-haspopup="false" aria-expanded="false">
+                         <i class="fe-box noti-icon"></i>
+                        <span  class="badge bg-danger rounded-circle noti-icon-badge">{{$stocks}}</span>
+                    </a>
+
+
+
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
