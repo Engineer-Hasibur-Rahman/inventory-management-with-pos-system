@@ -41,10 +41,12 @@
            <script src="{{ asset('/assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+
+           <script src="{{ asset('/assets/js/axios.min.js')}}"></script>
            <!-- third party js ends -->
            <!-- Datatables init -->
            <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
-          
+
         <!-- App js-->
         <script src="{{ asset('/assets/js/app.min.js')}}"></script>
         <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -87,10 +89,10 @@
 
         </script>
 
-   
-  
 
-<script>
+
+
+{{-- <script>
     $(document).ready(function(){
         ProductView();
         function ProductView()
@@ -104,7 +106,7 @@
                         console.log(data);
                         $('#audioBox')[0].muted="false";
                         $('#audioBox')[0].play();
-                        
+
                         // $('#audioBox').get(0).load();
                         // $('#audioBox').get(0).play();
                         // var audio = new Audio('C:\xampp\htdocs\invent\inventory-management\public\music.mp3');
@@ -115,15 +117,15 @@
                         // // $('#source')[0].play;
                         // $('audio')[0].muted="false";
                       }
-                      
+
                     },
                 });
         }
     })
-</script> 
+</script> --}}
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-         <script>
+         {{-- <script>
   $(function(){
     $(document).on('click','#delete',function(e){
         e.preventDefault();
@@ -148,16 +150,16 @@
                   })
     });
   });// main funcations end
-</script>
+</script> --}}
 
 
 <script>
-    document.getElementById('notification').muted = false;
-    document.getElementById('notification').play();
+    // document.getElementById('notification').muted = false;
+    // document.getElementById('notification').play();
 </script>
 <script>
-        var audio = require('simple-audio');
-        audio.playSound('foo');
+        // var audio = require('simple-audio');
+        // audio.playSound('foo');
 </script>
 <!-- noster notify js function  End -->
 

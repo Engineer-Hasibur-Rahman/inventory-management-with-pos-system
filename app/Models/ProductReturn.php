@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Supplier;
+use App\Models\Product;
 
-class Purchase extends Model
+class ProductReturn extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'purchase_date',
-        'product_quantity',
-        'product_quantity',
-        'purchase_price',
-        'purchase_unit',
-        'purchase_note',
-    ];
+
+
+
+
+
+
+
 
     public function product(){
     	return $this->belongsTo(Product::class,'product_id','id');
@@ -25,5 +25,8 @@ class Purchase extends Model
     public function supplier(){
     	return $this->belongsTo(Supplier::class,'supplier_id','id');
     }
+
+
 }
+
 

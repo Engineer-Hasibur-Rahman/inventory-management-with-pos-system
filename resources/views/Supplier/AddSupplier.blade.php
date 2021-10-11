@@ -57,7 +57,7 @@
 
                     </div>
                     <div class="col-lg-6" >
-                  
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
                         <input type="email" name="email" parsley-trigger="change"  placeholder="Enter email" class="form-control" id="email" />
@@ -65,7 +65,7 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-                 
+
                       <div class="mb-3">
                         <label for="mobile_number" class="form-label">Product Count<span class="text-danger">*</span></label>
                         <input type="text" name="mobile_number" parsley-trigger="change"  placeholder="Enter mobile_number" class="form-control" id="mobile_number" />
@@ -104,8 +104,8 @@
                     </div>
                     </div>
                 </form>
-               
-                
+
+
             </div>
         </div> <!-- end card -->
 
@@ -118,6 +118,15 @@
     </div>
     </div>
  </div>
+
+
+
+ <script>
+
+
+
+
+ </script>
 
 
 @endsection

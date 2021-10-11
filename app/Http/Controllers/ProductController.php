@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\Supplier;
+use App\Models\Stock;
+use App\Models\ProductReturn;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +39,16 @@ return $next($request);
     $categories = Category::latest()->get();
       return view('product.AddProduct',compact('categories'));
   }
+
+
+   // add return  Product view page
+   public function showReturnProduct()
+   {
+       $purchases = Purchase::with(['product'])->with(['supplier'])->get();
+
+
+       return view('product.AddreturnProduct',compact('purchases'));
+   }
 
 // store product
   public function StoreProduct(Request $request)
@@ -74,6 +88,72 @@ return $next($request);
     $products = Product::all();
     return view('Product.ProductList', compact('products'));
 }
+  public function showretuenProduct(){
+
+    return view('Product.ReturnProductList');
+}
+  public function showretuenProductlist(){
+
+   $productreturn= ProductReturn::with(['product'])->with(['supplier'])->get();
+
+    dd( $productreturn);
+
+
+
+    return view('Product.ReturnProductList');
+}
+
+
+// store product
+public function StoreReturnProduct(Request $request)
+{
+
+
+// dd($request->all());
+     $validateData = $request->validate([
+         'product_name' => 'required',
+         'quantity' => 'required'
+
+
+     ]);
+
+     $stock_number=Stock::where('product_id',$request->product_name)->first();
+     //dd($stock_number);
+
+    $returnproduct= new ProductReturn;
+    $returnproduct->product_id=$request->product_name;
+    $returnproduct->supplier_id=$request->suppliar;
+
+        if($request->quantity > $stock_number->product_stock_count){
+            return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
+        }else{
+
+
+            $returnproduct->return_quantiy=$request->quantity;
+        }
+
+
+
+    $returnproduct->save();
+    $notification = array(
+      'message' => 'Request is sent to SuperAdmin',
+      'alert-type' => 'success',
+    );
+    return redirect()->route('show.product')->with($notification);
+  }
+
+
+
+
+
+
+
+
+public function showReturnProductlist(){
+
+    return view('Product.ReturnProductList');
+}
+
 public function EditProduct($id)
 {
     if(is_null($this->user) || !$this->user->can('product.update') ){
@@ -82,6 +162,15 @@ public function EditProduct($id)
     $product = Product::find($id);
     $categories = Category::latest()->get();
     return view('product.ProductEdit',compact('product','categories'));
+}
+
+
+public function EditReturnProduct($id)
+{
+
+    //$product = Product::find($id);
+
+    return view('product.EditReturnProduct');
 }
 
 public function UpdateProduct(Request $request,$id)
@@ -124,11 +213,67 @@ public function UpdateProduct(Request $request,$id)
           return redirect()->route('show.product')->with($notification);
 
         }
+
+public function UpdateReturnProduct(Request $request,$id)
+{
+   /* if(is_null($this->user) || !$this->user->can('product.update')){
+        abort('403','You dont have acces!!!!');
+    }
+      $validateData = $request->validate([
+    'name' => 'required',
+    'price' => 'required',
+    'product_code' => 'required',
+    'squ_code' => 'required',
+    'count' => 'required',
+
+]);
+      $image = $request->file('image');
+      $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      Image::make($image)->resize(917,1000)->save('products/'.$name_gen);
+      $save_url = 'products/'.$name_gen;
+          $product=Product::find($id);
+          $product->name=$request->name;
+          $product->category_id=$request->category_id;
+          $product->price=$request->price;
+          $product->product_code=$request->product_code;
+          $product->squ_code=$request-> squ_code;
+          $product->count=$request->count;
+
+          if($request->count<5){
+
+            $product->stock_alart=0;
+          }
+
+          $product->product_image= $save_url;
+          $product->product_satus= 1;
+          $product->save();
+          $notification = array(
+            'message' => 'Product Edited Sucessyfuly',
+            'alert-type' => 'success',
+          );
+          return redirect()->route('show.product')->with($notification);*/
+
+        }
+
+
 public function DeleteProduct($id)
 {
     if(is_null($this->user) || !$this->user->can('product.delete') ){
         abort('403','You dont have acces!!!!'); //abort error for role dont have product delete permission
     }
+    Product::destroy($id);
+    $notification = array(
+      'message' => 'Product deleted Sucessyfuly',
+      'alert-type' => 'success',
+    );
+
+    return redirect()->back()->with($notification);
+
+  }
+
+public function DeletereturnProduct($id)
+{
+
     Product::destroy($id);
     $notification = array(
       'message' => 'Product deleted Sucessyfuly',
@@ -151,7 +296,32 @@ public function DeleteProduct($id)
     );
 }
 
-//check product count for notification
+//jquary get funtion
+
+
+
+
+public function GetSupliar($product_id){
+
+
+$suppliar_id=Purchase::where('product_id',$product_id)->get()->pluck('supplier_id');
+
+$supplier_names=Supplier::where('id',$suppliar_id)->select('name','id')->get();
+
+return response()->json(compact('supplier_names'));
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 }
 

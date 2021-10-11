@@ -72,14 +72,23 @@
 
                     </div>
                     <div class="col-lg-6" >
+                        <div class="mb-3">
+                            <h5>Product unit <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                 <select name="purchase_unit" class="form-control"  >
+                            <option selected="true" disabled="disabled">Select unit</option>
 
-                    <div class="mb-3">
-                        <label for="purchase_unit" class="form-label">Product Unit<span class="text-danger">*</span></label>
-                        <input type="text" name="purchase_unit" parsley-trigger="change"  placeholder="Enter unit" class="form-control" id="purchase_unit" />
-                        @error('purchase_unit')
-                         <span class="text-danger">{{ $message }}</span>
-                         @enderror
-                    </div>
+                                 <option value="kg">KG</option>
+                                 <option value="gm">GM</option>
+                                 <option value="ltr">Ltr</option>
+                                 <option value="pcs">pcs</option>
+
+
+                                 </select>
+
+                             </div>
+
+                            </div>
                     <div class="mb-3">
                         <label for="purchase_note" class="form-label">Product Note<span class="text-danger">*</span></label>
                         <input type="text" name="purchase_note" parsley-trigger="change"  placeholder="Enter notes" class="form-control" id="purchase_note" />
