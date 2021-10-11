@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="header-title">Return Product</h3>
-                <form method="POST" action="{{route('update.return.product',$return_product_quantity->id)}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
+                <form method="POST" action="{{route('update.return.product',$return_product[0]->id)}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6" >
@@ -32,7 +32,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Return Quantity Amount<span class="text-danger">*</span></label>
-                        <input type="text" name="quantity" parsley-trigger="change" value="{{$return_product_quantity->return_quantiy}}" placeholder="Enter quantity for return" class="form-control" id="name" />
+                        <input type="text" name="quantity" parsley-trigger="change" value="{{$return_product[0]->return_quantiy}}" placeholder="Enter quantity for return" class="form-control" id="name" />
                         {{-- @error('quantity')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror --}}

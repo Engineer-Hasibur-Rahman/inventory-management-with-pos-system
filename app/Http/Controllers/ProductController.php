@@ -171,9 +171,9 @@ public function EditReturnProduct($id)
     $return_product=ProductReturn::where('product_id',$id)->select('return_quantiy','id')->get();
 
 
-    dd( $return_product);
+    //dd( $return_product);
 
-    return view('product.EditReturnProduct',compact('purchases','return_product_quantity'));
+    return view('product.EditReturnProduct',compact('purchases','return_product'));
 }
 
 public function UpdateProduct(Request $request,$id)
@@ -219,9 +219,7 @@ public function UpdateProduct(Request $request,$id)
 
 public function UpdateReturnProduct(Request $request,$id)
 {
-   /* if(is_null($this->user) || !$this->user->can('product.update')){
-        abort('403','You dont have acces!!!!');
-    }
+
        $validateData = $request->validate([
          'product_name' => 'required',
          'quantity' => 'required'
@@ -229,8 +227,11 @@ public function UpdateReturnProduct(Request $request,$id)
 
      ]);
 
-$stock_number=Stock::where('product_id',$id)->first();
-      $return_product=ProductReturn
+
+
+$stock_number=Stock::where('product_id',$request->product_name)->first();
+
+
           $product=ProductReturn::find($id);
           $product->product_id=$request->product_name;
           $product->supplier_id=$request->suppliar;
@@ -240,18 +241,18 @@ $stock_number=Stock::where('product_id',$id)->first();
         }else{
 
 
-            $returnproduct->return_quantiy=$request->quantity;
+            $product->return_quantiy=$request->quantity;
         }
 
 
 
-    $returnproduct->save();
+
           $product->save();
           $notification = array(
-            'message' => 'Product Edited Sucessyfuly',
+            'message' => ' return Product Edited Sucessyfuly',
             'alert-type' => 'success',
           );
-          return redirect()->route('show.product')->with($notification);*/
+          return redirect()->route('show.return.productList')->with($notification);
 
         }
 
