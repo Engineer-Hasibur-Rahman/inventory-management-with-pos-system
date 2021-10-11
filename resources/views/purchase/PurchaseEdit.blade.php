@@ -43,7 +43,7 @@
                     <h5>Supplier Select <span class="text-danger">*</span></h5>
                     <div class="controls">
                          <select name="supplier_id" class="form-control"  >
-                    <option>Select Supplier</option>
+                            <option >{{ $purchase->supplier->name }}</option>
                      @foreach($suppliers as $supplier)
                          <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                              @endforeach
@@ -60,7 +60,7 @@
                         <h5>Product Select <span class="text-danger">*</span></h5>
                         <div class="controls">
                              <select name="product_id" class="form-control"  >
-                        <option>Select Product</option>
+                        <option value="{{ $purchase->product->id }}">{{ $purchase->product->name }}</option>
                          @foreach($products as $product)
                              <option value="{{ $product->id }}">{{ $product->name }}</option>
                                  @endforeach
