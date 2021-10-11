@@ -46,6 +46,8 @@ class PurchaseController extends Controller
 
 
         $stock= new Stock;
+        $stock->purchases_id=$purchase->id;
+
         $stock->product_id=$request->product_id;
         $stock->supplier_id=$request->supplier_id;
         $stock->product_add_date=$request->purchase_date;
