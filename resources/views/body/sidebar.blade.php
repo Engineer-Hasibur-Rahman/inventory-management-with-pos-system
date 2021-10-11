@@ -35,10 +35,7 @@
                             </ul>
                         </div>
                     </li>
-<<<<<<< HEAD
-=======
-                  
->>>>>>> 0ddf639cf781316e9e32b66ece4069df70b490c9
+
 
                 </ul>
             </div>
@@ -210,14 +207,14 @@
                     </a>
                     <div class="collapse" id="sidebar5">
                         <ul class="nav-second-level">
-                            
+
                             <li>
                                 <a href="{{url('/sales')}}" >Pos</a>
                             </li>
                             <li>
                                 <a href="{{url('/possales')}}" >Sales List</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
