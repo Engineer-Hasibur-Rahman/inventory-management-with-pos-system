@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\PdfController;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
+ use App\Http\Controllers\PosController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -140,10 +141,11 @@ Route::get('/delete/purchase/{id}', [PurchaseController::class, 'DeletePurchase'
 
 /// Supplier start ////
 Route::get('/add/supplier', [SupplierController::class, 'SupplierView'])->name('add.Supplier');
+Route::post('/add/supplier', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
 
 Route::get('/show/supplier', [SupplierController::class, 'Suppliershow'])->name('show.Supplier');
 
-Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
+// Route::post('/store', [SupplierController::class, 'SupplierStore'])->name('Supplier.store');
 
 
 Route::get('/supplier/edit/{supplier_id}', [SupplierController::class, 'SupplierEdit'])->name('Supplier.edit');
@@ -182,3 +184,9 @@ Route::get('delete-custmer/{id}', [CustomerController::class, 'destroy'])->name(
 
 Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
 
+//// Sales////
+
+Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
+Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
+
+Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');

@@ -35,6 +35,10 @@
                             </ul>
                         </div>
                     </li>
+<<<<<<< HEAD
+=======
+                  
+>>>>>>> 0ddf639cf781316e9e32b66ece4069df70b490c9
 
                 </ul>
             </div>
@@ -197,6 +201,30 @@
                     </div>
                 </li>
 
+
+                <li>
+                    <a href="#sidebar5" data-bs-toggle="collapse">
+                        <i class="fas fa-box"></i>
+                        <span>Sales </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebar5">
+                        <ul class="nav-second-level">
+                            
+                            <li>
+                                <a href="{{url('/sales')}}" >Pos</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/possales')}}" >Sales List</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+
+
+
                 <li>
                     <a href="#customer" data-bs-toggle="collapse">
                         <i class="fas fa-box"></i>
@@ -212,10 +240,7 @@
                                > Stock</a>
                             </li> --}}
                             <li>
-                                <a
-                                    href="{{ route('customer.list') }}"
-
-                            >customer List</a>
+                                <a href="{{ route('customer.list') }}" >customer List</a>
                             </li>
 
 

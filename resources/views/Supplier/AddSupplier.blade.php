@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h3 class="header-title">Add Supplier</h3>
 
-                <form method="POST" action="{{route('Supplier.store')}}"class="parsley-examples" enctype="multipart/form-data">
+                <form method="POST" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -67,7 +67,7 @@
                     </div>
 
                       <div class="mb-3">
-                        <label for="mobile_number" class="form-label">Product Count<span class="text-danger">*</span></label>
+                        <label for="mobile_number" class="form-label">Mobile Number<span class="text-danger">*</span></label>
                         <input type="text" name="mobile_number" parsley-trigger="change"  placeholder="Enter mobile_number" class="form-control" id="mobile_number" />
                         @error('mobile_number')
                          <span class="text-danger">{{ $message }}</span>

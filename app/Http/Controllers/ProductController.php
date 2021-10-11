@@ -96,7 +96,6 @@ return $next($request);
 
     $returnproduct_list= ProductReturn::with(['product'])->with(['supplier'])->get();
 
-    //dd( $returnproduct_list);
 
 
 
@@ -118,7 +117,7 @@ public function StoreReturnProduct(Request $request)
      ]);
 
      $stock_number=Stock::where('product_id',$request->product_name)->first();
-     //dd($stock_number);
+
 
     $returnproduct= new ProductReturn;
     $returnproduct->product_id=$request->product_name;
