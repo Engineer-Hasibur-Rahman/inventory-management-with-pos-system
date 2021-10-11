@@ -35,30 +35,42 @@
                             </ul>
                         </div>
                     </li>
-
-                @endif
-
-
-
-                @if ($user->can('user.create'))
-
                     <li>
-                        <a href="#sidebar2" data-bs-toggle="collapse">
-                            <i class="fas fa-user"></i>
-                            <span> Manager </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebar2">
-                            <ul class="nav-second-level">
-                                <li>
-                                    <a href="{{ route('add.manager') }}">Add Manager</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('show.manager') }}">Manager list</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="{{ route('admin.list') }}">Admin List</a>
                     </li>
+
+
+                </ul>
+            </div>
+        </li>
+
+           @endif
+
+
+
+@if($user->can('user.create'))
+
+                <li>
+                    <a href="#sidebar2" data-bs-toggle="collapse">
+                        <i class="fas fa-user"></i>
+                        <span> Manager </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebar2">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a
+                               href="{{ route('add.manager') }}"
+                                   >Add Manager</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ route('show.manager') }}"
+                              >Manager list</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
 
 
