@@ -94,13 +94,13 @@ return $next($request);
 }
   public function showretuenProductlist(){
 
-   $productreturn= ProductReturn::with(['product'])->with(['supplier'])->get();
+    $returnproduct_list= ProductReturn::with(['product'])->with(['supplier'])->get();
 
-    dd( $productreturn);
+    //dd( $returnproduct_list);
 
 
 
-    return view('Product.ReturnProductList');
+    return view('Product.ReturnProductList',compact('returnproduct_list'));
 }
 
 
@@ -168,9 +168,13 @@ public function EditProduct($id)
 public function EditReturnProduct($id)
 {
 
-    //$product = Product::find($id);
+    $purchases  = Purchase::with(['Product'])->with(['supplier'])->where('product_id',$id)->get();
+    $return_product=ProductReturn::where('product_id',$id)->select('return_quantiy','id')->get();
 
-    return view('product.EditReturnProduct');
+
+    dd( $return_product);
+
+    return view('product.EditReturnProduct',compact('purchases','return_product_quantity'));
 }
 
 public function UpdateProduct(Request $request,$id)
@@ -219,33 +223,30 @@ public function UpdateReturnProduct(Request $request,$id)
    /* if(is_null($this->user) || !$this->user->can('product.update')){
         abort('403','You dont have acces!!!!');
     }
-      $validateData = $request->validate([
-    'name' => 'required',
-    'price' => 'required',
-    'product_code' => 'required',
-    'squ_code' => 'required',
-    'count' => 'required',
+       $validateData = $request->validate([
+         'product_name' => 'required',
+         'quantity' => 'required'
 
-]);
-      $image = $request->file('image');
-      $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-      Image::make($image)->resize(917,1000)->save('products/'.$name_gen);
-      $save_url = 'products/'.$name_gen;
-          $product=Product::find($id);
-          $product->name=$request->name;
-          $product->category_id=$request->category_id;
-          $product->price=$request->price;
-          $product->product_code=$request->product_code;
-          $product->squ_code=$request-> squ_code;
-          $product->count=$request->count;
 
-          if($request->count<5){
+     ]);
 
-            $product->stock_alart=0;
-          }
+$stock_number=Stock::where('product_id',$id)->first();
+      $return_product=ProductReturn
+          $product=ProductReturn::find($id);
+          $product->product_id=$request->product_name;
+          $product->supplier_id=$request->suppliar;
 
-          $product->product_image= $save_url;
-          $product->product_satus= 1;
+        if($request->quantity > $stock_number->product_stock_count){
+            return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
+        }else{
+
+
+            $returnproduct->return_quantiy=$request->quantity;
+        }
+
+
+
+    $returnproduct->save();
           $product->save();
           $notification = array(
             'message' => 'Product Edited Sucessyfuly',

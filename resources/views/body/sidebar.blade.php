@@ -35,10 +35,6 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.list') }}">Admin List</a>
-                    </li>
-
 
                 </ul>
             </div>
