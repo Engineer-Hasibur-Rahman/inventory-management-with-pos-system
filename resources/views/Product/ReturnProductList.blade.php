@@ -30,29 +30,41 @@
                                     </tr>
                                 </thead>
 
-                                {{-- <tbody>
-                                    @foreach($products as $product)
+                                <tbody>
+                                    @foreach($returnproduct_list as $list)
                                     <tr>
-                                        <td>
-                                              <img src="{{ asset($product->product_image) }}" alt="" class="img-thumbnail " height="90" width="90" >
-                                        </td>
 
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->squ_code }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->count }}</td>
+                                        <td>{{ $list->Product->name }}</td>
+                                        <td>{{ $list->Supplier->name }}</td>
+                                        <td>{{ $list->return_quantiy }}</td>
+
+                                        @if ($list->approve_status!=0)
+                                       <td><button type="button" class="btn btn-success">Aproved</button></td>
+                                       @else
+
+                                       <td><button type="button" class="btn btn-success">Not Aproved</button></td>
+
+                                        @endif
+
+
+
+
+
+
+
 
 
                                         <td class="text-end">
                                          @if ( $user->can('product.update') && $user->can('product.update'))
-                                    <a href="/edit/product/{{$product->id}}" class="btn btn-primary">Edit</a>
+                                    <a href="/edit/returnproduct/{{$list->Product->id}}" class="btn btn-primary">Edit</a>
 
-                                    <a href="{{ route('delete.product',$product->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('delete.return.product',$list->Product->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                      {{-- <a href="{{ route('delete.product',$product->id) }}" id="delete" class="btn btn-danger">Aprove</a> --}}
                                     @endif
                                         </td>
                                     </tr>
                                     @endforeach
-                                </tbody> --}}
+                                </tbody>
                             </table>
 
                         </div> <!-- end card body-->
