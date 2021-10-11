@@ -18,7 +18,7 @@
        <div class="card">
            <div class="card-body">
                <h3 class="header-title">Add Manager</h3>
-               
+
                <form method="POST" action=""   class="parsley-examples" enctype="multipart/form-data">
                    @csrf
                    <div class="row">
@@ -26,21 +26,21 @@
 
                    <div class="mb-3">
                        <label for="userName" class="form-label">User Name<span class="text-danger">*</span></label>
-                       <input type="text" name="username" parsley-trigger="change" class="form-control" id="userName" />
+                       <input type="text" name="username" parsley-trigger="change" class="form-control"  value="{{old('username')}}" id="userName" />
                        @if($errors->has('username'))
                        <div style="color:red"> {{$errors->first('username')}}</div>
                        @endif
                    </div>
                    <div class="mb-3">
                        <label for="FullName" class="form-label">Full Name<span class="text-danger">*</span></label>
-                       <input type="text" name="fullname" parsley-trigger="change"  class="form-control" id="fullName" />
+                       <input type="text" name="fullname" parsley-trigger="change" value="{{old('fullname')}}"  class="form-control" id="fullName" />
                        @if($errors->has('fullname'))
                        <div style="color:red"> {{$errors->first('fullname')}}</div>
                        @endif
                    </div>
                    <div class="mb-3">
                        <label for="emailAddress" class="form-label">Email address<span class="text-danger">*</span></label>
-                       <input type="email" name="email" parsley-trigger="change"  class="form-control" id="emailAddress" />
+                       <input type="email" name="email" parsley-trigger="change" value="{{old('email')}}"  class="form-control" id="emailAddress" />
                        @if($errors->has('email'))
                        <div style="color:red"> {{$errors->first('email')}}</div>
                        @endif
@@ -49,21 +49,21 @@
                     <div class="col-lg-6" >
                    <div class="mb-3">
                        <label for="image" class="form-label">Image<span class="text-danger">*</span></label>
-                       <input type="file" name="image" parsley-trigger="change"  class="form-control" id="image" />
+                       <input type="file" name="image" parsley-trigger="change" value="{{old('image')}}"  class="form-control" id="image" />
                        @if($errors->has('image'))
                        <div style="color:red"> {{$errors->first('image')}}</div>
                        @endif
                    </div>
                    <div class="mb-3">
                        <label for="pass1" class="form-label">Password<span class="text-danger">*</span></label>
-                       <input id="pass1" name="password" type="password" placeholder="Password"  class="form-control" />
+                       <input id="pass1" name="password" type="password" placeholder="Password" value="{{old('password')}}"  class="form-control" />
                        @if($errors->has('password'))
                        <div style="color:red"> {{$errors->first('password')}}</div>
                        @endif
                    </div>
                    <div class="mb-3">
                        <label for="passWord2" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                       <input data-parsley-equalto="#pass1" name="repassword" type="password"  class="form-control" id="passWord2" />
+                       <input data-parsley-equalto="#pass1" name="repassword" type="password" value="{{old('repassword')}}" class="form-control" id="passWord2" />
 
                        @if($errors->has('repassword'))
                        <div style="color:red"> {{$errors->first('repassword')}}</div>
