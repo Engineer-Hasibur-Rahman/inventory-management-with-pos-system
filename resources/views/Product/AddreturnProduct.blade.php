@@ -87,42 +87,40 @@
 
 
 
-$(function(){
+    $(function(){
 
 
 
 
-    $('#productId').change(function() {
-        document.getElementById('supply_select').innerHTML='';
-        let productid=$('#productId option:selected').val();
-       // alert(productid);
-    axios.get(`/get/Suppliarnamebyproduct/${productid}`)
-  .then(function ({data:{supplier_names}}) {
-    // handle success
-    console.log(supplier_names);
-       const supplierSelectBox  = document.getElementById('supply_select');
+        $('#productId').change(function() {
 
-       supplier_names.forEach(supplier=>{
-        const optionBox          = document.createElement('option');
-         optionBox.value=supplier.id;
-         optionBox.innerText=supplier.name;
-         supplierSelectBox.appendChild(optionBox);
-       })
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
+            $("#supply_select").find('option').remove();
+            let productid=$('#productId option:selected').val();
+           // alert(productid);
+        axios.get(`/get/Suppliarnamebyproduct/${productid}`)
+      .then(function ({data:{supplier_names}}) {
+        // handle success
 
+console.log(supplier_names);
 
-
-
-
+$.each(supplier_names, function (index, value) {
+    $("#supply_select").append(new Option(value,index));
 });
 
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+
+
+
+
+
+    });
 
 
 
@@ -133,6 +131,7 @@ $(function(){
 
 
 
-});
- </script>
+
+    });
+     </script>
 @endsection

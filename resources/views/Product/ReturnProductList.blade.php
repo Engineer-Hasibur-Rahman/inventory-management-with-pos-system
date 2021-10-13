@@ -16,7 +16,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Product List</h4>
+                            <h4 class="header-title">Return Product List</h4>
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -39,10 +39,10 @@
                                         <td>{{ $list->return_quantiy }}</td>
 
                                         @if ($list->approve_status!=0)
-                                       <td><button type="button" class="btn btn-success">Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-success">Aproved</button></td>
                                        @else
 
-                                       <td><button type="button" class="btn btn-success">Not Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-danger">Not Aproved</button></td>
 
                                         @endif
 
@@ -56,10 +56,17 @@
 
                                         <td class="text-end">
                                          @if ( $user->can('product.update') && $user->can('product.update'))
-                                    <a href="/edit/returnproduct/{{$list->Product->id}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('edit.return.product',$list->id) }}" class="btn btn-primary">Edit</a>
 
-                                    <a href="{{ route('delete.return.product',$list->Product->id) }}" id="delete" class="btn btn-danger">Delete</a>
-                                      {{-- <a href="{{ route('delete.product',$product->id) }}" id="delete" class="btn btn-danger">Aprove</a> --}}
+                                    <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                    @if ($list->approve_status!=1)
+                                    <form method="POST" action="{{ route('approve.return.product',$list->id) }}">
+                                        @csrf
+
+
+                                      <a href="{{ route('show.return.productList')}}" name="app"  class="btn btn-success">Aprove</a>
+                                    </form>
+                                      @endif
                                     @endif
                                         </td>
                                     </tr>
