@@ -44,7 +44,9 @@ return $next($request);
    // add return  Product view page
    public function showReturnProduct()
    {
-       $purchases = Purchase::with(['product'])->with(['supplier'])->get();
+       $purchases = Purchase::with(['product'])->with(['supplier'])->get()->unique('product_id');
+
+
 
 
        return view('product.AddreturnProduct',compact('purchases'));
@@ -96,7 +98,7 @@ return $next($request);
 
     $returnproduct_list= ProductReturn::with(['product'])->with(['supplier'])->get();
 
-
+//dd($returnproduct_list);
 
 
     return view('Product.ReturnProductList',compact('returnproduct_list'));
@@ -119,9 +121,13 @@ public function StoreReturnProduct(Request $request)
      $stock_number=Stock::where('product_id',$request->product_name)->first();
 
 
+
     $returnproduct= new ProductReturn;
     $returnproduct->product_id=$request->product_name;
     $returnproduct->supplier_id=$request->suppliar;
+    $getpurchaseid=Purchase::where('product_id',$request->product_name)->where('supplier_id',$request->suppliar)->pluck('id');
+    //dd( $getpurchaseid);
+    $returnproduct->purchase_id=$getpurchaseid[0];
 
         if($request->quantity > $stock_number->product_stock_count){
             return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
@@ -138,7 +144,7 @@ public function StoreReturnProduct(Request $request)
       'message' => 'Request is sent to SuperAdmin',
       'alert-type' => 'success',
     );
-    return redirect()->route('show.product')->with($notification);
+    return redirect()->route('show.return.productList')->with($notification);
   }
 
 
@@ -167,11 +173,11 @@ public function EditProduct($id)
 public function EditReturnProduct($id)
 {
 
-    $purchases  = Purchase::with(['Product'])->with(['supplier'])->where('product_id',$id)->get();
-    $return_product=ProductReturn::where('product_id',$id)->select('return_quantiy','id')->get();
+    $purchases  = Purchase::with(['Product'])->with(['supplier'])->where('product_id',$id)->get()->unique('product_id');
+    $return_product=ProductReturn::where('id',$id)->select('return_quantiy','id')->get();
 
 
-    //dd( $return_product);
+    //dd($return_product[0]->id);
 
     return view('product.EditReturnProduct',compact('purchases','return_product'));
 }
@@ -275,15 +281,47 @@ public function DeleteProduct($id)
 public function DeletereturnProduct($id)
 {
 
-    Product::destroy($id);
+    ProductReturn::destroy($id);
     $notification = array(
-      'message' => 'Product deleted Sucessyfuly',
+      'message' => 'return product deleted Sucessyfuly',
       'alert-type' => 'success',
     );
 
     return redirect()->back()->with($notification);
 
   }
+
+
+//aprove return product
+
+public function ApprovereturnProduct($id){
+
+
+
+
+    $return_product =ProductReturn::where('id',$id)->first();
+    $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first()->pluck('product_stock_count');
+
+
+    if($return_product->approve_status!=1){
+
+        $product_stock=((int)$product_stock[0]-(int)$return_product->return_quantiy);
+
+        Stock::where('purchases_id',$return_product->purchase_id)
+        ->update(['product_stock_count' => $product_stock]);
+
+   ProductReturn::where('id',$id)->update(['approve_status' => 1]);
+
+
+
+
+    }
+
+}
+
+
+
+
 
   //for testing audio
 
@@ -305,9 +343,11 @@ public function DeletereturnProduct($id)
 public function GetSupliar($product_id){
 
 
-$suppliar_id=Purchase::where('product_id',$product_id)->get()->pluck('supplier_id');
+    $supplier_names=Purchase::with(['Supplier'])->where('product_id',$product_id)->get()->pluck('Supplier.name', 'Supplier.id');
+//$suppliar_id=$suppliar_id->unique();
+//dd($supplier_names);
+//array_unique($suppliar_id)
 
-$supplier_names=Supplier::where('id',$suppliar_id)->select('name','id')->get();
 
 return response()->json(compact('supplier_names'));
 
