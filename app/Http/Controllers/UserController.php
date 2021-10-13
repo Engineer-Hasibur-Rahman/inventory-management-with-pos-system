@@ -9,6 +9,10 @@ use App\Models\Category;
 use App\Models\Manager;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Supplier;
+use App\Models\ProductReturn;
+use App\Models\Customer;
+use App\Models\SalesPos;
 use App\Models\Product;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
@@ -113,10 +117,26 @@ public function loginview(){
         $manageCount=$manager->count();
         $products=Product::all();
         $productCount=$products->count();
+        $supplier=Supplier::all();
+        $supplierCount=$supplier->count();
+        $productReturn=ProductReturn::all();
+        $productReturnCount=$productReturn->count();
+        $customer=Customer::all();
+        $customerCount=$customer->count();
+
+
+        $salesPos=SalesPos::all();
+        $salesPosCount=SalesPos::whereDate('sales_date', date('Y-m-d'))->get()->count();
+        $todaysalesprice=SalesPos::whereDate('sales_date', date('Y-m-d'))->get()->sum('price');
+      $monthprice=  SalesPos::whereMonth('sales_date', date('m'))->get()->sum('price');
+      $yearprice=  SalesPos::whereYear('sales_date', date('Y'))->get()->sum('price');
 
        $this->NotificationAlart();
 
-        return view ('admin.index',compact('adminCount','manageCount','productCount'));
+        // return view ('admin.chart',compact('salesPos','manageCount','productCount','supplierCount',
+        //                           'productReturnCount','customerCount','salesPosCount','todaysalesprice','monthprice','yearprice'));
+        return view ('admin.index',compact('adminCount','manageCount','productCount','supplierCount',
+                                  'productReturnCount','customerCount','salesPosCount','todaysalesprice','monthprice','yearprice','salesPos'));
     }
 
     public function logout(){

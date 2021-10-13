@@ -41,21 +41,51 @@
            <script src="{{ asset('/assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+           <script src="{{ asset('/assets/js/chart.js')}}"></script>
 
            <script src="{{ asset('/assets/js/axios.min.js')}}"></script>
            <!-- third party js ends -->
            <!-- Datatables init -->
            <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
-
+           <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
         <!-- App js-->
         <script src="{{ asset('/assets/js/app.min.js')}}"></script>
         <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- bar chart js --}}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" 
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
+
+        {{-- chart script --}}
+        {{-- <script type="text/javascript">
+            google.charts.load('current', {'packages':['bar']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Product Id', 'Sales Price', 'Sales Product Quantity'],
+
+          @php
+            foreach($salesPos as $product) {
+            echo "['".$product->item_name."', ".$product->price.", ".$product->quantity."],";
+            }
+          @endphp
+          ]);
+
+          var options = {
+            chart: {
+          title: 'Product Graph ',
+          subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
+            },
+            bars: 'vertical'
+          };
+          var chart = new google.charts.Bar(document.getElementById('bar-chart'));
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+            }
+          </script> --}}
 
  <!-- noster notify js function  start -->
         <script>
@@ -164,65 +194,66 @@
 <!-- noster notify js function  End -->
 
   </body>  <!-- end body-->
+
   <script>
 
     $( document ).ready(function() {
         console.log( "ready!" );
-    
+
       $('#categorySelect').on('change',function()
       {
-        
+
         var selectedVal = $("#categorySelect option:selected").val();
         console.log(selectedVal);
-        $murl  = '{{url('/getProduct/')}}'+'/'+selectedVal; 
+        $murl  = '{{url('/getProduct/')}}'+'/'+selectedVal;
         console.log($murl);
-  
+
         $.ajax({
               method:'GET',
               url: $murl,
-              
+
               dataType: 'json',
               success: function (data) {
-  
-  
-  
+
+
+
                   console.log(data);
                   $( "#showProduct" ).empty();
-  
+
                   $( data ).each(function( index ) {
-  
-                            
-                              
+
+
+
                         $string=`<div class="col-sm-3">
                             <div class="card bg-info ">
                               <div class="card-body">
                                 <h5 class="card-title"> ${data[index].name}</h5>
-                              
+
                                 <center>
-                                  <img class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  " 
+                                  <img class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  "
                                    src=" /${data[index].product_image}" alt="Item picture">
                                  <p class="card-text"> ${data[index].count}</p>
-                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p> 
+                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p>
                               </center>
-                              
+
                             </div>
                           </div>
-                        </div>`;   
-              
-                                
-                        $( "#showProduct" ).append( $string);      
-  
+                        </div>`;
+
+
+                        $( "#showProduct" ).append( $string);
+
                     });
-  
+
               },
               error: function (data) {
                   console.log(data);
               }
           });
-  
+
       });
-  
+
     });
-  
+
   </script>
 </html>
