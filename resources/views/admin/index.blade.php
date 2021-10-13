@@ -6,7 +6,7 @@
  @section('admin')
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <div class="content-page">
                 <div class="content">
@@ -69,7 +69,7 @@
                                             <div class="col-6">
                                                 <div class="text-end">
                                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$manageCount}}</span></h3>
-                                                    <p class="text-muted mb-1 text-truncate">Today Manager</p>
+                                                    <p class="text-muted mb-1 text-truncate">Total Manager</p>
                                                 </div>
                                             </div>
                                         </div> <!-- end row-->
@@ -264,15 +264,67 @@
 
 
 
+                            {{-- <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="float-end d-none d-md-inline-block">
+                                            <div class="btn-group mb-2">
+                                                <button type="button" class="btn btn-xs btn-light">Today</button>
+                                                <button type="button" class="btn btn-xs btn-light">Weekly</button>
+                                                <button type="button" class="btn btn-xs btn-secondary">Monthly</button>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="header-title mb-3">Sales Analytics</h4>
+                                        <div dir="ltr">
+                                            <div id="sales-analytics" class="apex-charts" data-colors="#6658dd,#1abc9c"></div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                            </div> <!-- end col--> --}}
+                            <div class="col-md-12">
+                                <div id="bar-chart" style="width: 900px; height: 500px"></div>
+                            </div>
+                        </div>
+                        <!-- end row -->
                     </div> <!-- container -->
 
                 </div> <!-- content -->
 
                 <!-- Footer Start -->
+                <script type="text/javascript">
+                    google.charts.load('current', {'packages':['bar']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                  ['Product Name', 'Sales Price', 'Sales Product Quantity'],
+
+                  @php
+                    foreach($salesPos as $product) {
+                    echo "['".$product->item_name."', ".$product->price.", ".$product->quantity."],";
+
+                    }
+                  @endphp
+                  ]);
+
+                  var options = {
+                    chart: {
+                  title: 'Product Graph ',
+                  subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
+                    },
+                    bars: 'vertical'
+                  };
+                  var chart = new google.charts.Bar(document.getElementById('bar-chart'));
+                  chart.draw(data, google.charts.Bar.convertOptions(options));
+                    }
+                  </script>
                @include('./body.footer')
 
 
             </div>
 
 
+
 @endsection
+

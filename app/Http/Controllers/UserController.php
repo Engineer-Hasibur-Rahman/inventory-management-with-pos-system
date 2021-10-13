@@ -130,14 +130,13 @@ public function loginview(){
         $todaysalesprice=SalesPos::whereDate('sales_date', date('Y-m-d'))->get()->sum('price');
       $monthprice=  SalesPos::whereMonth('sales_date', date('m'))->get()->sum('price');
       $yearprice=  SalesPos::whereYear('sales_date', date('Y'))->get()->sum('price');
-// ->whereYear('created_at', date('Y'))
-// ->get(['price','created_at']);
-// dd($monthprice);
 
        $this->NotificationAlart();
 
+        // return view ('admin.chart',compact('salesPos','manageCount','productCount','supplierCount',
+        //                           'productReturnCount','customerCount','salesPosCount','todaysalesprice','monthprice','yearprice'));
         return view ('admin.index',compact('adminCount','manageCount','productCount','supplierCount',
-                                  'productReturnCount','customerCount','salesPosCount','todaysalesprice','monthprice','yearprice'));
+                                  'productReturnCount','customerCount','salesPosCount','todaysalesprice','monthprice','yearprice','salesPos'));
     }
 
     public function logout(){
