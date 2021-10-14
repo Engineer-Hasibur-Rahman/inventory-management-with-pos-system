@@ -42,6 +42,7 @@
            <script src="{{ asset('/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
            <script src="{{ asset('/assets/js/chart.js')}}"></script>
+           <script type="text/javascript" src="{{asset('assets/js/echarts.min.js')}}"></script>
 
            <script src="{{ asset('/assets/js/axios.min.js')}}"></script>
            <!-- third party js ends -->
@@ -88,37 +89,6 @@
           </script> --}}
 
  <!-- noster notify js function  start -->
-        <script>
-
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info')}}"
-        switch (type) {
-
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-                break;
-
-            case 'success':
-            toastr.success(" {{ Session::get('message') }} ");
-                break;
-
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-                break;
-
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-
-
-                  break;
-                  default:
-                break;
-        }
-
-        @endif
-
-        </script>
-
 
 
 
