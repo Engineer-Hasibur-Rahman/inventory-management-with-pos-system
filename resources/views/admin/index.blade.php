@@ -311,7 +311,7 @@
                   var options = {
                     chart: {
                   title: 'Product Graph ',
-                  //subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
+                  subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
                     },
                     bars: 'vertical'
                   };

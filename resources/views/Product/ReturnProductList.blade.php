@@ -7,6 +7,43 @@
  @php
  $user =Auth::user()
  @endphp
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="studentname"></h5>
+
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group mx-sm-1 mb-1">
+
+
+
+
+
+                <label for="">Ary you want to Approve this Return ??</label>
+              </div>
+              <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
+              <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
+
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
  <div class="content-page center">
     <div class="content">
@@ -60,12 +97,9 @@
 
                                     <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
                                     @if ($list->approve_status!=1)
-                                    <form method="POST" action="{{ route('approve.return.product',$list->id) }}">
-                                        @csrf
 
+                                      <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Aprove</a>
 
-                                      <a href="{{ route('show.return.productList')}}" name="app"  class="btn btn-success">Aprove</a>
-                                    </form>
                                       @endif
                                     @endif
                                         </td>
@@ -90,6 +124,105 @@
      confirmButtonText: 'Cool'
    })</script>
   --}}
+
+
+  <script>
+
+ $(function(){
+
+let rCollection="";
+  $('#approve').click(function(){
+
+//get data
+var returnId = $(this).attr("value");
+
+//console.log(returnId);
+
+//alert(returnId);
+
+    axios.get(`/approve/returnproduct/${returnId}`)
+    .then(function ({data:{returnCollection}}) {
+    // handle success
+ //alert(returnCollection.product_stock)
+ console.log(returnCollection);
+rCollection=returnCollection
+console.log(rCollection);
+
+$('#mymodal').modal('show');
+$('#closemodal').click(function(){
+    $('#mymodal').modal('hide');
+
+});
+
+
+$('#submit').click(function(){
+
+
+
+
+    var url="/approve/returnproduct";
+                axios.post(url,returnCollection)
+                .then(function (response) {
+
+
+                    console.log(response.data);
+
+                location.reload();
+                //location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error.response.data);
+                });
+
+
+$('#mymodal').modal('hide');
+
+});
+
+
+
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+  //end get
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ });
+
+
+
+
+
+
+
+  </script>
 
 
  @endsection
