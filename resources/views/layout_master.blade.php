@@ -41,57 +41,66 @@
            <script src="{{ asset('/assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
            <script src="{{ asset('/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+           <script src="{{ asset('/assets/js/chart.js')}}"></script>
+           <script type="text/javascript" src="{{asset('assets/js/echarts.min.js')}}"></script>
 
            <script src="{{ asset('/assets/js/axios.min.js')}}"></script>
            <!-- third party js ends -->
            <!-- Datatables init -->
            <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
-
+           <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
         <!-- App js-->
         <script src="{{ asset('/assets/js/app.min.js')}}"></script>
         <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
+
+
+{{-- bar chart js --}}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
         {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
 
- <!-- noster notify js function  start -->
-        <script>
+        {{-- chart script --}}
+        {{-- <script type="text/javascript">
+            google.charts.load('current', {'packages':['bar']});
+            google.charts.setOnLoadCallback(drawChart);
 
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info')}}"
-        switch (type) {
+            function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Product Id', 'Sales Price', 'Sales Product Quantity'],
 
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-                break;
+          @php
+            foreach($salesPos as $product) {
+            echo "['".$product->item_name."', ".$product->price.", ".$product->quantity."],";
+            }
+          @endphp
+          ]);
 
-            case 'success':
-            toastr.success(" {{ Session::get('message') }} ");
-                break;
+          var options = {
+            chart: {
+          title: 'Product Graph ',
+          subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
+            },
+            bars: 'vertical'
+          };
+          var chart = new google.charts.Bar(document.getElementById('bar-chart'));
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+            }
+          </script> --}}
 
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-                break;
-
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-
-
-                  break;
-                  default:
-                break;
-        }
-
-        @endif
-
-        </script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ <!-- noster notify js function  start -->
+
+
 
 
 
@@ -136,6 +145,14 @@
 
 
 
+  </body>  <!-- end body-->
+
+  <script>
+
+    $( document ).ready(function() {
+        console.log( "ready!" );
+
+
       $('#categorySelect').on('change',function()
       {
 
@@ -157,6 +174,7 @@
                   $( "#showProduct" ).empty();
 
                   $( data ).each(function( index ) {
+
 
 
                     var value=$(".mybtn").attr("value");
@@ -187,11 +205,35 @@
                 fetchProduct();
 
 
+
+                        $string=`<div class="col-sm-3">
+                            <div class="card bg-info ">
+                              <div class="card-body">
+                                <h5 class="card-title"> ${data[index].name}</h5>
+
+                                <center>
+                                  <img class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  "
+                                   src=" /${data[index].product_image}" alt="Item picture">
+                                 <p class="card-text"> ${data[index].count}</p>
+                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p>
+                              </center>
+
+                            </div>
+                          </div>
+                        </div>`;
+
+
+                        $( "#showProduct" ).append( $string);
+
+                    });
+
+
               },
               error: function (data) {
                   console.log(data);
               }
           });
+
 
 
 
@@ -284,6 +326,7 @@
 
 
 </script>
+
 
 
 

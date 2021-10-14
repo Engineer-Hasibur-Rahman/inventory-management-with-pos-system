@@ -17,6 +17,7 @@ class CreateProductReturnsTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('supplier_id');
+            $table->unsignedBigInteger('purchase_id');
             $table->integer('return_quantiy');
             $table->tinyInteger('approve_status')->default(0);
 

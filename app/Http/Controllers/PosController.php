@@ -13,6 +13,7 @@ class PosController extends Controller
     public function SalesShow(Request $request){
         $sales = SalesPos::all();
         $categorys = Category::all();
+
         $products=Product::all();
         $customers=Customer::all();
         // $this->search();
@@ -20,12 +21,16 @@ class PosController extends Controller
 
 
         return view('Sales.salesshow', compact('categorys','sales','products', 'customers'));
+
+
+        $products = Product::where('category_id' )->get();
+        return view('Sales.salesshow', compact('categorys','sales','products'));
+
     }
     public function SalesList(){
         $sales = SalesPos::all();
         return view('Sales.salesList', compact('sales'));
     }
-
     public function getPorduct($id)
     {
         if($id=='all')
@@ -42,6 +47,7 @@ class PosController extends Controller
 
 
     }
+
 
 
     public function storeProductPos(Request $request){
@@ -97,6 +103,7 @@ public function getPos(){
     ]);
 
 }
+
 
 
 

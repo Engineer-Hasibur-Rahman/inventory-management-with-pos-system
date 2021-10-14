@@ -117,6 +117,10 @@ Route::post('/add/returnproduct',  [ProductController::class, 'StoreReturnProduc
 Route::get('/edit/returnproduct/{id}', [ProductController::class, 'EditReturnProduct'])->name('edit.return.product');
 Route::post('/update/returnproduct/{id}', [ProductController::class, 'UpdateReturnProduct'])->name('update.return.product');
 Route::get('/delete/returnproduct/{id}', [ProductController::class, 'DeletereturnProduct'])->name('delete.return.product');
+Route::get('/approve/returnproduct/{id}', [ProductController::class, 'ApprovereturnProduct'])->name('approve.return.product');
+Route::post('/approve/returnproduct', [ProductController::class, 'Approveconfirm'])->name('confirm.return.product');
+
+
 Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
 
 
@@ -190,7 +194,10 @@ Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+
 //pos store
 Route::post('/products-pos', [PosController::class, 'storeProductPos']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
+
+

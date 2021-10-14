@@ -26,7 +26,7 @@ public function CustomerStore(Request $request){
 
                 $validateData = $request->validate([
                     'customer_name' => 'required',
-                    'email' => 'required',
+                    'email' => 'required|email',
                     'phone' => 'required',
                     'city' => 'required',
                     'country' => 'required',
@@ -110,6 +110,17 @@ public function CustomerStore(Request $request){
 
 
 
+
+            $validateData = $request->validate([
+                'customer_name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'city' => 'required',
+                'country' => 'required',
+                'address' => 'required',
+            ]);
+
+
                 $customer = Customer::find($id);
                 if($customer)
                 {
@@ -140,7 +151,11 @@ public function CustomerStore(Request $request){
 
             public function destroy($id){
 
+
                 $customer = Customer::find($id);
+
+             
+
                 $customer->delete();
                 return response()->json([
                   'message' => 'Data deleted successfully!'
