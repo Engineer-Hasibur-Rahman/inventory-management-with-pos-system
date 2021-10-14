@@ -140,13 +140,19 @@ public function CustomerStore(Request $request){
     
             public function destroy($id){
    
-                $customer = Company::find($id);
+                $customer = Customer::find($id);
                 $customer->delete();
                 return response()->json([
                   'message' => 'Data deleted successfully!'
                 ]);
             }
 
+           
+             public function Search(){
+                $search = $_GET['query'];
+               $querysearch = Customer::where('customer_name','LIKE','%'. $search.'%')->with('customer')->get();
+               return view('customer.search' , compact('querysearch '));
+            }
 
 }
 

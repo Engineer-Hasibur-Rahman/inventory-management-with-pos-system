@@ -17,12 +17,12 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
 
-            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+      
             $table->unsignedBigInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
-=======
+         
 
-            $table->unsignedBigInteger('supplier_id');
+
+           
             $table->unsignedBigInteger('purchases_id');
 
 
@@ -30,7 +30,7 @@ class CreateStocksTable extends Migration
             $table->integer('product_stock_count');
 
             $table->foreign('purchases_id')->references('id')->on('purchases')->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreign('supplier_id')->references('id')->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
+         
             $table->timestamps();
         });
     }

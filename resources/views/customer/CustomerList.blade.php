@@ -31,23 +31,14 @@
                                         <th>phone</th>
                                         <th>city</th>
                                         <th>country</th>
-                                        <th>Action</th>
+                                        <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
-
-
-
-
                                 <tbody>
-                               
-                              </tbody>
+                                </tbody>
                             
-                            
-                               
                             </table>
 
-                            
-                          
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -60,7 +51,6 @@
                                       @csrf
                                       <div class="row">
                                         <input id="customer_id" type="text" name="customer_id" hidden>
-                                       
                                         <div class="col-lg-6" >
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Customer Name</label>
@@ -76,8 +66,6 @@
                                         <div style="color:red"> {{$errors->first('address')}}</div>
                                         @endif
                                       </div>
-                                       
-                                     
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email">
@@ -113,22 +101,12 @@
                                       </div>
 
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
-                                  
-                                          
-                                          
-                                        
-                                      
-                                      
                                     </form>
                                   </div>
                              
                                 </div>
                               </div>
                             </div>
-
-
-
-
                             <div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -159,8 +137,6 @@
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
-                                       
-                                     
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email2">
@@ -192,27 +168,15 @@
                                         @endif
                                       </div>
                                       </div>
-                                 
-                                      </div>
-
+                                     </div>
                                       <button type="submit" class="btn btn-primary update">Update</button>
-                                  
-                                         
-                                          
-                                        
-                                      
-                                      
-                                    </form>
+                                     </form>
                                   </table>
                                   </div>
                           
                                 </div>
                               </div>
                             </div>
-
-
-
-
                   {{-- Delete Modal --}}
                   <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -226,7 +190,7 @@
                                 <h4>Confirm to Delete Data ?</h4>
                                 <input id="customer_id3" type="text" name="customer_id3">
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer text-end">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary delete_student">Yes Delete</button>
                             </div>
@@ -261,7 +225,7 @@ $(document).ready(function () {
                           <td>' + item.phone + '</td>\
                           <td>' + item.city + '</td>\
                           <td>' + item.country + '</td>\
-                          <td><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
+                          <td ><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
                           <a  type="button" value="' + item.id + '" class="btn btn-danger deletecustomer btn-sm"  id="deletecustomer"><i class="fas fa-trash"></i></a></td>\
                       \</tr>');
                   });

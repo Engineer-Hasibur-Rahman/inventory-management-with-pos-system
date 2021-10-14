@@ -45,6 +45,7 @@ class CategoryController extends Controller
             ]);
             $cat= new Category;
             $cat->category_name=$request->category_name;
+           
 
 
             $cat->save();
