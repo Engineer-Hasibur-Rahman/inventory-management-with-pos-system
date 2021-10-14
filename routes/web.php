@@ -190,3 +190,7 @@ Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+//pos store
+Route::post('/products-pos', [PosController::class, 'storeProductPos']);
+Route::get('/fetch-pos',[PosController::class, 'getPos']);
+Route::get('/search',[PosController::class, 'search']);
