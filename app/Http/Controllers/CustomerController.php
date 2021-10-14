@@ -151,10 +151,7 @@ public function CustomerStore(Request $request){
 
             public function destroy($id){
 
-
                 $customer = Customer::find($id);
-
-             
 
                 $customer->delete();
                 return response()->json([
@@ -162,6 +159,12 @@ public function CustomerStore(Request $request){
                 ]);
             }
 
+           
+             public function Search(){
+                $search = $_GET['query'];
+               $querysearch = Customer::where('customer_name','LIKE','%'. $search.'%')->with('customer')->get();
+               return view('customer.search' , compact('querysearch '));
+            }
 
 }
 

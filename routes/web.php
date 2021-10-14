@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
  use App\Http\Controllers\PosController;
+ use App\Http\Controllers\CartController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -192,6 +193,11 @@ Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock
 
 Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
+Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+Route::post('/store/pos', [PosController::class, 'CustomerSto'])->name('CustomerStored');
+// Route::get('/customer', [CustomerController::class, 'CustomerShow'])->name('CustomerShow');
+Route::get('/search-customer', [CustomerController::class, 'Search']);
+
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
 
