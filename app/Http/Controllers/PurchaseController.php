@@ -60,9 +60,6 @@ class PurchaseController extends Controller
           'alert-type' => 'success',
         );
 
-
-
-
         return redirect()->route('show.purchase')->with($notification);
 
 
@@ -87,7 +84,8 @@ class PurchaseController extends Controller
 
       $purchase = Purchase::find($id);
       $products = Product::latest()->get();
-      $suppliers = Product::latest()->get();
+      $suppliers = Supplier::latest()->get();
+
       return view('purchase.PurchaseEdit',compact('products','purchase','suppliers'));
   }
 

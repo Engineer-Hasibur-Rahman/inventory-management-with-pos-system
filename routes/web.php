@@ -118,6 +118,10 @@ Route::post('/add/returnproduct',  [ProductController::class, 'StoreReturnProduc
 Route::get('/edit/returnproduct/{id}', [ProductController::class, 'EditReturnProduct'])->name('edit.return.product');
 Route::post('/update/returnproduct/{id}', [ProductController::class, 'UpdateReturnProduct'])->name('update.return.product');
 Route::get('/delete/returnproduct/{id}', [ProductController::class, 'DeletereturnProduct'])->name('delete.return.product');
+Route::get('/approve/returnproduct/{id}', [ProductController::class, 'ApprovereturnProduct'])->name('approve.return.product');
+Route::post('/approve/returnproduct', [ProductController::class, 'Approveconfirm'])->name('confirm.return.product');
+
+
 Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
 
 
@@ -181,7 +185,7 @@ Route::get('fetch-customers', [CustomerController::class, 'fetchcustomer']);
 Route::post('/update-customer/{id}', [CustomerController::class, 'update']);
 // Route::get('/color/{id}/edit', 'TestController@update')->name('color.update');
 
-Route::get('delete-custmer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
+Route::get('delete-customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
 
 Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
 
@@ -195,12 +199,11 @@ Route::post('/store/pos', [PosController::class, 'CustomerSto'])->name('Customer
 Route::get('/search-customer', [CustomerController::class, 'Search']);
 
 
+Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+
+//pos store
+Route::post('/products-pos', [PosController::class, 'storeProductPos']);
+Route::get('/fetch-pos',[PosController::class, 'getPos']);
+Route::get('/search',[PosController::class, 'search']);
 
 
-// new route start //////
-// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-// Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-// Route::post('/cart/change-qty', [CartController::class, 'changeQty']);
-// Route::delete('/cart/delete', [CartController::class, 'delete']);
-// Route::delete('/cart/empty', [CartController::class, 'empty']);
-// new route end //////

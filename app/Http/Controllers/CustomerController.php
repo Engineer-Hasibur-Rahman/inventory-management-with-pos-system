@@ -10,27 +10,27 @@ class CustomerController extends Controller
 {
     //
     public function CustomerList(){
-        
+
     $customers  = Customer::all();
-    
+
     return view('customer.CustomerList',compact('customers'));
 
 
-     
+
 
     }
 
 public function CustomerStore(Request $request){
 
-                    
+
 
                 $validateData = $request->validate([
                     'customer_name' => 'required',
-                    'email' => 'required',
+                    'email' => 'required|email',
                     'phone' => 'required',
                     'city' => 'required',
                     'country' => 'required',
-                
+
                     'address' => 'required',
                 ]);
                 $customer= new Customer;
@@ -73,7 +73,7 @@ public function CustomerStore(Request $request){
             'customers'=>$customers,
         ]);
     }
- 
+
 
 
 
@@ -81,9 +81,9 @@ public function CustomerStore(Request $request){
         public function edit( $id)
         {
             $customer=Customer::find($id);
-          
-        
-    
+
+
+
             if($customer)
             {
                 return response()->json([
@@ -98,29 +98,40 @@ public function CustomerStore(Request $request){
                     'message'=>'No Customer Found.'
                 ]);
             }
-    
+
         }
-    
-        
+
+
 
         public function update(Request $request, $id)
-        { 
-            
-            
-     
-    
-          
+        {
+
+
+
+
+
+
+            $validateData = $request->validate([
+                'customer_name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'city' => 'required',
+                'country' => 'required',
+                'address' => 'required',
+            ]);
+
+
                 $customer = Customer::find($id);
                 if($customer)
-                { 
+                {
                   $customer->customer_name=$request->input('customer_name');
                   $customer->email=$request->input('email');
                   $customer->phone=$request->input('phone');
                   $customer->city=$request->input('city');
                   $customer->country=$request->input('country');
                   $customer->address=$request->input('address');
-                
-              
+
+
                     $customer->update();
                     return response()->json([
                         'status'=>200,
@@ -134,13 +145,14 @@ public function CustomerStore(Request $request){
                         'message'=>'No custmer Found.'
                     ]);
                 }
-    
+
             }
-    
-    
+
+
             public function destroy($id){
-   
+
                 $customer = Customer::find($id);
+
                 $customer->delete();
                 return response()->json([
                   'message' => 'Data deleted successfully!'

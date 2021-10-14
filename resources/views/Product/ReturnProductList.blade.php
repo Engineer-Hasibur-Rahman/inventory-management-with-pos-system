@@ -7,6 +7,43 @@
  @php
  $user =Auth::user()
  @endphp
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="studentname"></h5>
+
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group mx-sm-1 mb-1">
+
+
+
+
+
+                <label for="">Ary you want to Approve this Return ??</label>
+              </div>
+              <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
+              <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
+
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
  <div class="content-page center">
     <div class="content">
@@ -16,7 +53,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Product List</h4>
+                            <h4 class="header-title">Return Product List</h4>
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -39,10 +76,10 @@
                                         <td>{{ $list->return_quantiy }}</td>
 
                                         @if ($list->approve_status!=0)
-                                       <td><button type="button" class="btn btn-success">Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-success">Aproved</button></td>
                                        @else
 
-                                       <td><button type="button" class="btn btn-success">Not Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-danger">Not Aproved</button></td>
 
                                         @endif
 
@@ -56,10 +93,14 @@
 
                                         <td class="text-end">
                                          @if ( $user->can('product.update') && $user->can('product.update'))
-                                    <a href="/edit/returnproduct/{{$list->Product->id}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('edit.return.product',$list->id) }}" class="btn btn-primary">Edit</a>
 
-                                    <a href="{{ route('delete.return.product',$list->Product->id) }}" id="delete" class="btn btn-danger">Delete</a>
-                                      {{-- <a href="{{ route('delete.product',$product->id) }}" id="delete" class="btn btn-danger">Aprove</a> --}}
+                                    <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                    @if ($list->approve_status!=1)
+
+                                      <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Aprove</a>
+
+                                      @endif
                                     @endif
                                         </td>
                                     </tr>
@@ -83,6 +124,105 @@
      confirmButtonText: 'Cool'
    })</script>
   --}}
+
+
+  <script>
+
+ $(function(){
+
+let rCollection="";
+  $('#approve').click(function(){
+
+//get data
+var returnId = $(this).attr("value");
+
+//console.log(returnId);
+
+//alert(returnId);
+
+    axios.get(`/approve/returnproduct/${returnId}`)
+    .then(function ({data:{returnCollection}}) {
+    // handle success
+ //alert(returnCollection.product_stock)
+ console.log(returnCollection);
+rCollection=returnCollection
+console.log(rCollection);
+
+$('#mymodal').modal('show');
+$('#closemodal').click(function(){
+    $('#mymodal').modal('hide');
+
+});
+
+
+$('#submit').click(function(){
+
+
+
+
+    var url="/approve/returnproduct";
+                axios.post(url,returnCollection)
+                .then(function (response) {
+
+
+                    console.log(response.data);
+
+                location.reload();
+                //location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error.response.data);
+                });
+
+
+$('#mymodal').modal('hide');
+
+});
+
+
+
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+  //end get
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ });
+
+
+
+
+
+
+
+  </script>
 
 
  @endsection
