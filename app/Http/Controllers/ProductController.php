@@ -296,35 +296,52 @@ public function DeletereturnProduct($id)
 
 public function ApprovereturnProduct($id){
 
-    if (Request::isMethod('get'))
-    {
+
+
         $return_product =ProductReturn::where('id',$id)->first();
         $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first()->pluck('product_stock_count');
-    }
 
 
 
-    if (Request::isMethod('post'))
-    {
+
+
+
         if($return_product->approve_status!=1){
 
             $product_stock=((int)$product_stock[0]-(int)$return_product->return_quantiy);
 
 
-            Stock::where('purchases_id',$return_product->purchase_id)
-            ->update(['product_stock_count' => $product_stock]);
 
-              ProductReturn::where('id',$id)->update(['approve_status' => 1]);
+            $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id);
+
+
+            return  response()->json(compact('returnCollection'));
+
 
         }
 
-    }
+
 
 
 
 
 }
 
+
+
+public function Approveconfirm(Request $request){
+    $r_id=$request->input('r_id');
+    $p_id= $request->input('purchase_id');
+    $stock= $request->input('product_stock');
+
+
+    Stock::where('purchases_id',$p_id)->update(['product_stock_count' => $stock]);
+
+      ProductReturn::where('id',$r_id)->update(['approve_status' => 1]);
+
+
+
+}
 
 
 

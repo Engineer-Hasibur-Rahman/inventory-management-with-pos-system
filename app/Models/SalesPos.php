@@ -31,11 +31,11 @@ class SalesPos extends Model
         'total_amount',
         'grand_total',
     ];
-    public function product(){
-        return $this->hasMany(Product::class);
-    }
+    // public function product(){
+    //     return $this->hasMany(Product::class);
+    // }
 
-    public function category(){
-    	return $this->belongsTo(Category::class,'category_id','id');
-    }
+    // public function category(){
+    // 	return $this->belongsTo(Category::class,'category_id','id');
+    // }
 }
