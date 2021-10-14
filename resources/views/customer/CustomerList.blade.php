@@ -21,7 +21,7 @@
                             <button type="button" class="btn btn-primary" style="background: #4e46a1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
                             </div>
 
-                           
+
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -39,15 +39,15 @@
 
 
                                 <tbody>
-                               
+
                               </tbody>
-                            
-                            
-                               
+
+
+
                             </table>
 
-                            
-                          
+
+
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -60,7 +60,7 @@
                                       @csrf
                                       <div class="row">
                                         <input id="customer_id" type="text" name="customer_id" hidden>
-                                       
+
                                         <div class="col-lg-6" >
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Customer Name</label>
@@ -76,8 +76,8 @@
                                         <div style="color:red"> {{$errors->first('address')}}</div>
                                         @endif
                                       </div>
-                                       
-                                     
+
+
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email">
@@ -109,19 +109,19 @@
                                         @endif
                                       </div>
                                       </div>
-                                 
+
                                       </div>
 
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
-                                  
-                                          
-                                          
-                                        
-                                      
-                                      
+
+
+
+
+
+
                                     </form>
                                   </div>
-                             
+
                                 </div>
                               </div>
                             </div>
@@ -143,7 +143,7 @@
 
                                       <input id="customer_id2" type="text" name="customer_id" hidden>
                                       <div class="row">
-                                       
+
                                         <div class="col-lg-6" >
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Customer Name</label>
@@ -152,15 +152,15 @@
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
-                                      <div class="mb-3">
+                                      <div class="mb-3">ppp
                                         <label for="recipient-name" class="col-form-label">Address</label>
                                         <input type="text" name="address" class="form-control" id="address2" >
                                         @if($errors->has('address'))
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
-                                       
-                                     
+
+
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email2">
@@ -192,20 +192,20 @@
                                         @endif
                                       </div>
                                       </div>
-                                 
+
                                       </div>
 
                                       <button type="submit" class="btn btn-primary update">Update</button>
-                                  
-                                         
-                                          
-                                        
-                                      
-                                      
+
+
+
+
+
+
                                     </form>
                                   </table>
                                   </div>
-                          
+
                                 </div>
                               </div>
                             </div>
@@ -262,7 +262,7 @@ $(document).ready(function () {
                           <td>' + item.city + '</td>\
                           <td>' + item.country + '</td>\
                           <td><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
-                          <a  type="button" value="' + item.id + '" class="btn btn-danger deletecustomer btn-sm"  id="deletecustomer"><i class="fas fa-trash"></i></a></td>\
+                          <button type="button" value="' + item.id + '" class="btn btn-danger deletecustomer btn-sm"  id="deletecustomer"><i class="fas fa-trash"></i></button></td>\
                       \</tr>');
                   });
               }
@@ -316,8 +316,8 @@ $(document).on('click', '.customer', function (e) {
 
             $data = $("#updateForm").serialize();
             console.log($data);
-          
-          
+
+
 
             $.ajaxSetup({
                   headers: {
@@ -344,25 +344,34 @@ $(document).on('click', '.customer', function (e) {
                 }
             });
 
-                 
-         
 
 
-            
+
+
+
         });
 
 
-         
-
-       
 
 
 
-        $(document).on('click', '.delete_student', function (e) {
+
+
+
+        $(document).on('click', '.deletecustomer', function (e) {
           e.preventDefault();
 
+
+             $stud_id = $(this).val();
+            console.log($stud_id);
+            $('#DeleteModal').modal('show');
+            $('#customer_id3').val($stud_id);
+        });
+
+        $(document).on('click', '.delete_student', function (e) {
+
             $(this).text('Deleting..');
-            var id = $('#deleteing_id').val();
+            $id = $('#customer_id3').val();
 
             $.ajaxSetup({
                 headers: {
@@ -371,36 +380,21 @@ $(document).on('click', '.customer', function (e) {
             });
 
             $.ajax({
-                type: "DELETE",
+                type: "GET",
                 url: "/delete-customer/" + $id,
                 dataType: "json",
                 success: function (response) {
-                    
-                    if (response.status == 404) {
-                        $('#success_message').addClass('alert alert-success');
-                        $('#success_message').text(response.message);
-                        $('.delete_student').text('Yes Delete');
-                    } else {
-                        $('#success_message').html("");
-                        $('#success_message').addClass('alert alert-success');
-                        $('#success_message').text(response.message);
-                        $('.delete_student').text('Yes Delete');
-                        $('#DeleteModal').modal('hide');
-                        fetchstudent();
-                    }
+                            $('#DeleteModal').modal('hide');
+                            fetchcustomer();
+
                 }
             });
+        });
 
-
-
-        
-
-
-
-      });
     });
 
+
 </script>
-                 
+
 @endsection
 

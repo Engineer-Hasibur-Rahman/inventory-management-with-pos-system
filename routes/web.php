@@ -184,7 +184,7 @@ Route::get('fetch-customers', [CustomerController::class, 'fetchcustomer']);
 Route::post('/update-customer/{id}', [CustomerController::class, 'update']);
 // Route::get('/color/{id}/edit', 'TestController@update')->name('color.update');
 
-Route::get('delete-custmer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
+Route::get('delete-customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
 
 Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
 
@@ -194,3 +194,10 @@ Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+
+//pos store
+Route::post('/products-pos', [PosController::class, 'storeProductPos']);
+Route::get('/fetch-pos',[PosController::class, 'getPos']);
+Route::get('/search',[PosController::class, 'search']);
+
+
