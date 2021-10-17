@@ -21,13 +21,13 @@
           <div class="form-group mx-sm-1 mb-1">
 
 
+            <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
+            <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
 
 
 
                 <label for="">Ary you want to Approve this Return ??</label>
               </div>
-              <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
-              <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
 
 
 
@@ -76,10 +76,10 @@
                                         <td>{{ $list->return_quantiy }}</td>
 
                                         @if ($list->approve_status!=0)
-                                       <td><button disabled type="button" class="btn btn-success">Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-success">Approved</button></td>
                                        @else
 
-                                       <td><button disabled type="button" class="btn btn-danger">Not Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-danger">Pending</button></td>
 
                                         @endif
 
