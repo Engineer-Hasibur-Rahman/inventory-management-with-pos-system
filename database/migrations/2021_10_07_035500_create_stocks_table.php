@@ -20,11 +20,8 @@ class CreateStocksTable extends Migration
 
             $table->unsignedBigInteger('supplier_id');
             $table->unsignedBigInteger('purchases_id');
-
-
             $table->date('product_add_date');
             $table->integer('product_stock_count');
-
             $table->foreign('purchases_id')->references('id')->on('purchases')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
