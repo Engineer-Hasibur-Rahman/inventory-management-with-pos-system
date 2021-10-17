@@ -300,6 +300,8 @@ public function ApprovereturnProduct($id){
 
         $return_product =ProductReturn::where('id',$id)->first();
         $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first()->pluck('product_stock_count');
+        $p_stock=Purchase::where('id',$return_product->purchase_id)->first()->pluck('product_quantity');
+
 
 
 
@@ -308,11 +310,14 @@ public function ApprovereturnProduct($id){
 
         if($return_product->approve_status!=1){
 
+
             $product_stock=((int)$product_stock[0]-(int)$return_product->return_quantiy);
+            $p_stock=((int)$p_stock[0]-(int)$return_product->return_quantiy);
 
 
 
-            $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id);
+            $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id,"purchase_stock"=>$p_stock);
+
 
 
             return  response()->json(compact('returnCollection'));
