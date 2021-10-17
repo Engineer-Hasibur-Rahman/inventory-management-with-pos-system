@@ -14,7 +14,7 @@ class CreateSalesPosTable extends Migration
     public function up()
     {
         Schema::create('sales_pos', function (Blueprint $table) {
-            $table->id();
+          
             $table->date('sales_date')->nullable();
             $table->string('created_by');
             $table->string('customer_name');

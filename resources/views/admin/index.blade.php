@@ -7,6 +7,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript" src="{{asset('assets/js/echarts.min.js')}}"></script>
 
   <div class="content-page">
                 <div class="content">
@@ -213,23 +214,32 @@
 
 
                         <div class="row">
-                            <div class="col-md-6 col-xl-3">
+                            <div class="col-md-6 col-xl-6">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-6">
+
+                                            <div class="col-3">
+
+                                            </div>
+
+                                            <div class="col-2">
                                                 <div class="avatar-lg rounded-circle bg-soft-success border-success border">
                                                     <i class="iconify font-22 avatar-title text-success"  data-icon="dashicons:money-alt" ></i>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-3">
                                                 <div class="text-end">
+                                                    <p class="text-muted mb-1 text-truncate" style="font-size: larger">Monthly Sale amount</p>
                                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$monthprice}}</span>tk</h3>
-                                                    <p class="text-muted mb-1 text-truncate">Monthly Sale amount</p>
+
                                                     {{-- <audio id="audioBox" src="{{asset('asstets/noti/audio1.wav')}}">
                                                         erdrfyhrtf
                                                     </audio> --}}
                                                 </div>
+                                            </div>
+                                            <div class="col-4">
+
                                             </div>
 
                                         </div> <!-- end row-->
@@ -237,7 +247,7 @@
                                 </div> <!-- end widget-rounded-circle-->
                             </div> <!-- end col-->
 
-                            <div class="col-md-6 col-xl-3">
+                            {{-- <div class="col-md-6 col-xl-3">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
                                         <div class="row">
@@ -256,42 +266,154 @@
                                         </div> <!-- end row-->
                                     </div>
                                 </div> <!-- end widget-rounded-circle-->
-                            </div> <!-- end col-->
+                            </div> <!-- end col--> --}}
 
+
+                            <div class="col-md-6 col-xl-6">
+                                <div class="widget-rounded-circle card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+
+                                                </div>
+
+
+                                            <div class="col-2">
+                                                <div class="avatar-lg rounded-circle bg-soft-success border-success border">
+
+                                                    <i class="iconify font-22 avatar-title text-success"  data-icon="dashicons:money-alt" ></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="text-end">
+                                                    <p class="text-muted mb-1 text-truncate" style="font-size: larger">Yearly total sale Amount</p></p>
+                                                    <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$yearprice}}</span>tk</h3>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                            </div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div>
+                                </div> <!-- end widget-rounded-circle-->
+                            </div>
 
                         </div>
                         <!-- end row-->
 
-
-
-                            {{-- <div class="col-xl-6">
-                                <div class="card">
+                        <div class="row">
+                            <div class="col-md-6 col-xl-6">
+                                <div class="widget-rounded-circle card">
                                     <div class="card-body">
-                                        <div class="float-end d-none d-md-inline-block">
-                                            <div class="btn-group mb-2">
-                                                <button type="button" class="btn btn-xs btn-light">Today</button>
-                                                <button type="button" class="btn btn-xs btn-light">Weekly</button>
-                                                <button type="button" class="btn btn-xs btn-secondary">Monthly</button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="chart   has-fixed-height "  id="bar-chart"></div>
                                             </div>
-                                        </div>
-
-                                        <h4 class="header-title mb-3">Sales Analytics</h4>
-                                        <div dir="ltr">
-                                            <div id="sales-analytics" class="apex-charts" data-colors="#6658dd,#1abc9c"></div>
-                                        </div>
+                                        </div> <!-- end row-->
                                     </div>
-                                </div> <!-- end card -->
-                            </div> <!-- end col--> --}}
-                            <div class="col-md-12">
-                                <div id="bar-chart" style="width: 900px; height: 500px"></div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-                    </div> <!-- container -->
+                                </div> <!-- end widget-rounded-circle-->
+                            </div> <!-- end col-->
 
-                </div> <!-- content -->
+                            <div class="col-md-6 col-xl-6">
+                                <div class="widget-rounded-circle card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="chart has-fixed-height" id="pie_basic"></div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div>
+                                </div> <!-- end widget-rounded-circle-->
+                            </div> <!-- end col-->
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end row -->
+                {{-- start --}}
+
+
+            </div>
+        </div>
+
+
 
                 <!-- Footer Start -->
+                <script type="text/javascript">
+                    var pie_basic_element = document.getElementById('pie_basic');
+                    if (pie_basic_element) {
+                        var pie_basic = echarts.init(pie_basic_element);
+                        pie_basic.setOption({
+                            color: [
+                                '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
+                                '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
+                                '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
+                                '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+
+                            ],
+
+                            textStyle: {
+                                fontFamily: 'Roboto, Arial, Verdana, sans-serif',
+                                fontSize: 13
+                            },
+
+                            title: {
+                                text: 'Product sale price chart',
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 17,
+                                    fontWeight: 500
+                                },
+                                subtextStyle: {
+                                    fontSize: 12
+                                }
+                            },
+
+                            tooltip: {
+                                trigger: 'item',
+                                backgroundColor: 'rgba(0,0,0,0.75)',
+                                padding: [10, 15],
+                                textStyle: {
+                                    fontSize: 13,
+                                    fontFamily: 'Roboto, sans-serif'
+                                },
+                                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                            },
+
+                            legend: {
+                                orient: 'horizontal',
+                                bottom: '0%',
+                                left: 'center',
+                                data: ['Daily Sale', 'Monthly Sale','Yearly Sale'],
+                                itemHeight: 8,
+                                itemWidth: 8
+                            },
+
+                            series: [{
+                                name: 'Product ',
+                                type: 'pie',
+                                radius: '70%',
+                                center: ['50%', '50%'],
+                                itemStyle: {
+                                    normal: {
+                                        borderWidth: 1,
+                                        borderColor: '#fff'
+                                    }
+                                },
+                                data: [
+                                    {value: {{$todaysalesprice}}, name: 'Daily Sale'},
+                                    {value: {{$monthprice}}, name: 'Monthly Sale'},
+                                    {value: {{$yearprice}} , name: 'Yearly Sale'}
+
+                                ]
+                            }]
+                        });
+                    }
+                    </script>
                 <script type="text/javascript">
                     google.charts.load('current', {'packages':['bar']});
                     google.charts.setOnLoadCallback(drawChart);
@@ -322,7 +444,7 @@
                @include('./body.footer')
 
 
-            </div>
+
 
 
 
