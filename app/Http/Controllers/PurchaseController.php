@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use PDF;
 
 class PurchaseController extends Controller
 {
@@ -69,7 +70,9 @@ class PurchaseController extends Controller
     public function showPurchase(){
 
 
-      $purchases = Purchase::all();
+      $purchases = Purchase::with(['product'])->get();
+
+      
 
       return view('purchase.PurchaseList', compact('purchases'));
   }
@@ -146,7 +149,29 @@ class PurchaseController extends Controller
     }
 
 
+
+  
+  public function Barcode($id)
+  {
+
+    
+
+  //dd($ids);
+
+    // $pdf = PDF::loadView('Pdf.barcode',$ids);
+    // //dd($pdf);
+    // return $pdf->download('download.pdf',);
+
+    // $id=$ids["id"];
+
+    // dd( $id);
+    // return view('pdf.barcode',compact('$ids'));
+    
+return view('pdf.barcode',compact('id'));
+
     //for testing audio
 
+
+}
 
 }
