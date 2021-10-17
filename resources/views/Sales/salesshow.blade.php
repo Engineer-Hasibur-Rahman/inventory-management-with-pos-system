@@ -98,6 +98,13 @@
                                   </div>
                               <h5>Customer Select <span class="text-danger">*</span></h5>
                               <div class="input-group">
+<<<<<<< HEAD
+                                 <select class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
+                                    {{-- <option  value='1'>Walk-in customer</option>
+                                    <option  value='7'>Vinit Hiremath</option>
+                                    <option  value='1'>Walk-in customer</option>
+                                    <option  value='7'>Vinit Hiremath</option>                                                         --}}
+=======
                                  <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
 
 
@@ -109,6 +116,7 @@
                                                      <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                   @endforeach
 
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                                  </select>
                                 <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
 
@@ -135,7 +143,10 @@
                                  <input type="text" class="form-control" placeholder="Item name/Barcode/Itemcode" id="item_search">
                               </div>
                             </div>
+<<<<<<< HEAD
+=======
 
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                         </div>
                     </div>
 
@@ -156,6 +167,9 @@
                       </button>
                     </th>
                   </tr></thead>
+<<<<<<< HEAD
+                  <tbody id="pos-form-tbody" style="font-size: 16px;font-weight: bold;overflow: scroll;">   </tbody>
+=======
 
                         
 
@@ -163,6 +177,7 @@
 
                 </tbody>
 
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                   <tfoot>
 
                     <!-- footer code -->
@@ -238,7 +253,7 @@
                                 <div class="col-sm-3">
                                     <button type="button" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                         Pay All
+                                        <a style="color: white" href="/download/pdf"> Pay All</a>
                                       </button>
                                 </div>
 
@@ -262,6 +277,8 @@
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                    @endforeach
                                </select>
+<<<<<<< HEAD
+=======
 
                         </div> 
                         <div class="col-md-6">
@@ -272,6 +289,7 @@
                                   <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat show_all">Search</button>
 
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                         </div>
 
                         <div class="col-md-6">
@@ -279,13 +297,24 @@
                           <form type="get" action="{{url('/search')}}">
                           <div class="input-group input-group-md">
 
+<<<<<<< HEAD
+                              <input type="text" id="search_it" class="form-control" placeholder="Filter Items" autocomplete="off">
+=======
                               <input type="search" id="search_it" name="query" class="form-control" placeholder="Filter Items" autocomplete="off">
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                                   <span class="input-group-btn">
                                     <button type="submit" class="btn btn-info btn-flat show_all">All</button>
 
                                   </span>
 
                             </div>
+<<<<<<< HEAD
+                        </div>
+                      </div>
+                      <div class="p-1">
+                      <div class="row   " id="showProduct"  style="padding-left:5px;padding-right:5px;">
+
+=======
 
                           </form>
                         </div>                
@@ -316,6 +345,7 @@
                  </div>
                </div>
                        @endforeach
+>>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                       </div>
 
 

@@ -29,10 +29,12 @@ class PdfController extends Controller
             abort('403','You dont have acces!!!!');
         }
        $product=Product::all();
-
-       $pdf = PDF::loadView('pdf',compact('product') );
-       return $pdf->download('product.pdf');
-       return view('pdf',compact('product'));
+       $customPaper = array(0,0,720,1440);
+       $pdf = PDF::loadView('pdf.DownloadPurchase', $product)->setPaper($customPaper);
+    //    $pdf->setPaper('A8', 'portrait');
+       return $pdf->download();
+    //    return view('pdf',compact('product'));\
+    return back();
     }
 
 
