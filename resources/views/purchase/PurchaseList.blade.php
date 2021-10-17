@@ -27,6 +27,7 @@
                                         <th>purchase_unit </th>
                                        
                                         <th>purchase_note</th>
+                                           <th>QrCode</th>
                                         
                                         <th class="text-end">Action</th>
                                  
@@ -43,6 +44,9 @@
                                         <td>{{ $purchase->purchase_price }}</td>
                                         <td>{{ $purchase->purchase_unit }}</td>
                                         <td>{{ $purchase->purchase_note }}</td>
+                                        <td> <a href="{{route('Get.barcode',$purchase->product->id)}}" class="btn btn-success">Generate</a></td>
+                                  
+                                       
  
  
                                         <td class="text-end">
