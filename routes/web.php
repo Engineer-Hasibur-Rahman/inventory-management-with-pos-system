@@ -123,7 +123,7 @@ Route::post('/approve/returnproduct', [ProductController::class, 'Approveconfirm
 
 
 Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
-Route::get('/get/barcode/{id}', [PurchaseController::class, 'Barcode'])->name('Get.barcode');
+Route::get('/get/barcode/{id}/{print_quantity}', [PurchaseController::class, 'Barcode'])->name('Get.barcode');
 
 
 
