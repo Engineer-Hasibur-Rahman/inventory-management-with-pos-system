@@ -72,7 +72,7 @@ class PurchaseController extends Controller
 
       $purchases = Purchase::with(['product'])->get();
 
-      
+
 
       return view('purchase.PurchaseList', compact('purchases'));
   }
@@ -150,24 +150,18 @@ class PurchaseController extends Controller
 
 
 
-  
-  public function Barcode($id)
+
+  public function Barcode($id,$print_quantity)
   {
 
-    
+// $data[0]=$id;
 
-  //dd($ids);
 
-    // $pdf = PDF::loadView('Pdf.barcode',$ids);
-    // //dd($pdf);
-    // return $pdf->download('download.pdf',);
+$pdf = PDF::loadView('pdf.barcode', compact('id','print_quantity'))->setPaper(array(5,0,140,600));
+// $pdf->setPaper(array(0,0,10));
+return $pdf->stream();
 
-    // $id=$ids["id"];
-
-    // dd( $id);
-    // return view('pdf.barcode',compact('$ids'));
-    
-return view('pdf.barcode',compact('id'));
+//return view('pdf.barcode',compact('id'));
 
     //for testing audio
 
