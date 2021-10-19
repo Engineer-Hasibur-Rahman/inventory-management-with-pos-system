@@ -21,13 +21,13 @@
           <div class="form-group mx-sm-1 mb-1">
 
 
+            <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
+            <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
 
 
 
                 <label for="">Ary you want to Approve this Return ??</label>
               </div>
-              <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
-              <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
 
 
 
@@ -49,11 +49,12 @@
     <div class="content">
         <!-- Start Content-->
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
+            <div class="row" style="padding-top: 50px">
+                <div class="col-2"></div>
+                <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Return Product List</h4>
+                            <h4 class="header-title" style="text-align: center">Return Product List</h4>
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -76,10 +77,10 @@
                                         <td>{{ $list->return_quantiy }}</td>
 
                                         @if ($list->approve_status!=0)
-                                       <td><button disabled type="button" class="btn btn-success">Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-success">Approved</button></td>
                                        @else
 
-                                       <td><button disabled type="button" class="btn btn-danger">Not Aproved</button></td>
+                                       <td><button disabled type="button" class="btn btn-danger">Pending</button></td>
 
                                         @endif
 
@@ -93,7 +94,7 @@
 
                                         <td class="text-end">
                                          @if ( $user->can('product.update') && $user->can('product.update'))
-                                    <a href="{{ route('edit.return.product',$list->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('edit.return.product',$list->product->id) }}" class="btn btn-primary">Edit</a>
 
                                     <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
                                     @if ($list->approve_status!=1)
@@ -111,6 +112,7 @@
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
                 </div><!-- end col-->
+                <div class="col-2"></div>
             </div>
         </div>
     </div>

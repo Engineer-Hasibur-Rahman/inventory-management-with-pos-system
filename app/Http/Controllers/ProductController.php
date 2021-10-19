@@ -173,11 +173,12 @@ public function EditProduct($id)
 public function EditReturnProduct($id)
 {
 
-    $purchases  = Purchase::with(['Product'])->with(['supplier'])->where('product_id',$id)->get()->unique('product_id');
-    $return_product=ProductReturn::where('id',$id)->select('return_quantiy','id')->get();
+    $purchases  = Purchase::with(['Product'])->with(['supplier'])->get()->unique('product_id');
+    $return_product=ProductReturn::with(['product'])->with(['supplier'])->where('product_id',$id)->first();
+    //dd($purchases);
 
 
-    //dd($return_product[0]->id);
+   // dd($return_product);
 
     return view('product.EditReturnProduct',compact('purchases','return_product'));
 }
@@ -226,6 +227,7 @@ public function UpdateProduct(Request $request,$id)
 public function UpdateReturnProduct(Request $request,$id)
 {
 
+    //dd($request->all());
        $validateData = $request->validate([
          'product_name' => 'required',
          'quantity' => 'required'
@@ -239,6 +241,7 @@ $stock_number=Stock::where('product_id',$request->product_name)->first();
 
 
           $product=ProductReturn::find($id);
+         // dd($product);
           $product->product_id=$request->product_name;
           $product->supplier_id=$request->suppliar;
 
@@ -300,6 +303,8 @@ public function ApprovereturnProduct($id){
 
         $return_product =ProductReturn::where('id',$id)->first();
         $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first()->pluck('product_stock_count');
+        $p_stock=Purchase::where('id',$return_product->purchase_id)->first()->pluck('product_quantity');
+
 
 
 
@@ -308,11 +313,14 @@ public function ApprovereturnProduct($id){
 
         if($return_product->approve_status!=1){
 
+
             $product_stock=((int)$product_stock[0]-(int)$return_product->return_quantiy);
+            $p_stock=((int)$p_stock[0]-(int)$return_product->return_quantiy);
 
 
 
-            $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id);
+            $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id,"purchase_stock"=>$p_stock);
+
 
 
             return  response()->json(compact('returnCollection'));
@@ -338,7 +346,7 @@ public function Approveconfirm(Request $request){
     Stock::where('purchases_id',$p_id)->update(['product_stock_count' => $stock]);
 
       ProductReturn::where('id',$r_id)->update(['approve_status' => 1]);
-
+    Purchase::where('id',$p_id)->update(['product_quantity' => $stock]);
 
 
 }

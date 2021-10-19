@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
  use App\Http\Controllers\PosController;
+ use App\Http\Controllers\CompanyController;
+ use App\Http\Controllers\CartController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
 /*
@@ -122,6 +124,7 @@ Route::post('/approve/returnproduct', [ProductController::class, 'Approveconfirm
 
 
 Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
+Route::get('/get/barcode/{id}/{print_quantity}', [PurchaseController::class, 'Barcode'])->name('Get.barcode');
 
 
 
@@ -133,7 +136,9 @@ Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSup
 });
 
 
-
+Route::get('/test', function () {
+    return  view('welcome');
+});
 ///// purchase start///
 Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
@@ -171,8 +176,6 @@ Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name(
 
 // stock
 Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
-
-
 Route::get('/customer/list', [CustomerController::class, 'CustomerList'])->name('customer.list');
 
 
@@ -192,6 +195,16 @@ Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock
 
 Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
+Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
+Route::post('/store/pos', [PosController::class, 'CustomerSto'])->name('CustomerStored');
+Route::get('/salespdf', [PosController::class, 'SalesPdf'])->name('sales.pdf');
+Route::get('/dpdf', [PosController::class, 'DayPdf'])->name('day.pdf');
+Route::get('/mpdf', [PosController::class, 'MonthPdf'])->name('month.pdf');
+Route::get('/ypdf', [PosController::class, 'YearPdf'])->name('year.pdf');
+// Route::get('/customer', [CustomerController::class, 'CustomerShow'])->name('CustomerShow');
+Route::get('/search-customer', [CustomerController::class, 'Search']);
+
+
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
 
@@ -199,12 +212,21 @@ Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getPro
 Route::post('/products-pos/{id}', [PosController::class, 'storeProductPos']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
+Route::get('/seles/report',[PosController::class, 'SalesReport'])->name('sales.report');
+Route::post('/seles/report',[PosController::class, 'Report'])->name('report');
 
 // Product mini Cart ajax data
 Route::get('/product/mini/cart/', [PosController::class, 'AddMiniCart']);
+
 
 //remove products from cart
 Route::get('/minicart/product-remove/{rowId}', [PosController::class, 'RemoveMiniCart'])->name('delete.pos');
 // Route::post('/products-pos/{id}', [PosController::class, 'AddToCart']);
 Route::get('/cart-increment/{rowId}', [PosController::class, 'cartIncrement']);
 Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
+//company profile
+Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');;
+Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');;
+Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');;
+Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');;
+

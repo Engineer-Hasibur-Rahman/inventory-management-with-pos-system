@@ -7,12 +7,17 @@ use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\SalesPos;
+
 use Gloudemans\Shoppingcart\Facades\Cart;
+
+use PDF;
+
 
 class PosController extends Controller
 {
     public function SalesShow(Request $request){
         $sales = SalesPos::all();
+        $customers = Customer::all();
         $categorys = Category::all();
 
         $products=Product::all();
@@ -25,7 +30,9 @@ class PosController extends Controller
 
 
         $products = Product::where('category_id' )->get();
-        return view('Sales.salesshow', compact('categorys','sales','products'));
+
+        return view('Sales.salesshow', compact('categorys','sales','products','customers'));
+
 
     }
     public function SalesList(){
@@ -44,12 +51,14 @@ class PosController extends Controller
             $products = Product::where('category_id',$id)->get();
             return response()->json($products);
         }
+
     }
 
     public function storeProductPos(Request $request,$id){
 
         Cart::add(['id' => $request->id,
         'name' => $request->name,
+
 
         'qty' => 1,
          'price' =>$request->price,
@@ -60,6 +69,48 @@ class PosController extends Controller
 		return response()->json(['success' => 'Successfully Added on Your Cart']);
 
     }
+
+    public function CustomerSto(Request $request){
+        $validateData = $request->validate([
+            'customer_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+
+            'address' => 'required',
+        ]);
+        $customer= new Customer;
+        $customer->customer_name=$request->customer_name;
+        $customer->email=$request->email;
+        $customer->phone=$request->phone;
+        $customer->city=$request->city;
+        $customer->country=$request->country;
+        $customer->address=$request->address;
+        $customer->save();
+        $notification = array(
+        'message' => 'Customer created',
+        'alert-type' => 'success',
+        );
+
+      return redirect()->back()->with($notification);
+}
+
+
+public function storeProductPos(Request $request){
+
+
+            $pos=new SalesPos;
+            $pos->stock=$request->stock;
+            $pos->customer_name=$request->name;
+            $pos->price=$request->price;
+            $pos->quantity=$request->quantity;
+            $pos->save();
+            return response()->json($pos);
+
+}
+
+
 
 public function search(){
     $search_text=$_GET['query'];
@@ -75,14 +126,37 @@ public function search(){
 
 
 public function getPos(){
-
-
     $pos=SalesPos::all();
     return response()->json([
         'pos'=>$pos,
     ]);
 
 }
+public function  SalesReport(){
+    $pos=SalesPos::all();
+    $tpdf="";
+    return view('Sales.salesreport')->with('pos',$pos)
+                                    ->with('tpdf',$tpdf);
+
+
+}
+public function  Report(Request $req){
+    $pos=SalesPos::all();
+
+
+    if($req->daily){
+
+        $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
+        $dpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('dpdf',$dpdf);
+    }
+    elseif($req->month){
+        $pos=  SalesPos::whereMonth('sales_date', date('m'))->get();
+        $mpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('mpdf',$mpdf);
+    }
 
 
 public function AddMiniCart() {
@@ -140,5 +214,42 @@ public function AddToCart(Request $request, $id) {
     return response()->json('decrement');
 
 } // end mehtod
+
+    elseif($req->year){
+
+        $pos=  SalesPos::whereYear('sales_date', date('Y'))->get();
+        $ypdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('ypdf',$ypdf);
+    }
+    elseif($req->total){
+
+        $pos=SalesPos::all();
+        $tpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('tpdf',$tpdf);
+    }
+
+}
+public function  SalesPdf(){
+    $pos=SalesPos::all();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  DayPdf(){
+    $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  MonthPdf(){
+    $pos=SalesPos::whereMonth('sales_date', date('m'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  YearPdf(){
+    $pos=SalesPos::whereYear('sales_date', date('Y'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
 
 }

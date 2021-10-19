@@ -14,9 +14,9 @@ class CreateSalesPosTable extends Migration
     public function up()
     {
         Schema::create('sales_pos', function (Blueprint $table) {
-            $table->id();
+          
             $table->date('sales_date')->nullable();
-            $table->string('created_by')->nullable();
+            $table->string('created_by');
             $table->string('customer_name');
             $table->string('item_name')->nullable();
             $table->string('sales_code')->nullable();
@@ -32,7 +32,7 @@ class CreateSalesPosTable extends Migration
             $table->integer('subtotal')->nullable();
             $table->integer('total_discount')->nullable();
             $table->integer('total_amount')->nullable();
-            $table->integer('grand_total')->nullable();
+            $table->integer('grand_total')->nullable(); 
             $table->timestamps();
         });
     }
