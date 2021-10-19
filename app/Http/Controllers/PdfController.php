@@ -29,9 +29,9 @@ class PdfController extends Controller
             abort('403','You dont have acces!!!!');
         }
        $product=Product::all();
-       $customPaper = array(0,0,720,1440);
-       $pdf = PDF::loadView('pdf.DownloadPurchase', $product)->setPaper($customPaper);
-    //    $pdf->setPaper('A8', 'portrait');
+
+       $pdf = PDF::loadView('pdf.DownloadPurchase', $product);
+
        return $pdf->download();
     //    return view('pdf',compact('product'));\
     return back();

@@ -92,14 +92,14 @@ td{
 @foreach ($demo as $data)
     <div id="invoice-POS">
 
-        <center id="top">
+        <div id="top" style="width: 100% ; text-align:center">
 
           <div class=""> <img src="{{public_path('admin_img/'.$data->company_logo)}}" height="50px" width="200px" alt="eXCELIT LOGO
             "></div>
           <div class="info">
             <h2>{{$data->company_name}}</h2>
           </div><!--End Info-->
-        </center><!--End InvoiceTop-->
+        </div><!--End InvoiceTop-->
 
         <div id="mid">
           <div class="info">
@@ -110,12 +110,6 @@ td{
             </p>
           </div>
           @endforeach
-          <div>
-            <p>sales_date:</p>
-            <p>created_by:</p>
-            <p>customer_name:</p>
-            <p>Product Name:</p>
-        </div>
         </div><!--End Invoice Mid-->
 
         <div id="bot">
@@ -123,48 +117,41 @@ td{
                         <div id="table">
                             <table>
                                 <tr class="tabletitle">
-                                    <td class="item"><h2>Details</h2></td>
-                                    <td class="Hours"><h2>Qty</h2></td>
-                                    <td class="Rate"><h2>Sub Total</h2></td>
+                                    <td class="item"><h2>Serial</h2></td>
+                                    <td class="Hours"><h2>sales_date</h2></td>
+                                    <td class="Rate"><h2>created_by</h2></td>
+                                    <td class="item"><h2>customer_name</h2></td>
+                                    <td class="Hours"><h2>product_name</h2></td>
+                                    <td class="Rate"><h2>sales_code</h2></td>
+                                    <td class="item"><h2>product_quantity</h2></td>
+                                    <td class="Hours"><h2>product_total_price</h2></td>
+                                    <td class="Rate"><h2>Pay Price</h2></td>
+                                    <td class="Rate"><h2>Due Price</h2></td>
                                 </tr>
+                                @php
+                                $serial=0;
 
+                           @endphp
+                            @foreach($pos as $data)
+
+                            @php
+                            $serial++;
+
+                       @endphp
                                 <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Amount</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$serial}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->sales_date}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->created_by}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->customer_name}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->item_name}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->sales_code}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->quantity}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->price}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->paid_payment}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{ $data->due}}</p></td>
                                 </tr>
 
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Discount</p></td>
-                                    <td class="tableitem"><p class="itemtext">3</p></td>
-                                    <td class="tableitem"><p class="itemtext">$225.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Tax</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Payment</p></td>
-                                    <td class="tableitem"><p class="itemtext">20</p></td>
-                                    <td class="tableitem"><p class="itemtext">$1500.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Due</p></td>
-                                    <td class="tableitem"><p class="itemtext">10</p></td>
-                                    <td class="tableitem"><p class="itemtext">$750.00</p></td>
-                                </tr>
-
-
-
-                                <tr class="tabletitle">
-                                    <td></td>
-                                    <td class="Rate"><h2>Total</h2></td>
-                                    <td class="payment"><h2>$3,644.25</h2></td>
-                                </tr>
+                                @endforeach
 
                             </table>
                         </div><!--End Table-->

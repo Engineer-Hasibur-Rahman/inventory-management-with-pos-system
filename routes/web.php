@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
  use App\Http\Controllers\PosController;
+ use App\Http\Controllers\CompanyController;
  use App\Http\Controllers\CartController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
@@ -175,8 +176,6 @@ Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name(
 
 // stock
 Route::get('/stock/list', [StockController::class, 'StockList'])->name('stock.list');
-
-
 Route::get('/customer/list', [CustomerController::class, 'CustomerList'])->name('customer.list');
 
 
@@ -198,8 +197,13 @@ Route::get('/sales', [PosController::class, 'SalesShow'])->name('SalesShow');
 Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
 Route::post('/store/pos', [PosController::class, 'CustomerSto'])->name('CustomerStored');
+Route::get('/salespdf', [PosController::class, 'SalesPdf'])->name('sales.pdf');
+Route::get('/dpdf', [PosController::class, 'DayPdf'])->name('day.pdf');
+Route::get('/mpdf', [PosController::class, 'MonthPdf'])->name('month.pdf');
+Route::get('/ypdf', [PosController::class, 'YearPdf'])->name('year.pdf');
 // Route::get('/customer', [CustomerController::class, 'CustomerShow'])->name('CustomerShow');
 Route::get('/search-customer', [CustomerController::class, 'Search']);
+
 
 
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
@@ -208,5 +212,12 @@ Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getPro
 Route::post('/products-pos', [PosController::class, 'storeProductPos']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
+Route::get('/seles/report',[PosController::class, 'SalesReport'])->name('sales.report');
+Route::post('/seles/report',[PosController::class, 'Report'])->name('report');
 
 
+//company profile
+Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');;
+Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');;
+Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');;
+Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');;

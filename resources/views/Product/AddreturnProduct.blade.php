@@ -5,11 +5,12 @@
     <div class="content">
         <!-- Start Content-->
      <div class="container-fluid">
- <div class="row">
-    <div class="col-lg-12">
+ <div class="row" style="padding-top: 50px">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title">Return Product</h3>
+                <h3 class="header-title" style="text-align: center">Return Product</h3>
                 <form method="POST" action="{{route('store.return.product')}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -72,6 +73,7 @@
         </div> <!-- end card -->
     </div>
     <!-- end col -->
+    <div class="col-lg-3"></div>
  </div>
     </div>
     </div>
