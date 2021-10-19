@@ -79,7 +79,9 @@ class PosController extends Controller
       return redirect()->back()->with($notification);
 }
 
+
 public function storeProductPos(Request $request){
+
 
             $pos=new SalesPos;
             $pos->stock=$request->stock;

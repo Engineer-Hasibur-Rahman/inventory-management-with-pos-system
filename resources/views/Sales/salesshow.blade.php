@@ -149,7 +149,14 @@
                       </button>
                     </th>
                   </tr></thead>
-                  <tbody id="pos-form-tbody" style="font-size: 16px;font-weight: bold;overflow: scroll;">   </tbody>
+
+
+
+                  <tbody id="pos-form-tbody" class="pos" style="font-size: 16px;font-weight: bold;overflow: scroll;">
+
+                </tbody>
+
+
                   <tfoot>
 
                     <!-- footer code -->
@@ -249,6 +256,18 @@
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                    @endforeach
                                </select>
+
+
+                        </div>
+                        <div class="col-md-6">
+                          <h5>Search Items <span class="text-danger">*</span></h5>
+                          <form action="" method="POST">
+                          <div class="input-group input-group-md">
+                                 <input type="text" id="search_it" class="form-control" placeholder="Search Items....." autocomplete="off">
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat show_all">Search</button>
+
+
                         </div>
 
                         <div class="col-md-6">
@@ -256,7 +275,9 @@
                           <form type="get" action="{{url('/search')}}">
                           <div class="input-group input-group-md">
 
-                              <input type="text" id="search_it" class="form-control" placeholder="Filter Items" autocomplete="off">
+
+                              <input type="search" id="search_it" name="query" class="form-control" placeholder="Filter Items" autocomplete="off">
+
                                   <span class="input-group-btn">
                                     <button type="submit" class="btn btn-info btn-flat show_all">All</button>
 

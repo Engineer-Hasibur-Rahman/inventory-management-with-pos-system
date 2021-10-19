@@ -124,6 +124,7 @@ Route::post('/approve/returnproduct', [ProductController::class, 'Approveconfirm
 
 
 Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSupliar'])->name('Get.suppliar.name');
+Route::get('/get/barcode/{id}/{print_quantity}', [PurchaseController::class, 'Barcode'])->name('Get.barcode');
 
 
 
@@ -135,7 +136,9 @@ Route::get('/get/Suppliarnamebyproduct/{id}', [ProductController::class, 'GetSup
 });
 
 
-
+Route::get('/test', function () {
+    return  view('welcome');
+});
 ///// purchase start///
 Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
