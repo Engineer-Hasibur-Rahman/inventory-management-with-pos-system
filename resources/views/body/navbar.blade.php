@@ -118,7 +118,7 @@
             <a href="/home" class="logo logo-light text-center">
 
                 <span class="logo-lg">
-                    <img src="{{('/admin_img/'.$data->company_logo)}}" alt="" height="50px" class=" rounded-circle">
+                    <img src="{{('/admin_img/'.$data->company_logo)}}" alt="" height="30px" width="100px" >
 
                 </span>
             </a>

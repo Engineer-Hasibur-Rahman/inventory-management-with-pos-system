@@ -55,8 +55,8 @@ class CompanyController extends Controller
 
 
           if($request->hasFile('image') && $request->image->isValid()){
-            if(file_exists(public_path('admin_img/'.$company->image))){
-                unlink(public_path('admin_img/'.$company->image));
+            if(file_exists(public_path('admin_img/'.$company->company_logo))){
+                unlink(public_path('admin_img/'.$company->company_logo));
             }
             $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
             $image=$request->image->move(public_path('admin_img'),$newImageName);
