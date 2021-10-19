@@ -196,8 +196,15 @@ Route::get('/possales', [PosController::class, 'SalesList'])->name('SalesList');
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
 
 //pos store
-Route::post('/products-pos', [PosController::class, 'storeProductPos']);
+Route::post('/products-pos/{id}', [PosController::class, 'storeProductPos']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
 
+// Product mini Cart ajax data
+Route::get('/product/mini/cart/', [PosController::class, 'AddMiniCart']);
 
+//remove products from cart
+Route::get('/minicart/product-remove/{rowId}', [PosController::class, 'RemoveMiniCart'])->name('delete.pos');
+// Route::post('/products-pos/{id}', [PosController::class, 'AddToCart']);
+Route::get('/cart-increment/{rowId}', [PosController::class, 'cartIncrement']);
+Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
