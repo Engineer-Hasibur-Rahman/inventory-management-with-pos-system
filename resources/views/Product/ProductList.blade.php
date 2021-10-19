@@ -2,7 +2,6 @@
  @extends('./layout_master')
 
 {{-- section id is yeild name  --}}
-
 @section('admin')
 @php
 $user =Auth::user()

@@ -60,7 +60,7 @@ class PosController extends Controller
             'phone' => 'required',
             'city' => 'required',
             'country' => 'required',
-        
+
             'address' => 'required',
         ]);
         $customer= new Customer;
@@ -78,7 +78,11 @@ class PosController extends Controller
 
       return redirect()->back()->with($notification);
 }
+
+
 public function storeProductPos(Request $request){
+
+
             $pos=new SalesPos;
             $pos->stock=$request->stock;
             $pos->customer_name=$request->name;

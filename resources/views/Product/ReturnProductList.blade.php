@@ -49,11 +49,12 @@
     <div class="content">
         <!-- Start Content-->
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
+            <div class="row" style="padding-top: 50px">
+                <div class="col-2"></div>
+                <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Return Product List</h4>
+                            <h4 class="header-title" style="text-align: center">Return Product List</h4>
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -111,6 +112,7 @@
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
                 </div><!-- end col-->
+                <div class="col-2"></div>
             </div>
         </div>
     </div>

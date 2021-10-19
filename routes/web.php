@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
  use App\Http\Controllers\PosController;
+ use App\Http\Controllers\CompanyController;
  use App\Http\Controllers\CartController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
  use App\Events\MyEvent;
@@ -210,3 +211,8 @@ Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
 
 
+//company profile
+Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');;
+Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');;
+Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');;
+Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');;

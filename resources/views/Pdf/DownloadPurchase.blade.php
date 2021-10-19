@@ -8,11 +8,7 @@
 </head>
 <style>
     #invoice-POS{
-  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
-  padding:2mm;
-  margin: 0 auto;
-  width: 70mm;
-  background: #FFF;
+
 
 
 h1{
@@ -37,7 +33,7 @@ p{
 
 #top{min-height: 100px;}
 #mid{min-height: 80px;}
-#bot{ min-height: 50px;}
+#bot{min-height: 50px;}
 
 #top .logo{
   //float: left;
@@ -89,25 +85,31 @@ td{
 }
 </style>
 <body>
+    @php
+    $demo=App\Models\Company::all();
+
+@endphp
+@foreach ($demo as $data)
     <div id="invoice-POS">
 
         <center id="top">
-          <div class=""> <img src="{{public_path('assets/images/excelit.png')}}" height="50px" width="200px" alt="eXCELIT LOGO
+
+          <div class=""> <img src="{{public_path('admin_img/'.$data->company_logo)}}" height="50px" width="200px" alt="eXCELIT LOGO
             "></div>
           <div class="info">
-            <h2>EXCELIT AI </h2>
+            <h2>{{$data->company_name}}</h2>
           </div><!--End Info-->
         </center><!--End InvoiceTop-->
 
         <div id="mid">
           <div class="info">
             <h2>Contact Info</h2>
-            <p>
-                Address : 17, Alhaz Samsuddin Mansion (9th Floor), Moghbazar, New Easkaton, Ramna, Dhaka-1217</br>
-                Email   : info@excelitai.com</br>
-                Phone   : +88 01611 815656</br>
+            <p>{{$data->company_address}}
+            </p>
+            <p>{{$data->company_phone}}
             </p>
           </div>
+          @endforeach
           <div>
             <p>sales_date:</p>
             <p>created_by:</p>

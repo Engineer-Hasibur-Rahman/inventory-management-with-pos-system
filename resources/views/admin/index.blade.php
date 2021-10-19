@@ -219,16 +219,16 @@
                                     <div class="card-body">
                                         <div class="row">
 
-                                            <div class="col-3">
+                                            <div class="col-2">
 
                                             </div>
 
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <div class="avatar-lg rounded-circle bg-soft-success border-success border">
                                                     <i class="iconify font-22 avatar-title text-success"  data-icon="dashicons:money-alt" ></i>
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <div class="text-end">
                                                     <p class="text-muted mb-1 text-truncate" style="font-size: larger">Monthly Sale amount</p>
                                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$monthprice}}</span>tk</h3>
@@ -238,7 +238,7 @@
                                                     </audio> --}}
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
 
                                             </div>
 
@@ -273,12 +273,12 @@
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-2">
 
                                                 </div>
 
 
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <div class="avatar-lg rounded-circle bg-soft-success border-success border">
 
                                                     <i class="iconify font-22 avatar-title text-success"  data-icon="dashicons:money-alt" ></i>

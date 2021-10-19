@@ -156,6 +156,7 @@
 
                 </tbody>
 
+
                   <tfoot>
 
                     <!-- footer code -->
@@ -256,6 +257,7 @@
                                    @endforeach
                                </select>
 
+
                         </div>
                         <div class="col-md-6">
                           <h5>Search Items <span class="text-danger">*</span></h5>
@@ -265,6 +267,7 @@
                                   <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat show_all">Search</button>
 
+
                         </div>
 
                         <div class="col-md-6">
@@ -272,7 +275,9 @@
                           <form type="get" action="{{url('/search')}}">
                           <div class="input-group input-group-md">
 
+
                               <input type="search" id="search_it" name="query" class="form-control" placeholder="Filter Items" autocomplete="off">
+
                                   <span class="input-group-btn">
                                     <button type="submit" class="btn btn-info btn-flat show_all">All</button>
 

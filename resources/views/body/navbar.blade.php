@@ -110,15 +110,19 @@
                     <!-- <span class="logo-lg-text-light">U</span> -->
                 </span>
             </a>
+            @php
+            $demo=App\Models\Company::all();
 
+        @endphp
+        @foreach ($demo as $data)
             <a href="/home" class="logo logo-light text-center">
-                <span class="logo-sm">
-                    <img src="../assets/images/logo-sm.png" alt="" height="22">
-                </span>
+
                 <span class="logo-lg">
-                    <img src="../assets/images/logo-light.png" alt="" height="20">
+                    <img src="{{('/admin_img/'.$data->company_logo)}}" alt="" height="50px" class=" rounded-circle">
+
                 </span>
             </a>
+            @endforeach
         </div>
 
         <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
