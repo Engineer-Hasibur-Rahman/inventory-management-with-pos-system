@@ -8,6 +8,24 @@
         <div id="sidebar-menu">
 
             <ul id="side-menu">
+
+
+
+                <li>
+                    <a href="/home">
+                        <i class="fas fa-home"></i>
+                        <span> Dashboard </span>
+
+                    </a>
+
+                </li>
+
+
+
+
+
+
+
                 @php
                     $user = Auth::user();
                 @endphp
@@ -130,7 +148,7 @@
 
                 <li>
                     <a href="#purchase" data-bs-toggle="collapse">
-                        <i class="fas fa-box"></i>
+                        <i class="fas fa-shopping-bag"></i>
                         <span> Purchase </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -163,10 +181,6 @@
                                 <a
                                     href="{{ route('add.purchase') }}"
 
-                               > Stock</a>
-                            </li> --}}
-                            <li>
-                                <a href="{{ route('stock.list') }}">Stock List</a>
                             </li>
 
 
@@ -201,8 +215,8 @@
 
                 <li>
                     <a href="#sidebar5" data-bs-toggle="collapse">
-                        <i class="fas fa-box"></i>
-                        <span>Sales </span>
+                        <i class="fas fa-store"></i>
+                        <span>Sales</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebar5">
@@ -224,7 +238,7 @@
 
                 <li>
                     <a href="#customer" data-bs-toggle="collapse">
-                        <i class="fas fa-box"></i>
+                        <i class="fas fa-user"></i>
                         <span> customer </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -244,6 +258,28 @@
                         </ul>
                     </div>
                 </li>
+
+
+
+                <li>
+                    <a href="#company" data-bs-toggle="collapse">
+                        <i class="fas fa-cogs"></i>
+                        <span> Settings </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="company">
+                        <ul class="nav-second-level">
+
+                            <li>
+                                <a href="{{ route('company.setting') }}" >Company Profile</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+
+
 
             </ul>
 

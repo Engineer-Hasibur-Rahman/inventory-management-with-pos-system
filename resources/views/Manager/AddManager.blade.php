@@ -12,12 +12,13 @@
        <div class="container-fluid">
 
 
-<div class="row">
-   <div class="col-lg-12">
+<div class="row" style="padding-top: 50px">
+    <div class="col-lg-2"></div>
+   <div class="col-lg-8">
 
        <div class="card">
            <div class="card-body">
-               <h3 class="header-title">Add Manager</h3>
+               <h3 class="header-title" style="text-align: center">Add Manager</h3>
 
                <form method="POST" action=""   class="parsley-examples" enctype="multipart/form-data">
                    @csrf
@@ -82,7 +83,7 @@
        </div> <!-- end card -->
    </div>
    <!-- end col -->
-
+   <div class="col-lg-2"></div>
 </div>
        </div>
    </div>

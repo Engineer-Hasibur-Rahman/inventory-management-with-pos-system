@@ -16,9 +16,9 @@
 
                                 <h5>Customar Select <span class="text-danger">*</span></h5>
                                 <select class="form-control select2"  id="customer_id" name="category_id"  style="width: 100%;"  >
-                                 
+
                                   <option disabled selected>Select Customar</option>
-                                
+
                                   <option >All Customer</option>
                                   @foreach( $customers   as $customer )
                                   <option value="{{$customer->category_id}}">{{ $customer->customer_name }} </option>
@@ -86,43 +86,29 @@
                                               @endif
                                             </div>
                                             </div>
-                                       
+
                                             </div>
-    
+
                                             <button class="btn btn-primary waves-effect waves-light"  style="background: #4e46a1"; type="submit">Add Customer</button>
                                           </form>
                                         </div>
-                                   
+
                                       </div>
                                     </div>
                                   </div>
                               <h5>Customer Select <span class="text-danger">*</span></h5>
                               <div class="input-group">
-<<<<<<< HEAD
                                  <select class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
                                     {{-- <option  value='1'>Walk-in customer</option>
                                     <option  value='7'>Vinit Hiremath</option>
                                     <option  value='1'>Walk-in customer</option>
                                     <option  value='7'>Vinit Hiremath</option>                                                         --}}
-=======
-                                 <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
-
-
-                                    <option>All Customer </option>
-
-                                                 @foreach($customers as $customer)
-
-
-                                                     <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
-                                                  @endforeach
-
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                                  </select>
                                 <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
 
                                 </span>
                             </div>
-                          
+
                             <div class="col-md-6 p-2">
 
                               <h5>Customer Search <span class="text-danger">*</span></h5>
@@ -130,12 +116,12 @@
                                 {{csrf_field()}}
                                 <div class="input-group input-group-md">
                                   <input type="text" id="search_it" name="query" class="form-control" placeholder="Search Customer....." autocomplete="off">
-                                   
+
                                      <input type="submit" class="" value="send"></input>
-                                 
+
                              </div>
                               </form>
-                            </div> 
+                            </div>
 
                               <h5>Customer Items <span class="text-danger">*</span></h5>
                               <div class="input-group">
@@ -143,10 +129,6 @@
                                  <input type="text" class="form-control" placeholder="Item name/Barcode/Itemcode" id="item_search">
                               </div>
                             </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                         </div>
                     </div>
 
@@ -167,17 +149,7 @@
                       </button>
                     </th>
                   </tr></thead>
-<<<<<<< HEAD
                   <tbody id="pos-form-tbody" style="font-size: 16px;font-weight: bold;overflow: scroll;">   </tbody>
-=======
-
-                        
-
-                  <tbody id="pos-form-tbody" class="pos" style="font-size: 16px;font-weight: bold;overflow: scroll;">
-
-                </tbody>
-
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                   <tfoot>
 
                     <!-- footer code -->
@@ -277,19 +249,6 @@
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                    @endforeach
                                </select>
-<<<<<<< HEAD
-=======
-
-                        </div> 
-                        <div class="col-md-6">
-                          <h5>Search Items <span class="text-danger">*</span></h5>
-                          <form action="" method="POST">
-                          <div class="input-group input-group-md">
-                                 <input type="text" id="search_it" class="form-control" placeholder="Search Items....." autocomplete="off">
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat show_all">Search</button>
-
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                         </div>
 
                         <div class="col-md-6">
@@ -297,55 +256,18 @@
                           <form type="get" action="{{url('/search')}}">
                           <div class="input-group input-group-md">
 
-<<<<<<< HEAD
                               <input type="text" id="search_it" class="form-control" placeholder="Filter Items" autocomplete="off">
-=======
-                              <input type="search" id="search_it" name="query" class="form-control" placeholder="Filter Items" autocomplete="off">
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                                   <span class="input-group-btn">
                                     <button type="submit" class="btn btn-info btn-flat show_all">All</button>
 
                                   </span>
 
                             </div>
-<<<<<<< HEAD
                         </div>
                       </div>
                       <div class="p-1">
                       <div class="row   " id="showProduct"  style="padding-left:5px;padding-right:5px;">
 
-=======
-
-                          </form>
-                        </div>                
-
-
-
-
-
-                      </div>
-                      <div class="p-1">
-
-
-                      <div class="row" id="showProduct"  style="padding-left:5px;padding-right:5px;">
-                        @foreach ($products as $item)
-                        <div class="data col-sm-3">
-                            <div class="card bg-info ">
-                                 <div class="card-body">
-                                <h5   class="name card-title">{{$item->name}}</h5>
-
-                                <center>
-                                     <img  class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  "
-                                     src={{$item->product_image}} alt="Item picture">
-                                <p class="count card-text">{{$item->count}} </p>
-                                <p > <i class="price fa-solid fa-bangladeshi-taka-sign"></i>{{$item->price}}</p>
-                                    </center>
-
-                   </div>
-                 </div>
-               </div>
-                       @endforeach
->>>>>>> fb908a31ca5fa37f159f1f7f39acb578e3e4013d
                       </div>
 
 

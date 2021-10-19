@@ -58,7 +58,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-     
+
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
@@ -222,10 +222,10 @@
                                    src=" /${data[index].product_image}" alt="Item picture">
                                  <p class="card-text"> ${data[index].count}</p>
 
-                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p> 
+                                <p><i class="fa-solid fa-bangladeshi-taka-sign"></i>${data[index].price}</p>
                                 <button class="btn btn-primary showProduct ">add product </button>
 
-                         
+
 
                               </center>
 
@@ -245,17 +245,17 @@
               }
           });
 
-  
+
       });
-  
+
     });
-  
+
   </script>
-  
 
 
 
 
+<script>
 
 
 
@@ -351,5 +351,5 @@
 </html>
 
 
-
+@include('./body.footer')
 
