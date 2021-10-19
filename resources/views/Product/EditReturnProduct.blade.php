@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="header-title">Return Product</h3>
-                <form method="POST" action="{{route('update.return.product',$return_product[0]->id)}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
+                <form method="POST" action="{{route('update.return.product',$return_product->id)}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6" >
@@ -20,7 +20,7 @@
                                      <select id="productId" name="product_name" class="form-control"  >
                                         <option disabled selected >Select Product</option>
                                             @foreach ($purchases as $purchase )
-                                            <option    value="{{$purchase->product->id}}"  >{{$purchase->product->name}}</option>
+                                            <option value="{{$return_product->product_id}}"  @if($purchase->product->id==$return_product->product_id) selected="selected"  @endif  value="{{$purchase->product->id}}"  >{{$purchase->product->name}}</option>
                                             @endforeach
                                      </select>
 
@@ -32,7 +32,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Return Quantity Amount<span class="text-danger">*</span></label>
-                        <input type="text" name="quantity" parsley-trigger="change" value="{{$return_product[0]->return_quantiy}}" placeholder="Enter quantity for return" class="form-control" id="name" />
+                        <input type="text" name="quantity" parsley-trigger="change" value="{{$return_product->return_quantiy}}" placeholder="Enter quantity for return" class="form-control" id="name" />
                         {{-- @error('quantity')
                          <span class="text-danger">{{ $message }}</span>
                          @enderror --}}
@@ -55,6 +55,7 @@
                             <div class="controls">
                                 <select name="suppliar" class="form-control " id="supply_select"  >
                                      <option>Select supplier</option>
+                                     <option value="{{$return_product->supplier->id}}" selected="selected">{{$return_product->supplier->name}}</option>
                                  </select>
                                   @error('suppliar_name')
                                      <span class="text-danger">{{ $message }}</span>
