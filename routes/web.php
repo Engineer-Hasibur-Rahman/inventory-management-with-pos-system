@@ -209,15 +209,24 @@ Route::get('/search-customer', [CustomerController::class, 'Search']);
 Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getProduct');
 
 //pos store
-Route::post('/products-pos', [PosController::class, 'storeProductPos']);
+Route::post('/products-pos/{id}', [PosController::class, 'storeProductPos']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
 Route::get('/seles/report',[PosController::class, 'SalesReport'])->name('sales.report');
 Route::post('/seles/report',[PosController::class, 'Report'])->name('report');
 
+// Product mini Cart ajax data
+Route::get('/product/mini/cart/', [PosController::class, 'AddMiniCart']);
 
+
+//remove products from cart
+Route::get('/minicart/product-remove/{rowId}', [PosController::class, 'RemoveMiniCart'])->name('delete.pos');
+// Route::post('/products-pos/{id}', [PosController::class, 'AddToCart']);
+Route::get('/cart-increment/{rowId}', [PosController::class, 'cartIncrement']);
+Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
 //company profile
 Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');;
 Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');;
 Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');;
 Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');;
+

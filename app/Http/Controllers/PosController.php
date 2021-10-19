@@ -7,7 +7,11 @@ use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\SalesPos;
+
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 use PDF;
+
 
 class PosController extends Controller
 {
@@ -48,10 +52,23 @@ class PosController extends Controller
             return response()->json($products);
         }
 
-
     }
 
+    public function storeProductPos(Request $request,$id){
 
+        Cart::add(['id' => $request->id,
+        'name' => $request->name,
+
+
+        'qty' => 1,
+         'price' =>$request->price,
+         'stock' =>$request->stock,
+         'weight' => 550]);
+
+
+		return response()->json(['success' => 'Successfully Added on Your Cart']);
+
+    }
 
     public function CustomerSto(Request $request){
         $validateData = $request->validate([
@@ -92,6 +109,7 @@ public function storeProductPos(Request $request){
             return response()->json($pos);
 
 }
+
 
 
 public function search(){
@@ -139,6 +157,63 @@ public function  Report(Request $req){
         return view('Sales.salesreport')->with('pos',$pos)
                                ->with('mpdf',$mpdf);
     }
+
+
+public function AddMiniCart() {
+
+    $carts = Cart::content();
+    $cartQty = Cart::count();
+    $cartTotal = Cart::total();
+    $cartSubTotal=Cart::subtotalFloat();
+
+    return response()->json(array(
+        'carts' => $carts,
+        'cartQty' => $cartQty,
+        'cartSubTotal' => $cartSubTotal,
+        'cartTotal' => $cartTotal,
+
+    ));
+} // end method
+
+
+	/// remove mini cart
+	public function RemoveMiniCart($rowId) {
+
+		Cart::remove($rowId);
+		return redirect()->back();
+
+
+	} // end mehtod
+
+public function AddToCart(Request $request, $id) {
+        Cart::add(['id' => $request->id,
+        'name' => $request->name,
+        'qty' => $request->quantity,
+         'price' =>$request->price,
+         'weight' => 550]);
+
+
+		return response()->json(['success' => 'Successfully Added on Your Cart']);
+
+    }
+
+ // Cart Increment
+ public function CartIncrement($rowId){
+    $row = Cart::get($rowId);
+    Cart::update($rowId, $row->qty+1);
+
+    return response()->json('increment');
+
+} // end mehtod
+
+ // Cart decrement
+ public function CartDecrement($rowId){
+    $row = Cart::get($rowId);
+    Cart::update($rowId, $row->qty-1);
+
+    return response()->json('decrement');
+
+} // end mehtod
 
     elseif($req->year){
 
