@@ -180,13 +180,15 @@
                             {{-- <li>
                                 <a
                                     href="{{ route('add.purchase') }}"
-
+                               > Stock</a>
+                            </li> --}}
+                            <li>
+                                <a href="{{ route('stock.list') }}">Stock List</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
+
 
 
 
@@ -278,6 +280,26 @@
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="#report" data-bs-toggle="collapse">
+                        <i class="fas fa-file-download"></i>
+                        <span> Reports </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="report">
+                        <ul class="nav-second-level">
+
+                            <li>
+                                <a href="{{ route('sales.report') }}" >Sales Report</a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                </li>
+
 
 
 

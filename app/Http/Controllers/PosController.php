@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\SalesPos;
-
+use PDF;
 
 class PosController extends Controller
 {
@@ -114,6 +114,67 @@ public function getPos(){
     ]);
 
 }
+public function  SalesReport(){
+    $pos=SalesPos::all();
+    $tpdf="";
+    return view('Sales.salesreport')->with('pos',$pos)
+                                    ->with('tpdf',$tpdf);
 
+
+}
+public function  Report(Request $req){
+    $pos=SalesPos::all();
+
+
+    if($req->daily){
+
+        $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
+        $dpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('dpdf',$dpdf);
+    }
+    elseif($req->month){
+        $pos=  SalesPos::whereMonth('sales_date', date('m'))->get();
+        $mpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('mpdf',$mpdf);
+    }
+
+    elseif($req->year){
+
+        $pos=  SalesPos::whereYear('sales_date', date('Y'))->get();
+        $ypdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('ypdf',$ypdf);
+    }
+    elseif($req->total){
+
+        $pos=SalesPos::all();
+        $tpdf="";
+        return view('Sales.salesreport')->with('pos',$pos)
+                               ->with('tpdf',$tpdf);
+    }
+
+}
+public function  SalesPdf(){
+    $pos=SalesPos::all();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  DayPdf(){
+    $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  MonthPdf(){
+    $pos=SalesPos::whereMonth('sales_date', date('m'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
+public function  YearPdf(){
+    $pos=SalesPos::whereYear('sales_date', date('Y'))->get();
+    $pdf=PDF::loadView('report.totalsale',compact('pos'));
+    return $pdf->download();
+}
 
 }

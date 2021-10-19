@@ -12,7 +12,7 @@
         <div class="container-fluid pt-10">
 
 
- <div class="row">
+ <div class="row" style="padding-top: 50px">
 
     <div class="col-lg-3"> </div>
 
