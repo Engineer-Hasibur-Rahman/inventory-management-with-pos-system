@@ -1,4 +1,6 @@
+
 @include('./body.header')
+
 <!-- Begin page -->
 <div id="wrapper">
 <!-- Topbar Start -->
@@ -14,7 +16,9 @@
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 <!-- {{ asset('backend/')}} -->
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Vendor js -->
 <script src=" {{ asset('/assets/js/vendor.min.js')}}"></script>
 <!-- Plugins js-->
@@ -39,6 +43,7 @@
    <script src="{{ asset('/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
    <script src="{{ asset('/assets/js/chart.js')}}"></script>
    <script type="text/javascript" src="{{asset('assets/js/echarts.min.js')}}"></script>
+
    <script src="{{ asset('/assets/js/axios.min.js')}}"></script>
    <!-- third party js ends -->
    <!-- Datatables init -->
@@ -49,25 +54,30 @@
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 {{-- bar chart js --}}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
+
 {{-- chart script --}}
 {{-- <script type="text/javascript">
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
   var data = google.visualization.arrayToDataTable([
   ['Product Id', 'Sales Price', 'Sales Product Quantity'],
+
   @php
     foreach($salesPos as $product) {
     echo "['".$product->item_name."', ".$product->price.", ".$product->quantity."],";
     }
   @endphp
   ]);
+
   var options = {
     chart: {
   title: 'Product Graph ',
@@ -79,12 +89,20 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
   chart.draw(data, google.charts.Bar.convertOptions(options));
     }
   </script> --}}
+
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- noster notify js function  start -->
+
 </body>
-10:27
+
+
+
+
 <script>
     $( document ).ready(function() {
+
         fetchpos();
         function fetchpos() {
             console.log("sss");
@@ -135,6 +153,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
               success: function (data) {
                   $( "#showProduct" ).empty();
                   $( data ).each(function( index ) {
+
                     var value=$(".mybtn").attr("value");
                         // console.log(value);
                         $string=`<div class="col-4">
@@ -150,6 +169,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                                 <center>
                                     <img  class=" img-responsive item_image " style="border: 1px solid gray; height:53px; width:80px;  "
                                     src=" /${data[index].product_image}" alt="Item picture">
+
                                 <h4 value="${data[index].price}" id="price" class="price">${data[index].price}</h4>
                               </center>
                             </div>
@@ -161,16 +181,22 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                 fetchProduct();
               },
               error: function (data) {
+
               }
           });
+
           var myRow=0;
           $('.mybtn').each(function(){
             myRow=myRow+1;
             $(this).attr("id","mybtn"+myRow);
           });
+
           function fetchProduct() {
             $('.mybtn').on('click',function(){
+
+
                 var stud_id = $(this).val();
+
                 var id=$(this).attr("id");
                 console.log(id);
                     console.log(('#'+id+' '+'.name'));
@@ -197,6 +223,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                   headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
+
                 });
                 $posturl= "{{url('/products-pos')}}"+'/'+$id;
                  console.log($posturl);
@@ -208,12 +235,17 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                 success: function (response) {
                     fetchpos();
              }
+
          });
                 });
           }
+
     });
+
 });
 </script>
+
+
 <script>
 function fetchpos() {
             console.log("sss");
@@ -226,6 +258,8 @@ function fetchpos() {
                         $('.pos').html("");
                         $.each(response.carts, function (key, item) {
                             $('span[id="cartTotal"]').text(response.cartTotal);
+
+
                             $('#cartQty').text(response.cartQty);
                             $rowId=item.qty;
                             $('#cartSubTotal').text(response.cartSubTotal);
@@ -258,6 +292,7 @@ function fetchpos() {
             dataType:'json',
             success:function(data){
                 fetchpos();
+
             }
         });
     }
@@ -268,7 +303,20 @@ function fetchpos() {
             dataType:'json',
             success:function(data){
                 fetchpos();
+
             }
         });
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+</html>

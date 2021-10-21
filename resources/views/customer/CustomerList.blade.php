@@ -31,22 +31,20 @@
                                         <th>phone</th>
                                         <th>city</th>
                                         <th>country</th>
-                                        <th class="text-end">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
+
+
+
+
                                 <tbody>
 
-                                </tbody>
+                              </tbody>
+
+
 
                             </table>
-
-
-
-
-
-
-
-
 
 
 
@@ -78,6 +76,7 @@
                                         <div style="color:red"> {{$errors->first('address')}}</div>
                                         @endif
                                       </div>
+
 
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
@@ -115,12 +114,21 @@
 
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
 
+
+
+
+
+
                                     </form>
                                   </div>
 
                                 </div>
                               </div>
                             </div>
+
+
+
+
                             <div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -144,13 +152,14 @@
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
-                                      <div class="mb-3">ppp
+                                      <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Address</label>
                                         <input type="text" name="address" class="form-control" id="address2" >
                                         @if($errors->has('address'))
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
+
 
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
@@ -183,16 +192,27 @@
                                         @endif
                                       </div>
                                       </div>
-                                     </div>
-                                      <button type="submit" class="btn btn-primary update">Update</button>
-                                     </form>
 
+                                      </div>
+
+                                      <button type="submit" class="btn btn-primary update">Update</button>
+
+
+
+
+
+
+                                    </form>
                                   </table>
                                   </div>
 
                                 </div>
                               </div>
                             </div>
+
+
+
+
                   {{-- Delete Modal --}}
                   <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -204,11 +224,11 @@
                             </div>
                             <div class="modal-body">
                                 <h4>Confirm to Delete Data ?</h4>
-                                <input id="customer_id3" type="text" name="customer_id3">
+                                <input id="customer_id3" type="text" name="customer_id3" hidden>
                             </div>
-                            <div class="modal-footer text-end">
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary delete_student">Yes Delete</button>
+                                <button type="button" class="btn btn-primary confirm_delete">Yes Delete</button>
                             </div>
                         </div>
                     </div>
@@ -241,10 +261,8 @@ $(document).ready(function () {
                           <td>' + item.phone + '</td>\
                           <td>' + item.city + '</td>\
                           <td>' + item.country + '</td>\
-
-                          <td ><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
-                          <a  type="button" value="' + item.id + '" class="btn btn-danger deletecustomer btn-sm"  id="deletecustomer"><i class="fas fa-trash"></i></a></td>\
-
+                          <td><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
+                        <td><button type="button" value="' + item.id + '" class= "btn btn-danger deletecustomer btn-sm" id="deletecustomer" ><i class="fas fa-trash"></i></button>\
                       \</tr>');
                   });
               }
@@ -340,9 +358,7 @@ $(document).on('click', '.customer', function (e) {
 
 
 
-        $(document).on('click', '.deletecustomer', function (e) {
-          e.preventDefault();
-
+    $(document).on('click', '.deletecustomer', function (e) {
 
              $stud_id = $(this).val();
             console.log($stud_id);
@@ -350,33 +366,29 @@ $(document).on('click', '.customer', function (e) {
             $('#customer_id3').val($stud_id);
         });
 
-        $(document).on('click', '.delete_student', function (e) {
 
-            $(this).text('Deleting..');
+        $(document).on('click', '.confirm_delete', function (e) {
+
             $id = $('#customer_id3').val();
-
+            console.log($id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $.ajax({
                 type: "GET",
-                url: "/delete-customer/" + $id,
+                url: "/delete-customer/" +$id,
                 dataType: "json",
                 success: function (response) {
                             $('#DeleteModal').modal('hide');
                             fetchcustomer();
-
                 }
             });
         });
-
     });
 
 
 </script>
-
 @endsection
 

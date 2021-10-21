@@ -187,7 +187,7 @@ Route::get('fetch-customers', [CustomerController::class, 'fetchcustomer']);
 Route::post('/update-customer/{id}', [CustomerController::class, 'update']);
 // Route::get('/color/{id}/edit', 'TestController@update')->name('color.update');
 
-Route::get('delete-customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');;
+Route::get('delete-customer/{id}', [CustomerController::class, 'destroyCustomer'])->name('customer.destroy');;
 
 Route::post('/stock/list', [StockController::class, 'StockSearch'])->name('stock.search');
 
