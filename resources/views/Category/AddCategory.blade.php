@@ -9,10 +9,12 @@
 
         <!-- Start Content-->
 
- <div class="row">
-        <div class="col-lg-4">
-            </div>
-            <div class="col-lg-4 p-4">
+
+ <div class="row" style="padding-top: 50px">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+
+
         <div class="card">
             <div class="card-body">
                 <h3 class="header-title  ">Add Category</h3>
@@ -34,7 +36,7 @@
         </div> <!-- end card -->
     </div>
     <!-- end col -->
-
+    <div class="col-lg-3"></div>
  </div>
 
 

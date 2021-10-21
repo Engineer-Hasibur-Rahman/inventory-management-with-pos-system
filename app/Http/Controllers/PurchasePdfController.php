@@ -17,9 +17,8 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-    public function downloadPDF(){
 
-
+    public function downloadPDF(Request $req){
 
 
         $purchases = Purchase::all();

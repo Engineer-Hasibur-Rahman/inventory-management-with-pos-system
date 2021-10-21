@@ -40,7 +40,9 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return view('company.companysetting');
+        $company =   Company::all()->count();
+
+         return view('company.companysetting')->with('company',$company);;
     }
     public function CompanyinfoEdit()
     {
