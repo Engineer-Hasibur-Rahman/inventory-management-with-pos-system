@@ -320,3 +320,4 @@ function fetchpos() {
 
 
 </html>
+@include('./body.footer')

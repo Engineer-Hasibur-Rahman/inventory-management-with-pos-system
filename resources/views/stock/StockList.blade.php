@@ -106,8 +106,8 @@
                                           <td><a class="btn btn-primary ">{{ $stock->product_stock_count }}</a></td>
                                           @endif
                                           <td><a class="btn btn-primary ">{{ $stock->purchase->purchase_price }}</a></td>
-                                          <td><a class="btn btn-success">{{ $stock->product_stock_count }}</a></td>
-                                          <td><a class="btn btn-danger ">{{ $stock->product_stock_count }}</a></td>
+                                          <td><a class="btn btn-success">{{ $stock->purchase->purchase_price }}</a></td>
+                                          <td><a class="btn btn-danger ">0</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
