@@ -1,5 +1,3 @@
-
-
 @extends('./layout_master')
 @section('admin')
 <div class="content-page center">
@@ -136,13 +134,12 @@
             <div id="#" class="col-sm-12" style="overflow-y: auto; border: 1px solid rgb(51, 122, 183); height: 530px;">
                 <table class="table table-condensed table-bordered table-striped table-responsive items_table" style="">
                   <thead class="bg-primary">
-                    <tr><th width="30%" class="text-light">Item Name</th>
+                    <tr><th width="10%" class="text-light">Item Name</th>
                     <th width="10%" class="text-light">Stock</th>
-                    <th width="25%" class="text-light">Quantity</th>
-                    <th width="15%" class="text-light">Price</th>
-                    <th width="10%" class="text-light">Discount</th>
+                    <th width="50%" class="text-light text-center ">Quantity</th>
+                    <th width="5%" class="text-light">Price</th>
                     <th width="10%" class="text-light">Tax</th>
-                    <th width="15%" class="text-light">Subtotal</th>
+                    <th width="5%" class="text-light">Subtotal</th>
                     <th width="5%" class="text-light">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -150,10 +147,13 @@
                     </th>
                   </tr></thead>
 
+                  <tbody id="pos-form-tbody" class="pos"  style="font-size: 16px;font-weight: bold;overflow: scroll;">
+
+                     {{-- mini cat start with ajax --}}
 
 
-                  <tbody id="pos-form-tbody" class="pos" style="font-size: 16px;font-weight: bold;overflow: scroll;">
 
+            
                 </tbody>
 
 
@@ -194,42 +194,37 @@
               </div>
             </div>
             {{-- ////end --}}
-
+                    {{-- making the count dynamic --}}
                         <div class="row">
-                          <div class="col-md-3 text-right p-2">
+                          <div class="col-md-4 text-right p-2">
                                   <label> Quantity:</label><br>
-                                  ৳ <span style="font-size: 19px;" class="tot_amt text-bold">16687.00</span>
+                                  ৳ <span style="font-size: 19px;"  id="cartQty" class="tot_amt text-bold"></span>
                           </div>
-                          <div class="col-md-3 text-right p-2">
+                          <div class="col-md-4 text-right p-2">
                                   <label>Total Amount:</label><br>
-                                  ৳ <span style="font-size: 19px;" class="tot_amt text-bold">16687.00</span>  </div>
-                          <div class="col-md-3 text-right p-2">
-                                  <label>Total Discount:<a class="fa fa-pencil-square-o cursor-pointer" data-toggle="modal" data-target="#discount-modal"></a></label><br>
-                                  ৳  <span style="font-size: 19px;" class="tot_disc text-bold">05645.00</span>  </div>
-                          <div class="col-md-3 text-right p-2">
+                                  ৳ <span style="font-size: 19px;" id="cartSubTotal" class="tot_amt text-bold"></span></div>
+
+
+                          <div class="col-md-4 text-right p-2">
                                   <label>Grand Total:</label><br>
-                                  ৳ <span style="font-size: 19px;" class="tot_grand text-bold">16687.00</span> </div>
+                                  ৳ <span style="font-size: 19px;"  id="cartTotal" class="tot_grand text-bold"></span></div>
                         </div>
+                        {{-- making the count dynamic --}}
                         <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <button type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                        Hold
                                       </button>
                                 </div>
-                                <div class="col-sm-3">
-                                    <button type="button" id="" name="" class="btn btn-info btn-block btn-flat btn-lg show_payments_modal" >
-                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                         Multiple
-                                      </button>
-                                </div>
-                                <div class="col-sm-3">
+
+                                <div class="col-sm-4">
                                     <button type="button" id="" name="" class="btn btn-success btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                          Cash
                                       </button>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <button type="button" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                         <a style="color: white" href="/download/pdf"> Pay All</a>
@@ -248,8 +243,6 @@
                         <div class="col-md-6">
                           <h5>Category Select <span class="text-danger">*</span></h5>
                           <select class="form-control select2" id="categorySelect" name="category_id"  style="width: 100%;"  >
-
-                            <option disabled selected>Select Category</option>
                             <option value="all">All Product</option>
                             @foreach($categorys as $category)
 
@@ -287,7 +280,25 @@
                         </div>
                       </div>
                       <div class="p-1">
-                      <div class="row   " id="showProduct"  style="padding-left:5px;padding-right:5px;">
+
+                      <div class="row" id='showProduct' style="padding-left:5px;padding-right:5px;">
+
+                        @foreach ($products as $item)
+                        <div class="data col-sm-3">
+                            <div class="card bg-info ">
+                                 <div class="card-body">
+                                <h5   class="name card-title">{{$item->name}}</h5>
+                                    <center>
+                                     <img  class=" img-responsive item_image " style="border: 1px solid gray; height:60px; width:60px;  "
+                                     src={{$item->product_image}} alt="Item picture">
+                                <p class="count card-text">{{$item->count}} </p>
+                                <p > <i class="price fa-solid fa-bangladeshi-taka-sign"></i>{{$item->price}}</p>
+                                    </center>
+                   </div>
+                 </div>
+               </div>
+                       @endforeach
+
 
                       </div>
 
@@ -302,6 +313,8 @@
 
 
 
+
+                      </div>
 
             </div>
         </div>
@@ -321,6 +334,7 @@
         $('#customer_id').select2();
     });
 </script>
+
 
 
 

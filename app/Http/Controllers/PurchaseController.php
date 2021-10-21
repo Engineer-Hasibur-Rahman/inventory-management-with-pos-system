@@ -154,10 +154,12 @@ class PurchaseController extends Controller
   public function Barcode($id,$print_quantity)
   {
 
-// $data[0]=$id;
+    $Purchase_item=Purchase::with(['product'])->where('product_id',$id)->first();
+
+   // dd($Purchase_item->product->id);
 
 
-$pdf = PDF::loadView('pdf.barcode', compact('id','print_quantity'))->setPaper(array(5,0,140,600));
+$pdf = PDF::loadView('pdf.barcode', compact('print_quantity','id','Purchase_item'))->setPaper(array(25,0,450,500));
 // $pdf->setPaper(array(0,0,10));
 return $pdf->stream();
 

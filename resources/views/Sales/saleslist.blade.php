@@ -25,28 +25,28 @@
                         </div>
                     </div>
                     <div class="pull-right margin-left-10 ">
-                        <div class="dt-buttons btn-group">   
+                        <div class="dt-buttons btn-group">
                                               <button class="btn btn-default bg-red color-palette btn-flat hidden delete_btn pull-left" tabindex="0" aria-controls="example2" type="button">
                                                   <span>Delete</span>
                                                 </button>
                                                  <button class="btn btn-default buttons-copy buttons-html5 bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button">
                                                      <span>Copy</span>
-                                                    </button> 
+                                                    </button>
                                                     <button class="btn btn-default buttons-excel buttons-html5 bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button">
                                                         <span>Excel</span>
-                                                    </button> 
+                                                    </button>
                                                     <button class="btn btn-default buttons-pdf buttons-html5 bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button">
                                                         <span>PDF</span>
                                                     </button>
                                                      <button class="btn btn-default buttons-print bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button">
                                                          <span>Print</span>
-                                                        </button> 
+                                                        </button>
                                                         <button class="btn btn-default buttons-csv buttons-html5 bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button">
                                                             <span>CSV</span>
                                                         </button>
                                                          <button class="btn btn-default buttons-collection buttons-colvis bg-teal color-palette btn-flat" tabindex="0" aria-controls="example2" type="button" aria-haspopup="true">
                                                              <span>Columns</span>
-                                                            </button> 
+                                                            </button>
                                                         </div>
                                                     </div>
 												</div>
@@ -75,9 +75,9 @@
 				  <th class="sorting_disabled text-light" rowspan="1" colspan="1" style="width: 98px;" aria-label="Action">Action</th>
 				</tr>
                 </thead>
-                
-                <tbody>
-				
+
+                <tbody class="pos">
+
                 <tr role="row" class="odd">
 					<td class=" text-center" tabindex="0">
 						<div class="icheckbox_square-orange" aria-checked="false" aria-disabled="false" style="position: relative;">
@@ -86,19 +86,9 @@
 							</ins>
 						</div>
 					</td>
-					<td style="">09-10-2021</td>
-					<td style="">SL0039</td>
-					<td style="">Final</td>
-					<td style=""></td>
-					<td style="">Walk-in customer</td>
-					<td style="">20,823.00</td>
-					<td style="">20,823.00</td>
-					<td style="">0.00</td>
-					<td style="">
-						<span class="label label-success" style="cursor:pointer"> Paid </span>
-					</td>
-					<td style="">Admin</td>
-					<td style="">
+                    </tr>
+                </tbody>
+
 						<div class="btn-group" title="View Account">
 										<a class="btn btn-primary btn-o dropdown-toggle" data-toggle="dropdown" href="#">
 											Action <span class="caret"></span>
@@ -143,9 +133,10 @@
 													<i class="fa fa-fw fa-trash text-red"></i>Delete
 												</a>
 											</li>
-											
+
 										</ul>
 						</div>
+
 
     </div>
 </div>
