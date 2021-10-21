@@ -2,29 +2,22 @@
  @extends('./layout_master')
 
  {{-- section id is yeild name  --}}
-
  @section('admin')
-
  <div class="content-page center">
     <div class="content">
-
         <!-- Start Content-->
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
                             <h4 class="header-title">Customer list</h4>
                             <div class="text-end">
                             <button type="button" class="btn btn-primary" style="background: #4e46a1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
                             </div>
-
-
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
-                                    <tr>
+
                                         <th>customer_name</th>
                                         <th>address</th>
                                         <th>email</th>
@@ -32,12 +25,8 @@
                                         <th>city</th>
                                         <th>country</th>
                                         <th>Action</th>
-                                    </tr>
+
                                 </thead>
-
-
-
-
                                 <tbody>
 
                               </tbody>
@@ -76,8 +65,6 @@
                                         <div style="color:red"> {{$errors->first('address')}}</div>
                                         @endif
                                       </div>
-
-
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email">
@@ -109,26 +96,14 @@
                                         @endif
                                       </div>
                                       </div>
-
                                       </div>
-
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
-
-
-
-
-
-
                                     </form>
                                   </div>
 
                                 </div>
                               </div>
                             </div>
-
-
-
-
                             <div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -192,20 +167,11 @@
                                         @endif
                                       </div>
                                       </div>
-
                                       </div>
-
                                       <button type="submit" class="btn btn-primary update">Update</button>
-
-
-
-
-
-
                                     </form>
                                   </table>
                                   </div>
-
                                 </div>
                               </div>
                             </div>

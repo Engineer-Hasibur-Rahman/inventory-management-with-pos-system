@@ -17,7 +17,7 @@
                                    {{-- <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
                                       <option>All Customer </option>
                                                    @foreach($customers as $customer)
-                                                       <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                                       <option  value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
                                    </select> --}}
                                   <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
@@ -300,6 +300,14 @@
      });
  </script>
 
+
+<script>
+
+    var e = document.getElementById("customer_id");
+    var strUser = e.options[e.selectedIndex].text;
+    console.log(strUser);
+
+    </script>
 
 
 

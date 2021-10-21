@@ -104,29 +104,14 @@
                     </div>
                     </div>
                 </form>
-
-
             </div>
         </div> <!-- end card -->
-
     </div>
     <!-- end col -->
-
-
-
  </div>
-    </div>
-    </div>
  </div>
-
-
-
+ </div>
+ </div>
  <script>
-
-
-
-
  </script>
-
-
 @endsection

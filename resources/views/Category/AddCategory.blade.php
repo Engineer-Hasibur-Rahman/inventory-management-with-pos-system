@@ -6,20 +6,18 @@
  @section('admin')
 
  <div class="content-page center">
-    <div class="content">
 
         <!-- Start Content-->
-        <div class="container p-4">
 
 
  <div class="row" style="padding-top: 50px">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
 
+
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title">Add Category</h3>
-
+                <h3 class="header-title  ">Add Category</h3>
                 <form action="{{url('/add/category')}}" method="POST" class="parsley-examples">
                 @csrf
                     <div class="mb-3">
@@ -40,7 +38,8 @@
     <!-- end col -->
     <div class="col-lg-3"></div>
  </div>
-        </div>
-    </div>
+
+
+
  </div>
 @endsection

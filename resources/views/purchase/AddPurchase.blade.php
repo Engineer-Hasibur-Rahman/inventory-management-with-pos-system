@@ -5,16 +5,16 @@
     <div class="content">
         <!-- Start Content-->
      <div class="container-fluid">
- <div class="row" style="padding-top: 50px">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+ <div class="row">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title" style=" text-align:center">Add Purchase</h3>
+                <h3 class="header-title">Add Purchase</h3>
                 <form method="POST" action="{{route('store.purchase')}}" id="myForm" name="myForm" class="parsley-examples" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-6" >
+
+                        <div class="col-lg-4" >
                     <div class="mb-3">
                         <label for="purchase_date" class="form-label">Purchase Date<span class="text-danger">*</span></label>
                         <input type="date" name="purchase_date" parsley-trigger="change"  placeholder="Enter purchase date" class="form-control" id="purchase_date" />
@@ -37,59 +37,61 @@
                          <span class="text-danger">{{ $message }}</span>
                          @enderror
                     </div>
-
                     {{-- supplier select --}}
-                       <div class="mb-3">
-                    <h5>Supplier Select <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                         <select name="supplier_id" class="form-control"  >
-                    <option>Select Supplier</option>
-                     @foreach($suppliers as $supplier)
-                         <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                             @endforeach
-                         </select>
-                          @error('supplier_id')
-                             <span class="text-danger">{{ $message }}</span>
-                     @enderror
-                     </div>
-                    </div>
 
-
+                    {{-- product select--}}
 
 
                     </div>
-                    <div class="col-lg-6" >
-                         {{-- product select--}}
-                    <div class="mb-3">
-                        <h5>Product Select <span class="text-danger">*</span></h5>
-                        <div class="controls">
-                             <select name="product_id" class="form-control"  >
-                        <option>Select Product</option>
-                         @foreach($products as $product)
-                             <option value="{{ $product->id }}">{{ $product->name }}</option>
 
-                                 @endforeach
-                             </select>
+                    <div class="col-lg-4" >
+                        <div class="mb-3">
+                            <h5>Product Select <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                 <select name="product_id" class="form-control"  >
+                            <option>Select Product</option>
+                             @foreach($products as $product)
+                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
 
-                         </div>
+                                     @endforeach
+                                 </select>
+
+                             </div>
+
+                            </div>
+                            <div class="mb-3">
+                                <h5>Supplier Select <span class="text-danger">*</span></h5>
+                                <div class="controls">
+                                     <select name="supplier_id" class="form-control"  >
+                                <option>Select Supplier</option>
+                                 @foreach($suppliers as $supplier)
+                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                         @endforeach
+                                     </select>
+                                      @error('supplier_id')
+                                         <span class="text-danger">{{ $message }}</span>
+                                 @enderror
+                                 </div>
+                                </div>
 
                         </div>
+
+
+
+
+
+                    <div class="col-lg-4" >
                         <div class="mb-3">
                             <h5>Product unit <span class="text-danger">*</span></h5>
                             <div class="controls">
                                  <select name="purchase_unit" class="form-control"  >
                             <option selected="true" disabled="disabled">Select unit</option>
-
                                  <option value="kg">KG</option>
                                  <option value="gm">GM</option>
                                  <option value="ltr">Ltr</option>
                                  <option value="pcs">pcs</option>
-
-
                                  </select>
-
                              </div>
-
                             </div>
                     <div class="mb-3">
                         <label for="purchase_note" class="form-label">Product Note<span class="text-danger">*</span></label>
@@ -103,14 +105,14 @@
                         <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">Purchase</button>
                         <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                     </div>
+
+
                     </div>
                 </form>
             </div>
         </div> <!-- end card -->
     </div>
     <!-- end col -->
-    <div class="col-lg-2"></div>
-
  </div>
     </div>
     </div>

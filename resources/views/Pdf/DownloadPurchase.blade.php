@@ -111,10 +111,10 @@ td{
           </div>
           @endforeach
           <div>
-            <p>sales_date:</p>
-            <p>created_by:</p>
-            <p>customer_name:</p>
-            <p>Product Name:</p>
+            <p>sales_date: {{$today}}</p>
+            <p>created_by : {{$user}}</p>
+
+
         </div>
         </div><!--End Invoice Mid-->
 
@@ -123,47 +123,34 @@ td{
                         <div id="table">
                             <table>
                                 <tr class="tabletitle">
-                                    <td class="item"><h2>Details</h2></td>
+                                    <td class="item"><h2>product Name</h2></td>
+                                    <td class="Rate"><h2>Price</h2></td>
                                     <td class="Hours"><h2>Qty</h2></td>
+                                    <td class="Hours"><h2>Vat</h2></td>
+
                                     <td class="Rate"><h2>Sub Total</h2></td>
                                 </tr>
 
+
+                                @foreach ($carts as $cart)
                                 <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Amount</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cart->name}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cart->price}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cart->qty}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cart->tax}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cart->subtotal}}</p></td>
                                 </tr>
 
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Discount</p></td>
-                                    <td class="tableitem"><p class="itemtext">3</p></td>
-                                    <td class="tableitem"><p class="itemtext">$225.00</p></td>
-                                </tr>
 
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Tax</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Payment</p></td>
-                                    <td class="tableitem"><p class="itemtext">20</p></td>
-                                    <td class="tableitem"><p class="itemtext">$1500.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Due</p></td>
-                                    <td class="tableitem"><p class="itemtext">10</p></td>
-                                    <td class="tableitem"><p class="itemtext">$750.00</p></td>
-                                </tr>
-
+                                @endforeach
 
 
                                 <tr class="tabletitle">
                                     <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td class="Rate"><h2>Total</h2></td>
-                                    <td class="payment"><h2>$3,644.25</h2></td>
+                                    <td class="payment"><h2>{{$cartTotal}}</h2></td>
                                 </tr>
 
                             </table>
