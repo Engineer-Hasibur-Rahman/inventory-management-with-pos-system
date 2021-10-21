@@ -147,7 +147,7 @@ public function loginview(){
     }
 
 
-    // add admin view page////////////////////////////////////////////
+    // add admin view page
     public function AddAdmin()
     {
         if(is_null($this->user) || !$this->user->can('admin.create')){
@@ -157,8 +157,7 @@ public function loginview(){
         return view('admin.AddAdmin');
     }
 
-
-    // admin store/////////////////////////////////////////////////
+    // admin store
 
 public function StoreAdmin(AdminRequest   $request)
 {
@@ -172,43 +171,35 @@ else{
     if(is_null($this->user) || !$this->user->can('admin.create') ){
         abort('403','You dont have acces!!!!');
     }
-                 if ($request->password == $request->repassword) {
-                    $admin= new Admin;
-                    $admin->username=$request->username;
-                    $admin->fullname=$request->fullname;
-                    $admin->email=$request->email;
-                    $admin->password=$request->password;
 
-                    $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
-                    $image=$request->image->move(public_path('admin_img'),$newImageName);
-                    $admin->image=$newImageName;
+                $admin= new Admin;
+                $admin->username=$request->username;
+                $admin->fullname=$request->fullname;
+                $admin->email=$request->email;
+                $admin->password=$request->password;
 
-                    $admin->save();
+                $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
+                $image=$request->image->move(public_path('admin_img'),$newImageName);
+                $admin->image=$newImageName;
 
-                    $notification = array(
-                        'message' => 'Admin Added Sucessyfuly',
-                        'alert-type' => 'success',
-                    );
+                $admin->save();
+                $notification = array(
+                    'message' => 'Admin Added Sucessyfuly',
+                    'alert-type' => 'success',
+                );
 
-                    $user_id=User::insertGetId([
+                $user_id=User::insertGetId([
 
-                    'name'=>$request->username,
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->password),
-                    'role'=> 2,
+                'name'=>$request->username,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password),
+                'role'=> 2,
 
-              ]);
+          ]);
 
-         $user = User::find($user_id);
+     $user = User::find($user_id);
 
-         $user->assignRole('admin');
-                 }
-                 else {
-                    $request->session()->flash('msgg', 'Password is not matched');
-                    return view('admin.AddAdmin');
-                 }
-
-
+     $user->assignRole('admin');
         }
 
                 return redirect('/admin/list')->with($notification);
@@ -351,8 +342,6 @@ public function ManagerStore(ManagerRequest $request){
 
       ]);
 
-      if ($request->password == $request->repassword) {
-
       // img upload and save
       $image = $request->file('image');
       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -396,11 +385,6 @@ public function ManagerStore(ManagerRequest $request){
         'message' =>  'Manager Add Sucessyfuly',
         'alert-type' => 'success'
     );
-}
-else {
-    $request->session()->flash('msgg', 'Password is not matched');
-    return view('Manager.AddManager');
- }
     }
     return redirect('/show')->with($notification);
 
