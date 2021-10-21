@@ -149,7 +149,7 @@ public function CustomerStore(Request $request){
             }
 
 
-            public function destroy($id){
+            public function destroyCustomer($id){
 
                 $customer = Customer::find($id);
 
@@ -159,7 +159,7 @@ public function CustomerStore(Request $request){
                 ]);
             }
 
-           
+
              public function Search(){
                 $search = $_GET['query'];
                $querysearch = Customer::where('customer_name','LIKE','%'. $search.'%')->with('customer')->get();
