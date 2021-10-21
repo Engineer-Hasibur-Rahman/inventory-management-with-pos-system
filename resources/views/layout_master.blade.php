@@ -310,6 +310,10 @@ function fetchpos() {
 </script>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5cfabba1b2473e71fef483eb811d42f734d46c0d
 
 
 
