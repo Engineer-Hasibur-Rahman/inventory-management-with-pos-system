@@ -171,7 +171,7 @@ Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Suppl
 //dom pdf
 
 Route::get('/get/purchase',[PurchasePdfController::class,'getPurchase'])->name('purchase.pdf');
-Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
+Route::post('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
 
 
 // stock

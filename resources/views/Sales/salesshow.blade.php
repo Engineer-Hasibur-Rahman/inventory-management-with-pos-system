@@ -12,14 +12,14 @@
                         <div class="row">
 
                             <div class="col-md-6 p-2">
-                                <h5>Customer Select <span class="text-danger">*</span></h5>
+                                <h5>Customer Create <span class="text-danger">*</span></h5>
                                 <div class="input-group">
-                                   <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
+                                   {{-- <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
                                       <option>All Customer </option>
                                                    @foreach($customers as $customer)
                                                        <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
-                                   </select>
+                                   </select> --}}
                                   <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
                                     <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                                       <a href="#"><i class="fas fa-user"></i></a>
@@ -85,6 +85,7 @@
                                               </div>
                                               <button class="btn btn-primary waves-effect waves-light"  style="background: #4E46A1"; type="submit">Add Customer</button>
                                             </form>
+
                                           </div>
                                         </div>
                                       </div>
@@ -163,8 +164,14 @@
                </div>
              </div>
              <div class="col-sm-5 p-2">
-              Other Charges*<input type="text" class="form-control text-right" id="other_charges" name="other_charges" placeholder="0.00" value="">
-                <span id="other_charges_msg" style="display:none" class="text-danger">Other Charges*</span>
+                <form method="POST" action="{{route('download.pdf')}}">
+                    @csrf
+                <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
+                    <option>All Customer </option>
+                                 @foreach($customers as $customer)
+                                     <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                  @endforeach
+                 </select>
               </div>
             </div>
             {{-- ////end --}}
@@ -198,17 +205,18 @@
                                          Cash
                                       </button>
                                 </div>
+
                                 <div class="col-sm-4">
-                                    <button type="button" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button type="submit" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                        <a style="color: white" href="/download/pdf"> Pay All</a>
+                                        <a style="color: white"> Pay All</a>
                                       </button>
                                 </div>
 
 
 
                         </div>
-
+                    </form>
 
                 </div><!-- end col-->
 

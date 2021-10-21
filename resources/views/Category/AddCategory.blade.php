@@ -12,7 +12,8 @@
         <div class="container p-4">
 
 
- <div class="row">
+ <div class="row" style="padding-top: 50px">
+    <div class="col-lg-3"></div>
     <div class="col-lg-6">
 
         <div class="card">
@@ -37,7 +38,7 @@
         </div> <!-- end card -->
     </div>
     <!-- end col -->
-
+    <div class="col-lg-3"></div>
  </div>
         </div>
     </div>

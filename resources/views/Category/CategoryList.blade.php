@@ -10,8 +10,9 @@
 
        <!-- Start Content-->
        <div class="container-fluid ">
-           <div class="row">
-               <div class="col-12">
+           <div class="row" style="padding-top: 50px">
+            <div class="col-2"></div>
+               <div class="col-8">
                    <div class="card">
                        <div class="card-body">
                            <h4 class="header-title">Category List</h4>
@@ -38,6 +39,7 @@
                        </div> <!-- end card body-->
                    </div> <!-- end card -->
                </div><!-- end col-->
+               <div class="col-2"></div>
            </div>
        </div>
    </div>
