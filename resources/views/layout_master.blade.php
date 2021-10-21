@@ -267,6 +267,33 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
 </script>
 
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+         <script>
+  $(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+    });
+  });// main funcations end
+</script>
 
 </html>
 
