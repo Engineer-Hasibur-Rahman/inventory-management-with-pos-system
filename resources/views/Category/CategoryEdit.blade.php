@@ -12,13 +12,14 @@
        <div class="container-fluid">
 
 
-<div class="row">
+<div class="row" style="padding-top: 50px">
+    <div class="col-lg-3"></div>
    <div class="col-lg-6">
 
        <div class="card">
            <div class="card-body">
                <h3 class="header-title">Update Category</h3>
-               
+
                <form action="{{url('/update/category/'.$category->id)}}" method="POST" class="parsley-examples">
                @csrf
                    <div class="mb-3">
@@ -34,7 +35,7 @@
        </div> <!-- end card -->
    </div>
    <!-- end col -->
-
+   <div class="col-lg-3"></div>
 </div>
        </div>
    </div>

@@ -14,7 +14,8 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-    public function downloadPDF(){
+    public function downloadPDF(Request $req){
+
         $purchases = Purchase::all();
 
         $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases'))->setPaper(array(0,0,204,600));
