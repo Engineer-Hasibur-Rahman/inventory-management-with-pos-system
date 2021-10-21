@@ -215,8 +215,6 @@ public function AddToCart(Request $request, $id) {
 
 } // end mehtod
 
-
-
 public function  SalesReport(){
     $pos=SalesPos::all();
     $tpdf="";

@@ -11,7 +11,7 @@
                                 @foreach ($demo as $data)
 
 
-                                <script>document.write(new Date().getFullYear())</script> &copy;Stock Management System by <a href="">{{$data->company_name}}</a>
+                                <script>document.write(new Date().getFullYear())</script> &copy;Stock Management System by <a target="_blank" href="https://excelitai.com/">{{$data->company_name}}</a>
                                 @endforeach
                             </div>
                             <div class="col-md-6">

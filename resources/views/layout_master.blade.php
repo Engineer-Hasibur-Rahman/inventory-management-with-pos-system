@@ -318,6 +318,6 @@ function fetchpos() {
 
 
 
-@include('./body.footer')
-</html>
 
+</html>
+@include('./body.footer')

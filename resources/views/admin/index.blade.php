@@ -444,9 +444,5 @@
                @include('./body.footer')
 
 
-
-
-
-
 @endsection
 
