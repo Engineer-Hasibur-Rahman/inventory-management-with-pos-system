@@ -64,7 +64,7 @@
                                         <th>purchase_note</th>
                                            <th>QrCode</th>
 
-                                        <th class="text-end">Action</th>
+                                        <th class="">Action</th>
 
                                     </tr>
                                 </thead>
@@ -84,7 +84,7 @@
 
 
 
-                                        <td class="text-end">
+                                        <td class="">
 
                                     <a href="{{ route('edit.purchase',$purchase->id) }}" class="btn btn-primary">Edit</a>
                                     {{-- <button class="btn btn-danger"  id="message" onclick="delete({{$product->id}})">Delete</button> --}}
