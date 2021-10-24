@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\SupplierController;
  use App\Http\Controllers\StockController;
  use App\Http\Controllers\PosController;
+ use App\Http\Controllers\PaymentController;
  use App\Http\Controllers\CompanyController;
  use App\Http\Controllers\CartController;
  use App\Http\Controllers\Auth\LoginController as Userlogin ;
@@ -171,7 +172,7 @@ Route::get('/supplier/destroy/{supplier_id}', [SupplierController::class, 'Suppl
 //dom pdf
 
 Route::get('/get/purchase',[PurchasePdfController::class,'getPurchase'])->name('purchase.pdf');
-Route::get('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
+Route::post('/download/pdf',[PurchasePdfController::class,'downloadPDF' ])->name('download.pdf');
 
 
 // stock
@@ -227,6 +228,18 @@ Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
 //company profile
 Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');
 Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');
+<<<<<<< HEAD
 Route::get('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');
 Route::post('/company/profile/update/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');
+=======
+Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');
+Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');
+//pos delete
+Route::get('/delete/{id}',[PurchasePdfController::class, 'destroy_pos'])->name('pos.destroy');
+//order routes
+Route::resource('orders', OrderController::class);
+
+
+Route::post('token',[PaymentController::class, 'token'])->name('token');
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
 

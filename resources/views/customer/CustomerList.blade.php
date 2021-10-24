@@ -1,26 +1,21 @@
-
- @extends('./layout_master')
-
+@extends('./layout_master')
  {{-- section id is yeild name  --}}
-
  @section('admin')
-
  <div class="content-page center">
     <div class="content">
-
         <!-- Start Content-->
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
+<<<<<<< HEAD
                   
 
+=======
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                             <h4 class="header-title text-center p-4 ">Customer list</h4>
                             <div class="text-end">
-                            <button type="button" class="btn btn-primary" style="background: #4e46a1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
+                            <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
                             </div>
-
-
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -33,12 +28,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-
-
-
-
                                 <tbody>
-
                               </tbody>
                             </table>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,8 +60,6 @@
                                         <div style="color:red"> {{$errors->first('address')}}</div>
                                         @endif
                                       </div>
-
-
                                        <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email">
@@ -104,17 +92,16 @@
                                       </div>
                                       </div>
                                       </div>
+<<<<<<< HEAD
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
+=======
+                                      <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4E46A1"; type="submit">Add Customer</button>
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                  </form>
                                   </div>
-
                                 </div>
                               </div>
                             </div>
-
-
-
-
                             <div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -124,12 +111,9 @@
                                   </div>
                                   <div class="modal-body">
                                       <form id="updateForm">
-
                                           @csrf
-
                                       <input id="customer_id2" type="text" name="customer_id" hidden>
                                       <div class="row">
-
                                         <div class="col-lg-6" >
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Customer Name</label>
@@ -145,9 +129,7 @@
                                         <div style="color:red"> {{$errors->first('customer_name')}}</div>
                                         @endif
                                       </div>
-
-
-                                       <div class="mb-3">
+                                      <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email2">
                                         @if($errors->has('email'))
@@ -178,27 +160,17 @@
                                         @endif
                                       </div>
                                       </div>
-
                                       </div>
-
                                       <button type="submit" class="btn btn-primary update">Update</button>
-
-
-
-
-
-
                                     </form>
+<<<<<<< HEAD
                               
+=======
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                   </div>
-
                                 </div>
                               </div>
                             </div>
-
-
-
-
                   {{-- Delete Modal --}}
                   <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -223,12 +195,8 @@
 
 
 <script>
-
-
 $(document).ready(function () {
-
   fetchcustomer();
-
       function fetchcustomer() {
         console.log("sss");
           $.ajax({
@@ -254,13 +222,6 @@ $(document).ready(function () {
               }
           });
         }
-
-
-
-
-
-
-
 $(document).on('click', '.customer', function (e) {
             e.preventDefault();
             var stud_id = $(this).val();
@@ -287,24 +248,14 @@ $(document).on('click', '.customer', function (e) {
                 }
             });
             $('.btn-close').find('input').val('');
-
         });
-
-
-
         $(document).on('click', '.update', function (e) {
             e.preventDefault();
-
              $stud_id = $('#customer_id2').val();
             // $id = $('#stud_id').val();
-
             console.log($stud_id);
-
             $data = $("#updateForm").serialize();
             console.log($data);
-
-
-
             $.ajaxSetup({
                   headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -312,8 +263,6 @@ $(document).on('click', '.customer', function (e) {
                 });
                  $posturl= "{{url('/update-customer/')}}"+'/'+$stud_id;
                  console.log($posturl);
-
-
                 $.ajax({
                 type: "POST",
                 url: $posturl,
@@ -329,32 +278,14 @@ $(document).on('click', '.customer', function (e) {
                   console.log(e);
                 }
             });
-
-
-
-
-
-
         });
-
-
-
-
-
-
-
-
     $(document).on('click', '.deletecustomer', function (e) {
-
              $stud_id = $(this).val();
             console.log($stud_id);
             $('#DeleteModal').modal('show');
             $('#customer_id3').val($stud_id);
         });
-
-
         $(document).on('click', '.confirm_delete', function (e) {
-
             $id = $('#customer_id3').val();
             console.log($id);
             $.ajaxSetup({
@@ -373,8 +304,5 @@ $(document).on('click', '.customer', function (e) {
             });
         });
     });
-
-
 </script>
 @endsection
-

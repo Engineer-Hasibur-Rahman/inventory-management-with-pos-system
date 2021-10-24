@@ -11,7 +11,9 @@
        <!-- Start Content-->
        <div class="container-fluid ">
            <div class="row">
-               <div class="col-12">
+            <div class="col-lg-4">
+            </div>
+               <div class="col-4  p-3">
                    <div class="card">
                        <div class="card-body">
                            <h4 class="header-title">Category List</h4>
@@ -28,16 +30,17 @@
                                        <td>{{$cat->category_name}}</td>
                                        <td class="text-end">
                                    <a href="/edit/category/{{$cat->id}}" class="btn btn-primary">Edit</a>
-                                   <a href="/delete/category/{{$cat->id}}" class="btn btn-danger">Delete</a>
+                                   <a href="/delete/category/{{$cat->id}}" id="delete" class="btn btn-danger">Delete</a>
                                        </td>
                                    </tr>
                                    @endforeach
                                </tbody>
                            </table>
-                           
+
                        </div> <!-- end card body-->
                    </div> <!-- end card -->
                </div><!-- end col-->
+               <div class="col-2"></div>
            </div>
        </div>
    </div>

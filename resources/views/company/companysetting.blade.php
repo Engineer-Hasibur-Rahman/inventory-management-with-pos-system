@@ -68,14 +68,14 @@
 
 
                     </div>
-                 @if ($company)
+                  @if ($company=="0")
                  <div class="text-center p-4 mr-3">
-                   <h3></h3>
+                   <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                    <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
                 </div>
                 @else
                 <div class="text-center p-4 mr-3">
-                    <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
-                    <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
+
                 </div>
                  @endif
 

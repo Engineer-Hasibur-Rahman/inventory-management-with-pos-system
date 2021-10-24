@@ -6,7 +6,6 @@
 @php
 $user =Auth::user()
 @endphp
-
 <div class="content-page center">
    <div class="content">
        <!-- Start Content-->
@@ -22,29 +21,24 @@ $user =Auth::user()
                                        <th>Product image</th>
                                        <th>Product Name</th>
                                        <th>Squ code</th>
-
                                        <th>Product Price </th>
                                        <th>Product Count</th>
                                        @if ( $user->can('product.update') && $user->can('product.update'))
-                                       <th class="text-end">Action</th>
+                                       <th>Action</th>
                                        @endif
                                    </tr>
                                </thead>
-
                                <tbody>
                                    @foreach($products as $product)
                                    <tr>
                                        <td>
                                              <img src="{{ asset($product->product_image) }}" alt="" class="img-thumbnail " height="90" width="90" >
                                        </td>
-
                                        <td>{{ $product->name }}</td>
                                        <td>{{ $product->squ_code }}</td>
                                        <td>{{ $product->price }}</td>
                                        <td>{{ $product->count }}</td>
-
-
-                                       <td class="text-end">
+                                       <td >
                                         @if ( $user->can('product.update') && $user->can('product.update'))
                                    <a href="/edit/product/{{$product->id}}" class="btn btn-primary">Edit</a>
                                    {{-- <button class="btn btn-danger"  id="message" onclick="delete({{$product->id}})">Delete</button> --}}
@@ -63,15 +57,5 @@ $user =Auth::user()
        </div>
    </div>
 </div>
-
-
-{{-- <script>Swal.fire({
-    title: 'Error!',
-    text: 'Do you want to continue',
-    icon: 'error',
-    confirmButtonText: 'Cool'
-  })</script>
- --}}
-
 
 @endsection
