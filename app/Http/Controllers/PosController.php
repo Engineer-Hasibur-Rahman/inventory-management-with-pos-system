@@ -80,25 +80,9 @@ class PosController extends Controller
 
         if($id=='all')
         {
-<<<<<<< HEAD
             $products=Product::all();
             return response()->json($products);
               
-=======
-
-            $purcahse=Purchase::all();
-            $all_products=collect([]);
-            foreach($purcahse as $p){
-                $product_id= $p->product_id;
-                $product=Product::where('id',$product_id)->first();
-                // array_push($all_products,$products);
-                $all_products->push($product);
-            }
-            // return json_encode($all_products);
-            return response()->json(compact('all_products'));
-
-
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
         }else
         {
             $purcahse=Purchase::all();

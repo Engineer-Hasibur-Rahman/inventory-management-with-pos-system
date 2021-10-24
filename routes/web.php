@@ -228,10 +228,6 @@ Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
 //company profile
 Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');
 Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');
-<<<<<<< HEAD
-Route::get('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');
-Route::post('/company/profile/update/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');
-=======
 Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');
 Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');
 //pos delete
@@ -241,5 +237,4 @@ Route::resource('orders', OrderController::class);
 
 
 Route::post('token',[PaymentController::class, 'token'])->name('token');
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
 
