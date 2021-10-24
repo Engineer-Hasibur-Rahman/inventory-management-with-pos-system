@@ -63,7 +63,9 @@
                                         <th>quantity</th>
                                         <th> status</th>
                                         @if ( $user->can('product.update') && $user->can('product.update'))
+
                                         <th class="text-end">Action</th>
+
                                         @endif
                                     </tr>
                                 </thead>
@@ -94,9 +96,12 @@
 
                                         <td class="text-end">
                                          @if ( $user->can('product.update') && $user->can('product.update'))
-                                    <a href="{{ route('edit.return.product',$list->product->id) }}" class="btn btn-primary">Edit</a>
 
+                                         @if ($list->approve_status!=1)
+                                    <a href="{{ route('edit.return.product',$list->product->id) }}" class="btn btn-primary">Edit</a>
+                                    @endif
                                     <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
+
                                     @if ($list->approve_status!=1)
 
                                       <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Aprove</a>
