@@ -335,11 +335,12 @@ public function ManagerStore(ManagerRequest $request){
 // validation
     $request->validate([
 
-        'username' => 'required',
-        'fullname' => 'required',
+        'username' =>'required|regex:/^[\pL\s\-]+$/u|max:255',
+        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
         'email' => 'required',
-        'password' => 'required',
+        'password' => 'required|string|min:8',
         'username' => 'required',
+        'image' =>'required|mimes:jpg,png',
       ],
         [
          'username.required' => 'Input The username  in Sucessyfuly',
@@ -348,6 +349,8 @@ public function ManagerStore(ManagerRequest $request){
          'password.required' => 'Input The password in Sucessyfuly',
 
         'image' => 'please input manager img',
+        'username' => 'please input manager name',
+
 
       ]);
 

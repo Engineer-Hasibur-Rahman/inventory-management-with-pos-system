@@ -15,10 +15,6 @@ class CompanyController extends Controller
     public function index()
     {
         $company =   Company::all()->count();
-<<<<<<< HEAD
-=======
-
->>>>>>> 5cfabba1b2473e71fef483eb811d42f734d46c0d
          return view('company.companysetting')->with('company',$company);;
     }
 

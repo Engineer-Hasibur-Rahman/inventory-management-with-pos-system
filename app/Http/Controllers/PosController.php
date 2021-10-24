@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\SalesPos;
 use PDF;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -21,6 +22,7 @@ class PosController extends Controller
         $categorys = Category::all();
 
         $products=Product::all();
+
         $customers=Customer::all();
         // $this->search();
 
@@ -37,19 +39,24 @@ class PosController extends Controller
     }
     public function SalesList(){
         $sales = SalesPos::all();
+        // $products = Product::all();
         return view('Sales.salesList', compact('sales'));
     }
     public function getPorduct($id)
     {
+
+
         if($id=='all')
         {
             $products=Product::all();
+
             return response()->json($products);
 
         }else
         {
             $products = Product::where('category_id',$id)->get();
-            return response()->json($products);
+            return response()->json( $purchase);
+
         }
 
     }

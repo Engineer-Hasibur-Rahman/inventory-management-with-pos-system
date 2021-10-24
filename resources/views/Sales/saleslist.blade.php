@@ -24,12 +24,11 @@
 				</th>
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 154px;" aria-label="Sales Code: activate to sort column ascending">Product Code</th>
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 135px;" aria-label="Customer Name: activate to sort column ascending">Customer Name</th>
-                  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 135px;" aria-label="Customer Name: activate to sort column ascending">Customer Phone</th>
                   <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 135px;" aria-label="Customer Name: activate to sort column ascending">Product Name</th>
                   <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Paid Payment: activate to sort column ascending">Price</th>
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Paid Payment: activate to sort column ascending">Total Paid</th>
-				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 44px;" aria-label="Due: activate to sort column ascending">Due</th>
-				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 133px;" aria-label="Payment Status: activate to sort column ascending">Payment Status</th>
+                  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Paid Payment: activate to sort column ascending">Total Paid</th>
+
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 94px;" aria-label="Created by: activate to sort column ascending">Created by</th>
 				  <th class="sorting_disabled text-light" rowspan="1" colspan="1" style="width: 98px;" aria-label="Action">
 
@@ -40,30 +39,19 @@
 
                 <tbody>
 
-                    @foreach ($sales as  $sale)
+ @foreach ($sales as  $sale)
 <tr>
-
-
-
     <td>{{$sale->sales_date}}</td>
     <td>{{$sale->sales_code}}</td>
-    <td>{{$sale->sales_status}}</td>
-
     <td>{{$sale->customer_name}}</td>
-
+    <td>{{$sale->item_name}}</td>
     <td>{{$sale->price}}</td>
-
     <td>{{$sale->paid_payment}}</td>
-
-    <td>{{$sale->due}}</td>
 
     <td>{{$sale->payment_status}}</td>
     <td>{{$sale->created_by}}</td>
-    <td> <a href=""><i class="fas fa-trash-alt"></i></a>
+    <td> <a href="{{ route('pos.destroy', $sale->id ) }}"><i class="fas fa-trash-alt"></i></a>
     </td>
-
-
-
  </tr>
  @endforeach
                 </tbody>

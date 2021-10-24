@@ -17,7 +17,7 @@
                                    {{-- <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
                                       <option>All Customer </option>
                                                    @foreach($customers as $customer)
-                                                       <option  value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                                       <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
                                    </select> --}}
                                   <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
@@ -166,12 +166,25 @@
              <div class="col-sm-5 p-2">
                 <form method="POST" action="{{route('download.pdf')}}">
                     @csrf
+<<<<<<< HEAD
+                <select  class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
+=======
                 <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
+>>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
                     <option>All Customer </option>
                                  @foreach($customers as $customer)
                                      <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                   @endforeach
                  </select>
+<<<<<<< HEAD
+                 <select class="form-control select2"  id="payment" name="payment"  style="width: 100%;"  >
+                    <option>Payment System </option>
+
+                                     <option>Cheque</option>
+                                     <option>Cash</option>
+                 </select>
+=======
+>>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
               </div>
             </div>
             {{-- ////end --}}
@@ -256,7 +269,7 @@
 
                       <div class="row" id='showProduct' style="padding-left:5px;padding-right:5px;">
 
-                        @foreach ($products as $item)
+                        {{-- @foreach ($products as $item)
                         <div class="data col-sm-3">
                             <div class="card bg-info ">
                                  <div class="card-body">
@@ -270,7 +283,7 @@
                    </div>
                  </div>
                </div>
-                       @endforeach
+                       @endforeach --}}
 
 
                       </div>
@@ -300,14 +313,36 @@
      });
  </script>
 
-
 <script>
+    var accessToken = '';
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{!! route('token') !!}",
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log('got data from token  ..');
+                console.log(JSON.stringify(data));
+                accessToken = JSON.stringify(data);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+</script>
 
-    var e = document.getElementById("customer_id");
-    var strUser = e.options[e.selectedIndex].text;
-    console.log(strUser);
 
-    </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+
 
 
 

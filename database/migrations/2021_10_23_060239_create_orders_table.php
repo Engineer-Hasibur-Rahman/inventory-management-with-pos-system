@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManagersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateManagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('managers', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
+
             $table->id();
-            $table->char('username');
-            $table->char('fullname');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image');
+            $table->string('product_name');
+            $table->string('currency');
+            $table->decimal('amount', 12, 2);
+            $table->string('invoice');
+            $table->string('trxID')->nullable();
+            $table->string('status');
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +34,6 @@ class CreateManagersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('managers');
+        Schema::dropIfExists('orders');
     }
 }
