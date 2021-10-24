@@ -7,6 +7,7 @@ use App\Models\Purchase;
 use App\Models\Customer;
 use App\Models\SalesPos;
 use App\Models\Product;
+use App\Models\Stock;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use PDF;
 use Carbon\Carbon;
@@ -19,10 +20,6 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
     public function downloadPDF(Request $req){
 
         $customer_id=$req->customer_id;
@@ -49,7 +46,10 @@ class PurchasePdfController extends Controller
         $pos->stock= $cartQty;
         $pos->item_name= $cart->name;
         $product=Product::where('name','=', $pos->item_name)->first();
+        $p_id=$product->id;
+
         $product_code=$product->product_code;
+
         $pos->sales_code=$product_code;
         $pos->sales_code=$product_code;
         $pos->created_by=$user;
@@ -61,6 +61,13 @@ class PurchasePdfController extends Controller
         $pos->tex=$cart->tax;
         $pos->save();
 
+
+        $stock_decresed=Stock::where('product_id',  $p_id)->first();
+
+       $value= $stock_decresed->product_stock_count-$cart->qty;
+
+       $stock_decresed->product_stock_count= $value;
+       $stock_decresed->save();
 
     }
         Cart::destroy();

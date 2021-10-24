@@ -22,6 +22,52 @@ class PosController extends Controller
         $categorys = Category::all();
 
         $products=Product::all();
+        $purcahse=Purchase::all();
+        // $all_products=collect([]);
+        // foreach($purcahse as $p){
+        //     $product_id= $p->product_id;
+        //     $product=Product::where('id',$product_id)->first();
+        //     $product_cat=$product->category_id;
+
+        //     $product_category= Product::where('category_id', $product_cat)->first();
+
+
+        //     // array_push($all_products,$products);
+        //     $all_products->push($product_category);
+        // }
+        // dd( $product_category);
+        // dd($product_cat);
+        // return json_encode($all_products);
+        // dd($all_products);
+        // dd($products);
+    //     $purcahse=Purchase::all();
+    //     $all_products=[];
+    //     foreach($purcahse as $p){
+    //         $product_id= $p->product_id;
+    //         $products=Product::where('id',$product_id)->get();
+    //         array_push($all_products,$products);
+
+
+
+
+
+    //     }
+    //    dd(json_encode($all_products));
+
+
+
+        // foreach($purcahse as $p){
+        //     $product_id= $p->product_id;
+        //     $products=Product::where('id','=',$product_id)->get();
+
+
+
+
+        // }
+        // $product_id= $purcahse->product_id;
+        // dd($product_id);
+
+        // dd($products);
 
         $customers=Customer::all();
         // $this->search();
@@ -48,14 +94,42 @@ class PosController extends Controller
 
         if($id=='all')
         {
-            $products=Product::all();
 
-            return response()->json($products);
+            $purcahse=Purchase::all();
+            $all_products=collect([]);
+            foreach($purcahse as $p){
+                $product_id= $p->product_id;
+                $product=Product::where('id',$product_id)->first();
+                // array_push($all_products,$products);
+                $all_products->push($product);
+            }
+            // return json_encode($all_products);
+            return response()->json(compact('all_products'));
+
 
         }else
         {
-            $products = Product::where('category_id',$id)->get();
-            return response()->json( $purchase);
+            $purcahse=Purchase::all();
+            $all_products=collect([]);
+            foreach($purcahse as $p){
+                $product_id= $p->product_id;
+                $product=Product::where('id',$product_id)->first();
+                if( $product->category_id==$id){
+                    $all_products->push($product);
+                }
+
+
+
+                // array_push($all_products,$products);
+
+            }
+            // return json_encode($all_products);
+            return response()->json(compact('all_products'));
+
+
+
+
+
 
         }
 

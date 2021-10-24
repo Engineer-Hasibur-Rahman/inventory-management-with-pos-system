@@ -166,25 +166,18 @@
              <div class="col-sm-5 p-2">
                 <form method="POST" action="{{route('download.pdf')}}">
                     @csrf
-<<<<<<< HEAD
                 <select  class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
-=======
-                <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
->>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
                     <option>All Customer </option>
                                  @foreach($customers as $customer)
                                      <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                   @endforeach
                  </select>
-<<<<<<< HEAD
                  <select class="form-control select2"  id="payment" name="payment"  style="width: 100%;"  >
                     <option>Payment System </option>
 
                                      <option>Cheque</option>
                                      <option>Cash</option>
                  </select>
-=======
->>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
               </div>
             </div>
             {{-- ////end --}}
