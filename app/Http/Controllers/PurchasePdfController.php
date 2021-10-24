@@ -19,6 +19,10 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57458b6b367a99b3bb40ecbfd70280eca276b88d
     public function downloadPDF(Request $req){
 
         $customer_id=$req->customer_id;

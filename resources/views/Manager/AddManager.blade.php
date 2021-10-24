@@ -70,7 +70,8 @@
 
                        @if($errors->has('repassword'))
                        <div style="color:red"> {{$errors->first('repassword')}}</div>
-                       @endif  </div>
+                       @endif
+                       <h5 style="color: red">{{session('msgg')}}</h5> </div>
 
 
 
