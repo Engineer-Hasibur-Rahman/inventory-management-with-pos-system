@@ -131,7 +131,7 @@ td{
                                 <tr class="service">
                                     <td class="tableitem"><p class="itemtext">Amount</p></td>
                                     <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cartTotal}}</p></td>
                                 </tr>
 
                                 <tr class="service">
@@ -143,7 +143,7 @@ td{
                                 <tr class="service">
                                     <td class="tableitem"><p class="itemtext">Tax</p></td>
                                     <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">$375.00</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cartTax}}</p></td>
                                 </tr>
 
                                 <tr class="service">
@@ -163,7 +163,7 @@ td{
                                 <tr class="tabletitle">
                                     <td></td>
                                     <td class="Rate"><h2>Total</h2></td>
-                                    <td class="payment"><h2>$3,644.25</h2></td>
+                                    <td class="payment"><h2>{{$cartSubTotal}}</h2></td>
                                 </tr>
 
                             </table>

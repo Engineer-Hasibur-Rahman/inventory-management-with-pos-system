@@ -1,7 +1,6 @@
 @extends('./layout_master')
 @section('admin')
-<div class="content-page center">
-    <div class="content">
+<div class="content-page center">  
 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
     <div class="row margin-bottom-12">
         <div class="col-sm-12">
@@ -14,14 +13,6 @@
                              <option value="50">50</option>
                              <option value="100">100</option>
                             </select> entries</label>
-                        </div>
-                    </div>
-                    <div class="pull-right">
-                        <div id="example2_filter" class="dataTables_filter">
-                            <label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example2"></label>
-                        </div>
-                        <div id="example2_processing" class="dataTables_processing panel panel-default" style="display: none;">
-                            <div class="text-primary bg-primary" style="position: relative;z-index:100;overflow: visible;">Processing...</div>
                         </div>
                     </div>
                     <div class="pull-right margin-left-10 ">
@@ -51,16 +42,9 @@
                                                     </div>
 												</div>
 											</div>
-											 <table id="example2" class="table table-bordered table-striped dataTable dtr-inline" width="100%" role="grid" aria-describedby="example2_info" style="width: 100%;">
-												<thead class="bg-primary ">
-                   <tr role="row">
-					<th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 33px;" aria-label=" ">
-                    <div class="icheckbox_square-orange" aria-checked="false" aria-disabled="false" style="position: relative;">
-						<input type="checkbox" class="group_check checkbox" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-						<ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-						</ins>
-					</div>
-                  </th>
+			<table id="example2" class="table table-bordered table-striped dataTable dtr-inline" width="100%" role="grid" aria-describedby="example2_info" style="width: 100%;">
+			<thead class="bg-primary ">
+             <tr role="row">
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 91px;" aria-label="Sales Date: activate to sort column ascending">Sales Date
 				</th>
 				  <th class="sorting text-light" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 154px;" aria-label="Sales Code: activate to sort column ascending">Sales Code</th>
@@ -75,24 +59,20 @@
 				  <th class="sorting_disabled text-light" rowspan="1" colspan="1" style="width: 98px;" aria-label="Action">Action</th>
 				</tr>
                 </thead>
-
+				@php
+					use App\Models\Product;
+					$product  = Product::all();
+				@endphp
+				@foreach ($product as $product )
+				<tr>
+					<td>{{$product->product_code}}</td>
+				</tr>
+				@endforeach
                 <tbody class="pos">
-
-                <tr role="row" class="odd">
-					<td class=" text-center" tabindex="0">
-						<div class="icheckbox_square-orange" aria-checked="false" aria-disabled="false" style="position: relative;">
-							<input type="checkbox" name="checkbox[]" value="39" class="checkbox column_checkbox" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-							<ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-							</ins>
-						</div>
-					</td>
-                    </tr>
                 </tbody>
-
+				</table>
 						<div class="btn-group" title="View Account">
-										<a class="btn btn-primary btn-o dropdown-toggle" data-toggle="dropdown" href="#">
-											Action <span class="caret"></span>
-										</a>
+										
 										<ul role="menu" class="dropdown-menu dropdown-light pull-right"><li>
 												<a title="View Invoice" href="sales/invoice/39">
 													<i class="fa fa-fw fa-eye text-blue"></i>View sales
@@ -135,11 +115,10 @@
 											</li>
 
 										</ul>
-						</div>
-
-
-    </div>
+	                  </div>
+ </div>
 </div>
+
 @endsection
 
 

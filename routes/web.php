@@ -225,8 +225,8 @@ Route::get('/minicart/product-remove/{rowId}', [PosController::class, 'RemoveMin
 Route::get('/cart-increment/{rowId}', [PosController::class, 'cartIncrement']);
 Route::get('/cart-decrement/{rowId}', [PosController::class, 'CartDecrement']);
 //company profile
-Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');;
-Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');;
-Route::get('/company/profile/edit',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');;
-Route::post('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');;
+Route::get('/company/profile',[CompanyController::class, 'index'])->name('company.setting');
+Route::post('/company/profile',[CompanyController::class, 'CompanyinfoStore'])->name('companyinfo.store');
+Route::get('/company/profile/edit/{id}',[CompanyController::class, 'CompanyinfoEdit'])->name('editcompany.info');
+Route::post('/company/profile/update/{id}',[CompanyController::class, 'CompanyinfoUpdate'])->name('updatecompany.info');
 

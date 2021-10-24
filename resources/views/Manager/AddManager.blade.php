@@ -26,10 +26,11 @@
                      <div class="col-lg-6" >
 
                    <div class="mb-3">
-                       <label for="userName" class="form-label">User Name<span class="text-danger">*</span></label>
-                       <input type="text" name="username" parsley-trigger="change" class="form-control"  value="{{old('username')}}" id="userName" />
-                       @if($errors->has('username'))
-                       <div style="color:red"> {{$errors->first('username')}}</div>
+                       <label for="username" class="form-label">User Name<span class="text-danger">*</span></label>
+                       <input type="text" name="username" parsley-trigger="change" class="form-control"  value="{{old('username')}}" id="fullname" />
+
+                       @if($errors->has('fullname'))
+                       <div style="color:red"> {{$errors->first('fullname')}}</div>
                        @endif
                    </div>
                    <div class="mb-3">

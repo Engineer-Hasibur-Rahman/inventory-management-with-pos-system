@@ -56,11 +56,20 @@ return $next($request);
   public function StoreProduct(Request $request)
   {
        $validateData = $request->validate([
-           'name' => 'required',
-           'price' => 'required',
+           'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+           'price' => 'required|numeric|gt:0',
            'product_code' => 'required',
-           'squ_code' => 'required',
-           'count' => 'required',
+           'squ_code' => 'required|numeric|gt:0',
+           'count' => 'required|numeric|gt:0',
+           'image' => 'required|mimes:jpg,png', 
+       ],[
+        'name.required' => 'Input The name  in Correctly',
+        'price.required' => 'Input The price  in Correctly',
+        'count.required' => 'Input The count  in Correctly',
+        'squ_code.required' => 'Input The squ_code  in Correctly',
+        'image.required' => 'Input The supplier Img',
+         
+
        ]);
       $image = $request->file('image');
       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();

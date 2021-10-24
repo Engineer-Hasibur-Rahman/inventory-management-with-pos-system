@@ -23,8 +23,10 @@
                 <h3 class="header-title text-center">Company Setting</h3>
 
                 <div class="p-4 mr-3" style="text-align: right">
-                    <a href="{{ route('editcompany.info') }}"><button class="btn btn-primary waves-effect waves-light">Edit Company Info</button></a>
-
+                    <a href="{{ route('company.setting') }}"><button class="btn btn-primary waves-effect waves-light">Back</button></a>
+                    @if ($company)
+                    <a href="{{ route('editcompany.info', $company->id ) }}"><button class="btn btn-primary waves-effect waves-light">Edit</button></a>
+                    @endif
                 </div>
 
                 <form method="POST" action=""   class="parsley-examples" enctype="multipart/form-data">

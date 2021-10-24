@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -38,10 +36,13 @@ class CompanyController extends Controller
 
         return view('company.companysetting');
     }
-    public function CompanyinfoEdit()
+
+
+
+    public function CompanyinfoEdit($id)
     {
 
-        $company =   Company::all();
+       $company=Company::find($id);
         return view('company.editcompanysetting')->with('company',$company);
 
     }
