@@ -11,7 +11,9 @@
        <!-- Start Content-->
        <div class="container-fluid ">
            <div class="row">
-               <div class="col-12">
+            <div class="col-lg-4">
+            </div>
+               <div class="col-4  p-3">
                    <div class="card">
                        <div class="card-body">
                            <h4 class="header-title">Category List</h4>

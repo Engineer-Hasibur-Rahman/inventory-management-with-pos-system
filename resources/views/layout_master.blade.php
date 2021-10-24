@@ -59,6 +59,11 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 {{-- bar chart js --}}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{-- for payment --}}
+<script src="https://code.jquery.com/jquery-1.8.3.min.js"
+integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
+<script id="myScript"
+        src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
 
@@ -310,10 +315,6 @@ function fetchpos() {
 </script>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5cfabba1b2473e71fef483eb811d42f734d46c0d
 
 
 

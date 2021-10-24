@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
+use App\Models\Customer;
 use App\Models\SalesPos;
+use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use PDF;
 use Carbon\Carbon;
@@ -17,20 +19,18 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-    public function downloadPDF(){
+    public function downloadPDF(Request $req){
 
-
-
+        $customer_id=$req->customer_id;
+        //payment
+        $payment=$req->payment;
 
         $purchases = Purchase::all();
-
         $carts = Cart::content();
-
-
-        // dd($carts);
+        $customer=Customer::where('id','=',$customer_id)->first();
+        $customer_name=$customer->customer_name;
         $day = Carbon::today();
         $today= $day->toDateString();
-
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
         $cartTax= Cart::tax();
@@ -38,27 +38,37 @@ class PurchasePdfController extends Controller
         $user=Auth::user()->name;
 
 
+
     //create sales pos starts
     foreach($carts as $cart){
         $pos=new SalesPos;
         $pos->stock= $cartQty;
         $pos->item_name= $cart->name;
+        $product=Product::where('name','=', $pos->item_name)->first();
+        $product_code=$product->product_code;
+        $pos->sales_code=$product_code;
+        $pos->sales_code=$product_code;
         $pos->created_by=$user;
-        $pos->customer_name='NAME';
+        $pos->customer_name=$customer_name;
         $pos->price=$cart->price;
         $pos->quantity=$cart->qty;
         $pos->sales_date=$today;
-
         $pos->discount=0;
         $pos->tex=$cart->tax;
         $pos->save();
 
 
     }
-
         Cart::destroy();
-
-       $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user'))->setPaper(array(0,0,204,600));
+        $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user','payment'))->setPaper(array(0,0,204,600));
         return $pdf->stream('purchases.pdf') ;
     }
+
+    public function destroy_pos($id){
+        $pos=SalesPos::find($id);
+        $pos->delete();
+        return redirect()->back();
+
+    }
+
 }

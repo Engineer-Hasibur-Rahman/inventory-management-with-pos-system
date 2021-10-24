@@ -113,6 +113,7 @@ td{
           <div>
             <p>sales_date: {{$today}}</p>
             <p>created_by : {{$user}}</p>
+            <p>Payment_type: {{$payment}}</p>
 
 
         </div>
