@@ -193,7 +193,7 @@
                         {{-- making the count dynamic --}}
                         <div class="row">
                                 <div class="col-sm-4">
-                                    <button type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button  type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                        Hold
                                       </button>
@@ -207,7 +207,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <button type="submit" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button type="submit"  id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                         <a style="color: white"> Pay All</a>
                                       </button>

@@ -125,7 +125,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                                 <td>\
                                 <center>\
                             <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
-                             <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
+                             <input type="text" value="'+ item.qty +'" min="1" max="5" disabled="" style="width:25px;" >  \
                             <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\
