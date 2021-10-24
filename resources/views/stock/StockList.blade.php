@@ -12,9 +12,9 @@
     <div class="content">
         <!-- Start Content-->
         <div class="container-fluid">
-            <div class="row">
+            <div class="row " style="padding-top:30px;">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card p-3" >
 
                         <form method="POST" action="">
                             @csrf

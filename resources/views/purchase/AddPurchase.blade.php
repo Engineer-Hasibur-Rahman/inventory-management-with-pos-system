@@ -55,6 +55,9 @@
 
                                      @endforeach
                                  </select>
+                                 @error('product_id')
+                                 <span class="text-danger">{{ $message }}</span>
+                         @enderror
 
                              </div>
 

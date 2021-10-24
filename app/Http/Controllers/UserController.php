@@ -351,13 +351,8 @@ public function ManagerStore(ManagerRequest $request){
 // validation
     $request->validate([
 
-<<<<<<< HEAD
         'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
         'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-=======
-        'username' =>'required|regex:/^[\pL\s\-]+$/u|max:255',
-        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
         'email' => 'required',
         'password' => 'required|string|min:8',
         'username' => 'required',

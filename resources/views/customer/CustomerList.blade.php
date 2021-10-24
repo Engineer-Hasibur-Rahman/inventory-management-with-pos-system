@@ -7,11 +7,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-<<<<<<< HEAD
                   
 
-=======
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                             <h4 class="header-title text-center p-4 ">Customer list</h4>
                             <div class="text-end">
                             <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
@@ -92,11 +89,7 @@
                                       </div>
                                       </div>
                                       </div>
-<<<<<<< HEAD
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
-=======
-                                      <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4E46A1"; type="submit">Add Customer</button>
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                  </form>
                                   </div>
                                 </div>
@@ -163,10 +156,7 @@
                                       </div>
                                       <button type="submit" class="btn btn-primary update">Update</button>
                                     </form>
-<<<<<<< HEAD
                               
-=======
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                   </div>
                                 </div>
                               </div>

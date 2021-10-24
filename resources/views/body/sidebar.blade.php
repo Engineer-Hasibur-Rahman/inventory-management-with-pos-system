@@ -29,17 +29,8 @@
                             </ul>
                         </div>
                     </li>
-<<<<<<< HEAD
                 </ul>
             </div>
-=======
-
-
-                {{-- </ul>
-            </div>
-        </li> --}}
-
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
            @endif
      <div id="sidebar-menu">
      <ul id="side-menu">
