@@ -25,22 +25,21 @@
                    <div class="row">
                      <div class="col-lg-6" >
 
-                        <div class="mb-3">
-                            <label for="username" class="form-label">User Name<span class="text-danger">*</span></label>
-                            <input type="text" name="username" parsley-trigger="change" class="form-control"  value="{{old('username')}}" id="username" />
-                            @if($errors->has('name'))
-                            <div style="color:red"> {{$errors->first('fullname')}}</div>
-                            @endif
-                        </div>
+                   <div class="mb-3">
+                       <label for="username" class="form-label">User Name<span class="text-danger">*</span></label>
+                       <input type="text" name="username" parsley-trigger="change" class="form-control"  value="{{old('username')}}" id="fullname" />
 
-                        <div class="mb-3">
-                            <label for="FullName" class="form-label">Full Name<span class="text-danger">*</span></label>
-                            <input type="text" name="fullname" parsley-trigger="change" value="{{old('fullname')}}"  class="form-control" id="fullName" />
-                            @if($errors->has('fullname'))
-                            <div style="color:red"> {{$errors->first('fullname')}}</div>
-                            @endif
-                        </div>
-
+                       @if($errors->has('fullname'))
+                       <div style="color:red"> {{$errors->first('fullname')}}</div>
+                       @endif
+                   </div>
+                   <div class="mb-3">
+                       <label for="FullName" class="form-label">Full Name<span class="text-danger">*</span></label>
+                       <input type="text" name="fullname" parsley-trigger="change" value="{{old('fullname')}}"  class="form-control" id="fullName" />
+                       @if($errors->has('fullname'))
+                       <div style="color:red"> {{$errors->first('fullname')}}</div>
+                       @endif
+                   </div>
                    <div class="mb-3">
                        <label for="emailAddress" class="form-label">Email address<span class="text-danger">*</span></label>
                        <input type="email" name="email" parsley-trigger="change" value="{{old('email')}}"  class="form-control" id="emailAddress" />

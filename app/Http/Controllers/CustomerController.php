@@ -25,14 +25,23 @@ public function CustomerStore(Request $request){
 
 
                 $validateData = $request->validate([
-                    'customer_name' => 'required',
+                    'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
                     'email' => 'required|email',
-                    'phone' => 'required',
-                    'city' => 'required',
-                    'country' => 'required',
+                    'phone' => 'digits:11',
+                    'city' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+                    'country' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+                    'address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+                ],[
 
-                    'address' => 'required',
+
+                    'customer_name.required' => 'Input The name  in Correctly',
+                    'phone.required' => 'Input The phone  in Correctly',
+                    'city.required' => 'Input The city  in Correctly',
+                    'country.required' => 'Input The country  in Correctly',
+                    'address.required' => 'Input The address  in Correctly',
+
                 ]);
+
                 $customer= new Customer;
                 $customer->customer_name=$request->customer_name;
                 $customer->email=$request->email;
@@ -41,30 +50,14 @@ public function CustomerStore(Request $request){
                 $customer->country=$request->country;
                 $customer->address=$request->address;
                 $customer->save();
-
-
-
-
-
-
+                
                 $notification = array(
                 'message' => 'Customer created',
                 'alert-type' => 'success',
                 );
 
-
-
-
                 return redirect()->route('customer.list')->with($notification);
-
-
-
-
-
-
     }
-
-
 
     public function fetchcustomer()
     {
@@ -74,15 +67,9 @@ public function CustomerStore(Request $request){
         ]);
     }
 
-
-
-
-
         public function edit( $id)
         {
             $customer=Customer::find($id);
-
-
 
             if($customer)
             {
@@ -101,15 +88,8 @@ public function CustomerStore(Request $request){
 
         }
 
-
-
         public function update(Request $request, $id)
         {
-
-
-
-
-
 
             $validateData = $request->validate([
                 'customer_name' => 'required',

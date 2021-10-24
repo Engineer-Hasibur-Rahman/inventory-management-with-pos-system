@@ -19,12 +19,28 @@ class SupplierController extends Controller
       
     // validation 
         $request->validate([
-          
-            'image' => 'required',       
+          'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'father_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'permanent_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'mother_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'present_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+          'password' =>'required|string|min:8',
+          'mobile_number' => 'digits:11',
+          'image' => 'required|mimes:jpg,png',      
           ],[ 
+            'name.required' => 'Input The name  in Correctly',
+            'password.required' => 'Input The password  in Correctly',
+            'father_name.required' => 'Input The father_name  in Correctly',
+            'permanent_address.required' => 'Input The permanent_address  in Correctly',
+            'mother_name.required' => 'Input The mother_name  in Correctly',
+            'present_address.required' => 'Input The present_address  in Correctly',
+            'username.required' => 'Input The username  in Correctly',
+            'mobile_number.required' => 'Input The mobile_number  in Correctly',
             'image.required' => 'Input The supplier Img',
          
           ]);
+
 
           // img upload and save
           $image = $request->file('image');

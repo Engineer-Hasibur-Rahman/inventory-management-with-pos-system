@@ -7,6 +7,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                  
+
                             <h4 class="header-title text-center p-4 ">Customer list</h4>
                             <div class="text-end">
                             <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
@@ -41,10 +43,12 @@
                                         <div class="col-lg-6" >
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Customer Name</label>
-                                        <input type="text"  name="customer_name" class="form-control" id="customer_name" required>
-                                        @if($errors->has('customer_name'))
-                                        <div style="color:red"> {{$errors->first('customer_name')}}</div>
-                                        @endif
+                                        <input type="text"  name="customer_name" class="form-control" id="customer_name" >
+
+                                        @error('customer_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+
                                       </div>
                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Address</label>
@@ -85,7 +89,7 @@
                                       </div>
                                       </div>
                                       </div>
-                                      <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4E46A1"; type="submit">Add Customer</button>
+                                      <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
                                  </form>
                                   </div>
                                 </div>
@@ -152,6 +156,7 @@
                                       </div>
                                       <button type="submit" class="btn btn-primary update">Update</button>
                                     </form>
+                              
                                   </div>
                                 </div>
                               </div>

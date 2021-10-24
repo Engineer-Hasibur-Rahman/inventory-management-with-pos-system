@@ -129,9 +129,29 @@ td{
                                     <td class="Hours"><h2>Qty</h2></td>
                                     <td class="Hours"><h2>Vat</h2></td>
 
+<<<<<<< HEAD
+                                <tr class="service">
+                                    <td class="tableitem"><p class="itemtext">Amount</p></td>
+                                    <td class="tableitem"><p class="itemtext">5</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cartTotal}}</p></td>
+                                </tr>
+
+                                <tr class="service">
+                                    <td class="tableitem"><p class="itemtext">Discount</p></td>
+                                    <td class="tableitem"><p class="itemtext">3</p></td>
+                                    <td class="tableitem"><p class="itemtext">$225.00</p></td>
+                                </tr>
+
+                                <tr class="service">
+                                    <td class="tableitem"><p class="itemtext">Tax</p></td>
+                                    <td class="tableitem"><p class="itemtext">5</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{$cartTax}}</p></td>
+                                </tr>
+=======
                                     <td class="Rate"><h2>Sub Total</h2></td>
                                 </tr>
 
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
 
                                 @foreach ($carts as $cart)
                                 <tr class="service">
@@ -151,7 +171,11 @@ td{
                                     <td></td>
                                     <td></td>
                                     <td class="Rate"><h2>Total</h2></td>
+<<<<<<< HEAD
+                                    <td class="payment"><h2>{{$cartSubTotal}}</h2></td>
+=======
                                     <td class="payment"><h2>{{$cartTotal}}</h2></td>
+>>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                 </tr>
 
                             </table>

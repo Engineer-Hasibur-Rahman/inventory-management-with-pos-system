@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Customer;
@@ -10,10 +8,6 @@ use App\Models\Purchase;
 use App\Models\SalesPos;
 use PDF;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
-
-
-
 class PosController extends Controller
 {
     public function SalesShow(Request $request){
@@ -23,65 +17,13 @@ class PosController extends Controller
 
         $products=Product::all();
         $purcahse=Purchase::all();
-        // $all_products=collect([]);
-        // foreach($purcahse as $p){
-        //     $product_id= $p->product_id;
-        //     $product=Product::where('id',$product_id)->first();
-        //     $product_cat=$product->category_id;
-
-        //     $product_category= Product::where('category_id', $product_cat)->first();
-
-
-        //     // array_push($all_products,$products);
-        //     $all_products->push($product_category);
-        // }
-        // dd( $product_category);
-        // dd($product_cat);
-        // return json_encode($all_products);
-        // dd($all_products);
-        // dd($products);
-    //     $purcahse=Purchase::all();
-    //     $all_products=[];
-    //     foreach($purcahse as $p){
-    //         $product_id= $p->product_id;
-    //         $products=Product::where('id',$product_id)->get();
-    //         array_push($all_products,$products);
-
-
-
-
-
-    //     }
-    //    dd(json_encode($all_products));
-
-
-
-        // foreach($purcahse as $p){
-        //     $product_id= $p->product_id;
-        //     $products=Product::where('id','=',$product_id)->get();
-
-
-
-
-        // }
-        // $product_id= $purcahse->product_id;
-        // dd($product_id);
-
-        // dd($products);
+       
 
         $customers=Customer::all();
         // $this->search();
-
-
-
         return view('Sales.salesshow', compact('categorys','sales','products', 'customers'));
-
-
         $products = Product::where('category_id' )->get();
-
         return view('Sales.salesshow', compact('categorys','sales','products','customers'));
-
-
     }
     public function SalesList(){
         $sales = SalesPos::all();
@@ -94,19 +36,9 @@ class PosController extends Controller
 
         if($id=='all')
         {
-
-            $purcahse=Purchase::all();
-            $all_products=collect([]);
-            foreach($purcahse as $p){
-                $product_id= $p->product_id;
-                $product=Product::where('id',$product_id)->first();
-                // array_push($all_products,$products);
-                $all_products->push($product);
-            }
-            // return json_encode($all_products);
-            return response()->json(compact('all_products'));
-
-
+            $products=Product::all();
+            return response()->json($products);
+              
         }else
         {
             $purcahse=Purchase::all();
@@ -132,34 +64,38 @@ class PosController extends Controller
 
 
         }
-
     }
 
     public function storeProductPos(Request $request,$id){
 
         Cart::add(['id' => $request->id,
         'name' => $request->name,
-
-
         'qty' => 1,
          'price' =>$request->price,
          'stock' =>$request->stock,
          'weight' => 550]);
 
-
 		return response()->json(['success' => 'Successfully Added on Your Cart']);
-
     }
 
     public function CustomerSto(Request $request){
-        $validateData = $request->validate([
-            'customer_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'city' => 'required',
-            'country' => 'required',
 
-            'address' => 'required',
+        $validateData = $request->validate([
+            'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+            'email' => 'required|email',
+            'phone' => 'digits:11',
+            'city' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+            'country' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+            'address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        ],[
+
+
+            'customer_name.required' => 'Input The name  in Correctly',
+            'phone.required' => 'Input The phone  in Correctly',
+            'city.required' => 'Input The city  in Correctly',
+            'country.required' => 'Input The country  in Correctly',
+            'address.required' => 'Input The address  in Correctly',
+
         ]);
         $customer= new Customer;
         $customer->customer_name=$request->customer_name;
@@ -178,21 +114,6 @@ class PosController extends Controller
 }
 
 
-// public function storeProductPos(Request $request){
-
-
-//             $pos=new SalesPos;
-//             $pos->stock=$request->stock;
-//             $pos->customer_name=$request->name;
-//             $pos->price=$request->price;
-//             $pos->quantity=$request->quantity;
-//             $pos->save();
-//             return response()->json($pos);
-
-// }
-
-
-
 public function search(){
     $search_text=$_GET['query'];
     $products=Product::where('name','LIKE','%'.$search_text.'%')->get();
@@ -205,7 +126,6 @@ public function search(){
     ->with('customers',$customers);
 }
 
-
 public function getPos(){
     $pos=SalesPos::all();
     return response()->json([
@@ -213,33 +133,6 @@ public function getPos(){
     ]);
 
 }
-// public function  SalesReport(){
-//     $pos=SalesPos::all();
-//     $tpdf="";
-//     return view('Sales.salesreport')->with('pos',$pos)
-//                                     ->with('tpdf',$tpdf);
-
-
-// }
-// public function  Report(Request $req){
-//     $pos=SalesPos::all();
-
-
-//     if($req->daily){
-
-//         $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
-//         $dpdf="";
-//         return view('Sales.salesreport')->with('pos',$pos)
-//                                ->with('dpdf',$dpdf);
-//     }
-//     elseif($req->month){
-//         $pos=  SalesPos::whereMonth('sales_date', date('m'))->get();
-//         $mpdf="";
-//         return view('Sales.salesreport')->with('pos',$pos)
-//                                ->with('mpdf',$mpdf);
-//     }
-
-// }
 public function AddMiniCart() {
 
     $carts = Cart::content();
@@ -256,13 +149,11 @@ public function AddMiniCart() {
     ));
 } // end method
 
-
 	/// remove mini cart
 	public function RemoveMiniCart($rowId) {
 
 		Cart::remove($rowId);
 		return redirect()->back();
-
 
 	} // end mehtod
 
@@ -295,7 +186,6 @@ public function AddToCart(Request $request, $id) {
     return response()->json('decrement');
 
 } // end mehtod
-
 
 
 public function  SalesReport(){
