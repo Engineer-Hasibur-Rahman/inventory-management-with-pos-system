@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
-<<<<<<< HEAD
-=======
 use App\Models\Customer;
 use App\Models\SalesPos;
 use App\Models\Product;
 use App\Models\Stock;
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
 use Gloudemans\Shoppingcart\Facades\Cart;
 use PDF;
 use Carbon\Carbon;
@@ -30,27 +27,15 @@ class PurchasePdfController extends Controller
         $payment=$req->payment;
 
         $purchases = Purchase::all();
-<<<<<<< HEAD
-
-        $carts = Cart::content();
-        dd($carts);
-
-=======
         $carts = Cart::content();
         $customer=Customer::where('id','=',$customer_id)->first();
         $customer_name=$customer->customer_name;
         $day = Carbon::today();
         $today= $day->toDateString();
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
         $cartTax= Cart::tax();
         $cartSubTotal=Cart::subtotalFloat();
-<<<<<<< HEAD
-
-        $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax'))->setPaper(array(0,0,204,600));
-        // $pdf->setPaper('A4','landscape');
-=======
         $user=Auth::user()->name;
 
 
@@ -87,7 +72,6 @@ class PurchasePdfController extends Controller
     }
         Cart::destroy();
         $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user','payment'))->setPaper(array(0,0,204,600));
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
         return $pdf->stream('purchases.pdf') ;
     }
 

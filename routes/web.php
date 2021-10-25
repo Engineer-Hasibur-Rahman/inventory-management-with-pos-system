@@ -211,6 +211,7 @@ Route::get('/getProduct/{id}',[PosController::class,'getPorduct'])->name('getPro
 
 //pos store
 Route::post('/products-pos/{id}', [PosController::class, 'storeProductPos']);
+Route::get('/getstock/{id}', [PosController::class,'getstock']);
 Route::get('/fetch-pos',[PosController::class, 'getPos']);
 Route::get('/search',[PosController::class, 'search']);
 Route::get('/seles/report',[PosController::class, 'SalesReport'])->name('sales.report');

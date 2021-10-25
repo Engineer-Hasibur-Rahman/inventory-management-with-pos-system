@@ -14,11 +14,7 @@
         <div class="container-fluid">
             <div class="row " style="padding-top:30px;">
                 <div class="col-12">
-<<<<<<< HEAD
-                    <div class="card p-3" >
-=======
                     <div class="card p-4">
->>>>>>> ab296befaf7cc15fa6ee039123ddf3f9b2fdf0dc
 
                         <form method="POST" action="">
                             @csrf
