@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
+<<<<<<< HEAD
 use App\Models\SalesPos;
+=======
+use App\Models\Customer;
+use App\Models\SalesPos;
+use App\Models\Product;
+use App\Models\Stock;
+>>>>>>> b91958abf3801f148fbbc54705da26ff898669d8
 use Gloudemans\Shoppingcart\Facades\Cart;
 use PDF;
 use Carbon\Carbon;
@@ -24,17 +31,64 @@ class PurchasePdfController extends Controller
         $payment=$req->payment;
 
         $purchases = Purchase::all();
+<<<<<<< HEAD
 
         $carts = Cart::content();
         dd($carts);
 
+=======
+        $carts = Cart::content();
+        $customer=Customer::where('id','=',$customer_id)->first();
+        $customer_name=$customer->customer_name;
+        $day = Carbon::today();
+        $today= $day->toDateString();
+>>>>>>> b91958abf3801f148fbbc54705da26ff898669d8
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
         $cartTax= Cart::tax();
         $cartSubTotal=Cart::subtotalFloat();
+<<<<<<< HEAD
 
         $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax'))->setPaper(array(0,0,204,600));
         // $pdf->setPaper('A4','landscape');
+=======
+        $user=Auth::user()->name;
+
+
+
+    //create sales pos starts
+    foreach($carts as $cart){
+        $pos=new SalesPos;
+        $pos->stock= $cartQty;
+        $pos->item_name= $cart->name;
+        $product=Product::where('name','=', $pos->item_name)->first();
+        $p_id=$product->id;
+
+        $product_code=$product->product_code;
+
+        $pos->sales_code=$product_code;
+        $pos->sales_code=$product_code;
+        $pos->created_by=$user;
+        $pos->customer_name=$customer_name;
+        $pos->price=$cart->price;
+        $pos->quantity=$cart->qty;
+        $pos->sales_date=$today;
+        $pos->discount=0;
+        $pos->tex=$cart->tax;
+        $pos->save();
+
+
+        $stock_decresed=Stock::where('product_id',  $p_id)->first();
+
+       $value= $stock_decresed->product_stock_count-$cart->qty;
+
+       $stock_decresed->product_stock_count= $value;
+       $stock_decresed->save();
+
+    }
+        Cart::destroy();
+        $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user','payment'))->setPaper(array(0,0,204,600));
+>>>>>>> b91958abf3801f148fbbc54705da26ff898669d8
         return $pdf->stream('purchases.pdf') ;
     }
 

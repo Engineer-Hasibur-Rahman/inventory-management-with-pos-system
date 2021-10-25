@@ -237,6 +237,29 @@ integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="ano
 
                 var stud_id = $(this).val();
 
+                //****************
+
+
+                    axios.get(`/getstock/${stud_id}`)
+                .then(function ({data:{stock}}) {
+                    // handle success
+                    alert(stock);
+
+
+
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .then(function () {
+                    // always executed
+                });
+
+
+                //*****************
+
                 var id=$(this).attr("id");
                 console.log(id);
                     console.log(('#'+id+' '+'.name'));
@@ -251,6 +274,7 @@ integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="ano
                     console.log($quantity);
                     $stock=1;
                  data = {
+
                 'id':  $id,
                 'name':  $name,
                 'price':  $price,
