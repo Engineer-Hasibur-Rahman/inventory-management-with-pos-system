@@ -164,7 +164,11 @@ integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="ano
                                 <td>\
                                 <center>\
                             <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
+
+                         
+
                              <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:45px;" >  \
+
                             <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\

@@ -168,7 +168,7 @@ public function StoreAdmin(AdminRequest   $request)
         'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
         'email' => 'required|email',
         'password' =>'required|string|min:8',
-        'image' => 'required|mimes:jpg,png', 
+        'image' => 'required|mimes:jpg,png',
     ],[
      'username.required' => 'Input The username  in Correctly',
      'fullname.required' => 'Input The fullname  in Correctly',

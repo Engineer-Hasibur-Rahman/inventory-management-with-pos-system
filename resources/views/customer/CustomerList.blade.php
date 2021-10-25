@@ -7,6 +7,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
+
+
+
                             <h4 class="header-title text-center p-4 ">Customer list</h4>
                             <div class="text-end">
                             <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>
@@ -18,8 +22,7 @@
                                         <th>address</th>
                                         <th>email</th>
                                         <th>phone</th>
-                                        <th>city</th>
-                                        <th>country</th>
+
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -34,7 +37,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                    <form method="POST" action="{{route('customer.store')}}">
+                                    <form method="POST" action="{{route('customer.store')}}" enctype="multipart/form-data">
                                       @csrf
                                       <div class="row">
                                         <input id="customer_id" type="text" name="customer_id" hidden>
@@ -49,19 +52,20 @@
 
                                       </div>
                                       <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Address</label>
-                                        <input type="text" name="address" class="form-control" id="address">
-                                        @if($errors->has('address'))
-                                        <div style="color:red"> {{$errors->first('address')}}</div>
-                                        @endif
-                                      </div>
-                                       <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email">
                                         @if($errors->has('email'))
                                         <div style="color:red"> {{$errors->first('email')}}</div>
                                         @endif
                                       </div>
+                                      <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Address</label>
+                                        <input type="text" name="address" class="form-control" id="address">
+                                        @if($errors->has('address'))
+                                        <div style="color:red"> {{$errors->first('address')}}</div>
+                                        @endif
+                                      </div>
+
                                       </div>
                                        <div class="col-lg-6" >
                                       <div class="mb-3">
@@ -72,19 +76,15 @@
                                         @endif
                                       </div>
                                       <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">City</label>
-                                        <input type="text"   name="city" class="form-control" id="city">
-                                        @if($errors->has('city'))
-                                        <div style="color:red"> {{$errors->first('city')}}</div>
+                                        <label for="message-text" class="col-form-label">Image</label>
+                                        <input type="file" accept="image/*" name="image" onchange="loadFile(event)" parsley-trigger="change" value="{{old('image')}}"  class="form-control" id="file" />
+                                        @if($errors->has('image'))
+                                        <div style="color:red"> {{$errors->first('image')}}</div>
                                         @endif
+
+                                        <p><img id="outputt" width="200" /></p>
                                       </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Country</label>
-                                        <input type="text"  name="country" class="form-control" id="country">
-                                        @if($errors->has('country'))
-                                        <div style="color:red"> {{$errors->first('country')}}</div>
-                                        @endif
-                                      </div>
+
                                       </div>
                                       </div>
                                       <button class="btn btn-primary waves-effect waves-light" id="update"  style="background: #4e46a1"; type="submit">Add Customer</button>
@@ -101,7 +101,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                      <form id="updateForm">
+                                      <form id="updateForm" enctype="multipart/form-data">
                                           @csrf
                                       <input id="customer_id2" type="text" name="customer_id" hidden>
                                       <div class="row">
@@ -114,19 +114,20 @@
                                         @endif
                                       </div>
                                       <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Address</label>
-                                        <input type="text" name="address" class="form-control" id="address2" >
-                                        @if($errors->has('address'))
-                                        <div style="color:red"> {{$errors->first('customer_name')}}</div>
-                                        @endif
-                                      </div>
-                                      <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Email</label>
                                         <input type="text"  name="email" class="form-control" id="email2">
                                         @if($errors->has('email'))
                                         <div style="color:red"> {{$errors->first('email')}}</div>
                                         @endif
                                       </div>
+                                      <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Address</label>
+                                        <input type="text" name="address" class="form-control" id="address2" >
+                                        @if($errors->has('address'))
+                                        <div style="color:red"> {{$errors->first('customer_name')}}</div>
+                                        @endif
+                                      </div>
+
                                       </div>
                                        <div class="col-lg-6" >
                                       <div class="mb-3">
@@ -137,24 +138,22 @@
                                         @endif
                                       </div>
                                       <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">City</label>
-                                        <input type="text"   name="city" class="form-control" id="city2">
-                                        @if($errors->has('city'))
-                                        <div style="color:red"> {{$errors->first('city')}}</div>
+                                        <label for="message-text" class="col-form-label">Image</label>
+                                        <input type="file"  name="image"  parsley-trigger="change" value="{{old('image')}}"  class="form-control" id="file" />
+                                        @if($errors->has('image'))
+                                        <div style="color:red"> {{$errors->first('image')}}</div>
                                         @endif
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Country</label>
-                                        <input type="text"  name="country" class="form-control" id="country2">
-                                        @if($errors->has('country'))
-                                        <div style="color:red"> {{$errors->first('country')}}</div>
-                                        @endif
+
+                                        {{-- <label class="col-form-label" for="file" style="cursor: pointer;">Upload Image</label>
+                                        <input type="file"  accept="image/*" name="image" id="file"  class="form-control"  onchange="loadFile(event)" style="display: none;"> --}}
+
+                                 <p><img id="output" width="200" /></p>
                                       </div>
                                       </div>
                                       </div>
                                       <button type="submit" class="btn btn-primary update">Update</button>
                                     </form>
-                              
+
                                   </div>
                                 </div>
                               </div>
@@ -201,10 +200,8 @@ $(document).ready(function () {
                           <td>' + item.address + '</td>\
                           <td>' + item.email + '</td>\
                           <td>' + item.phone + '</td>\
-                          <td>' + item.city + '</td>\
-                          <td>' + item.country + '</td>\
                           <td><button type="button" value="' + item.id + '" class="btn btn-primary customer btn-sm" ><i class="fas fa-edit"></i></button>\
-                        <td><button type="button" value="' + item.id + '" class= "btn btn-danger deletecustomer btn-sm" id="deletecustomer" ><i class="fas fa-trash"></i></button>\
+                        <button type="button" value="' + item.id + '" class= "btn btn-danger deletecustomer btn-sm" id="deletecustomer" ><i class="fas fa-trash"></i></button>\
                       \</tr>');
                   });
               }
@@ -293,4 +290,12 @@ $(document).on('click', '.customer', function (e) {
         });
     });
 </script>
+<script>
+    var loadFile = function(event) {
+        console.log("ssss");
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+    </script>
+
 @endsection
