@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
-
 class CompanyController extends Controller
 {
     /**
@@ -13,9 +12,8 @@ class CompanyController extends Controller
     public function index()
     {
         $company =   Company::all()->count();
-         return view('company.companysetting')->with('company',$company);
+         return view('company.companysetting')->with('company',$company);;
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,36 +25,24 @@ class CompanyController extends Controller
         $company->company_name=$request->company_name;
         $company->company_phone=$request->company_phone;
         $company->company_address=$request->company_address;
-
         $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
         $image=$request->image->move(public_path('admin_img'),$newImageName);
         $company->company_logo=$newImageName;
-
         $company->save();
-
         $company =   Company::all()->count();
-
          return view('company.companysetting')->with('company',$company);;
     }
-
-
-
-    public function CompanyinfoEdit($id)
+    public function CompanyinfoEdit()
     {
-
-       $company=Company::find($id);
+        $company =   Company::all();
         return view('company.editcompanysetting')->with('company',$company);
-
     }
     public function CompanyinfoUpdate(Request $request , $id)
     {
-
         $company=Company::find($id);
         $company->company_name=$request->company_name;
         $company->company_phone=$request->company_phone;
         $company->company_address=$request->company_address;
-
-
           if($request->hasFile('image') && $request->image->isValid()){
             if(file_exists(public_path('admin_img/'.$company->company_logo))){
                 unlink(public_path('admin_img/'.$company->company_logo));
@@ -66,10 +52,6 @@ class CompanyController extends Controller
             $company->company_logo=$newImageName;
         }
             $company->save();
-
         return redirect('/company/profile');
-
     }
-
-
 }
