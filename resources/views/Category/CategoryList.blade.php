@@ -29,8 +29,8 @@
                                     <tr>
                                        <td>{{$cat->category_name}}</td>
                                        <td class="text-end">
-                                   <a href="/edit/category/{{$cat->id}}" class="btn btn-primary">Edit</a>
-                                   <a href="/delete/category/{{$cat->id}}" id="delete" class="btn btn-danger">Delete</a>
+                                   <a href="/edit/category/{{$cat->id}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                   <a href="/delete/category/{{$cat->id}}" id="delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                        </td>
                                    </tr>
                                    @endforeach

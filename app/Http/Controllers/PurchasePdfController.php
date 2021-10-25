@@ -30,7 +30,9 @@ class PurchasePdfController extends Controller
 
         $purchases = Purchase::all();
 
+
         $carts = Cart::content();
+
 
         $carts = Cart::content();
         $customer=Customer::where('id','=',$customer_id)->first();
@@ -42,10 +44,12 @@ class PurchasePdfController extends Controller
         $cartTotal = Cart::total();
         $cartTax= Cart::tax();
         $cartSubTotal=Cart::subtotalFloat();
+<
 
 
         $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax'))->setPaper(array(0,0,204,600));
         // $pdf->setPaper('A4','landscape');
+
 
         $user=Auth::user()->name;
 
@@ -82,6 +86,8 @@ class PurchasePdfController extends Controller
 
     }
         Cart::destroy();
+
+        $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user','payment'))->setPaper(array(0,0,204,600));
 
         return $pdf->stream('purchases.pdf') ;
     }
