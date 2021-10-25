@@ -21,6 +21,7 @@ class ProductController extends Controller
 //construc for curruent user from the auth
 
 public $user;
+
 public function __construct()
 {
     $this->middleware(function($request,$next){
@@ -40,15 +41,10 @@ return $next($request);
       return view('product.AddProduct',compact('categories'));
   }
 
-
    // add return  Product view page
    public function showReturnProduct()
    {
        $purchases = Purchase::with(['product'])->with(['supplier'])->get()->unique('product_id');
-
-
-
-
        return view('product.AddreturnProduct',compact('purchases'));
    }
 
@@ -56,11 +52,20 @@ return $next($request);
   public function StoreProduct(Request $request)
   {
        $validateData = $request->validate([
-           'name' => 'required',
-           'price' => 'required',
+           'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+           'price' => 'required|numeric|gt:0',
            'product_code' => 'required',
-           'squ_code' => 'required',
-           'count' => 'required',
+           'squ_code' => 'required|numeric|gt:0',
+           'count' => 'required|numeric|gt:0',
+           'image' => 'required|mimes:jpg,png', 
+       ],[
+        'name.required' => 'Input The name  in Correctly',
+        'price.required' => 'Input The price  in Correctly',
+        'count.required' => 'Input The count  in Correctly',
+        'squ_code.required' => 'Input The squ_code  in Correctly',
+        'image.required' => 'Input The supplier Img',
+         
+
        ]);
       $image = $request->file('image');
       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -93,7 +98,11 @@ return $next($request);
   public function showretuenProduct(){
 
     return view('Product.ReturnProductList');
-}
+} //end method
+
+
+
+
   public function showretuenProductlist(){
 
     $returnproduct_list= ProductReturn::with(['product'])->with(['supplier'])->get();
@@ -166,14 +175,14 @@ public function EditProduct($id)
     }
     $product = Product::find($id);
     $categories = Category::latest()->get();
-    return view('product.ProductEdit',compact('product','categories'));
+    return view('Product.ProductEdit',compact('product','categories'));
 }
 
 
 public function EditReturnProduct($id)
 {
 
-    $purchases  = Purchase::with(['Product'])->with(['supplier'])->get()->unique('product_id');
+    $purchases  = Purchase::with(['Product','supplier'])->get()->unique('product_id');
     $return_product=ProductReturn::with(['product'])->with(['supplier'])->where('product_id',$id)->first();
     //dd($purchases);
 

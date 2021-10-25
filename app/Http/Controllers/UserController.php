@@ -162,6 +162,22 @@ public function loginview(){
 
 public function StoreAdmin(AdminRequest   $request)
 {
+
+    $validateData = $request->validate([
+        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'email' => 'required|email',
+        'password' =>'required|string|min:8',
+        'image' => 'required|mimes:jpg,png',
+    ],[
+     'username.required' => 'Input The username  in Correctly',
+     'fullname.required' => 'Input The fullname  in Correctly',
+     'email.required' => 'Input The count  in Correctly',
+     'password.required' => 'Input The password  in Correctly',
+     'image.required' => 'Input The image  in Correctly',
+
+    ]);
+
 $admin = User::where('email', $request->email)
 ->first();
 if($admin){
@@ -335,11 +351,12 @@ public function ManagerStore(ManagerRequest $request){
 // validation
     $request->validate([
 
-        'username' => 'required',
-        'fullname' => 'required',
+        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
         'email' => 'required',
-        'password' => 'required',
+        'password' => 'required|string|min:8',
         'username' => 'required',
+        'image' =>'required|mimes:jpg,png',
       ],
         [
          'username.required' => 'Input The username  in Sucessyfuly',
@@ -348,6 +365,8 @@ public function ManagerStore(ManagerRequest $request){
          'password.required' => 'Input The password in Sucessyfuly',
 
         'image' => 'please input manager img',
+        'username' => 'please input manager name',
+
 
       ]);
 

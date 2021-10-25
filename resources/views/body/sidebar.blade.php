@@ -1,39 +1,19 @@
 <div class="left-side-menu">
-
     <div class="h-100" data-simplebar>
-
         <!-- User box -->
-
         <!--- Sidemenu -->
         <div id="sidebar-menu">
-
             <ul id="side-menu">
-
-
-
                 <li>
                     <a href="/home">
                         <i class="fas fa-home"></i>
                         <span> Dashboard </span>
-
                     </a>
-
                 </li>
-
-
-
-
-
-
-
                 @php
                     $user = Auth::user();
                 @endphp
-
-
                 @if ($user->can('admin.create'))
-
-
                     <li>
                         <a href="#sidebar1" data-bs-toggle="collapse">
                             <i class="fas fa-user"></i>
@@ -48,23 +28,14 @@
                                 <li>
                                     <a href="{{ route('admin.list') }}">Admin List</a>
                                 </li>
-
-
                             </ul>
                         </div>
                     </li>
-
-
                 {{-- </ul>
             </div>
         </li> --}}
-
            @endif
-
-
-
 @if($user->can('user.create'))
-
                 <li>
                     <a href="#sidebar2" data-bs-toggle="collapse">
                         <i class="fas fa-user"></i>
@@ -86,11 +57,6 @@
                         </ul>
                     </div>
                 </li>
-
-
-
-
-
                     <li>
                         <a href="#sidebar" data-bs-toggle="collapse">
                             <i class="fas fa-box"></i>
@@ -109,7 +75,6 @@
                         </div>
                     </li>
                 @endif
-
                 <li>
                     <a href="#sidebar3" data-bs-toggle="collapse">
                         <i class="fas fa-box"></i>
@@ -127,7 +92,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li>
                     <a href="#sidebar4" data-bs-toggle="collapse">
                         <i class="fas fa-cart-arrow-down"></i>
@@ -145,7 +109,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li>
                     <a href="#purchase" data-bs-toggle="collapse">
                         <i class="fas fa-shopping-bag"></i>
@@ -160,15 +123,9 @@
                             <li>
                                 <a href="{{ route('show.purchase') }}">Purchase List</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
-
-
-
-
                 <li>
                     <a href="#stock" data-bs-toggle="collapse">
                         <i class="fas fa-box"></i>
@@ -188,12 +145,7 @@
                         </ul>
                     </div>
                 </li>
-
-
-
-
                 {{-- Product return --}}
-
                 <li>
                     <a href="#return" data-bs-toggle="collapse">
                         <i class="fas fa-undo"></i>
@@ -208,13 +160,9 @@
                             <li>
                                 <a href="{{route('show.return.productList')}}">Return product list</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
-
-
                 <li>
                     <a href="#sidebar5" data-bs-toggle="collapse">
                         <i class="fas fa-store"></i>
@@ -223,21 +171,15 @@
                     </a>
                     <div class="collapse" id="sidebar5">
                         <ul class="nav-second-level">
-
                             <li>
                                 <a href="{{url('/sales')}}" >Pos</a>
                             </li>
                             <li>
                                 <a href="{{url('/possales')}}" >Sales List</a>
                             </li>
-
                         </ul>
                     </div>
                 </li>
-
-
-
-
                 <li>
                     <a href="#customer" data-bs-toggle="collapse">
                         <i class="fas fa-user"></i>
@@ -249,20 +191,14 @@
                             {{-- <li>
                                 <a
                                     href="{{ route('add.purchase') }}"
-
                                > Stock</a>
                             </li> --}}
                             <li>
                                 <a href="{{ route('customer.list') }}" >customer List</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
-
-
-
                 <li>
                     <a href="#company" data-bs-toggle="collapse">
                         <i class="fas fa-cogs"></i>
@@ -271,16 +207,12 @@
                     </a>
                     <div class="collapse" id="company">
                         <ul class="nav-second-level">
-
                             <li>
                                 <a href="{{ route('company.setting') }}" >Company Profile</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
-
                 <li>
                     <a href="#report" data-bs-toggle="collapse">
                         <i class="fas fa-file-download"></i>
@@ -289,31 +221,16 @@
                     </a>
                     <div class="collapse" id="report">
                         <ul class="nav-second-level">
-
                             <li>
                                 <a href="{{ route('sales.report') }}" >Sales Report</a>
                             </li>
-
-
-
                         </ul>
                     </div>
                 </li>
-
-
-
-
             </ul>
-
-
-
-
         </div>
         <!-- End Sidebar -->
-
         <div class="clearfix"></div>
-
     </div>
     <!-- Sidebar -left -->
-
 </div>

@@ -17,12 +17,12 @@
                                    {{-- <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
                                       <option>All Customer </option>
                                                    @foreach($customers as $customer)
-                                                       <option  value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                                       <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
                                    </select> --}}
                                   <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
-                                    <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                                      <a href="#"><i class="fas fa-user"></i></a>
+                                    <button type="button" class="btn btn-success" style="background: #73e5e9" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                                      <a href="#"><i style="color: white" class="fas fa-user"></i></a>
                                     </button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog">
@@ -32,7 +32,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                            <form method="POST" action="{{route('CustomerStored')}}">
+                                            <form method="POST" action="{{route('CustomerStored')}}" enctype="multipart/form-data">
                                               @csrf
                                               <div class="row">
                                                 <input id="customer_id" type="text" name="customer_id" hidden>
@@ -68,17 +68,10 @@
                                                 @endif
                                               </div>
                                               <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">City</label>
-                                                <input type="text"   name="city" class="form-control" id="city">
-                                                @if($errors->has('city'))
-                                                <div style="color:red"> {{$errors->first('city')}}</div>
-                                                @endif
-                                              </div>
-                                              <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">Country</label>
-                                                <input type="text"  name="country" class="form-control" id="country">
-                                                @if($errors->has('country'))
-                                                <div style="color:red"> {{$errors->first('country')}}</div>
+                                                <label for="message-text" class="col-form-label">Image</label>
+                                                <input type="file" name="image" parsley-trigger="change" value="{{old('image')}}"  class="form-control" id="image" />
+                                                @if($errors->has('image'))
+                                                <div style="color:red"> {{$errors->first('image')}}</div>
                                                 @endif
                                               </div>
                                               </div>
@@ -166,11 +159,17 @@
              <div class="col-sm-5 p-2">
                 <form method="POST" action="{{route('download.pdf')}}">
                     @csrf
-                <select  id="customer_id" name="customer_id"  style="width: 100%;"  >
+                <select  class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
                     <option>All Customer </option>
                                  @foreach($customers as $customer)
                                      <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                   @endforeach
+                 </select>
+                 <select class="form-control select2"  id="payment" name="payment"  style="width: 100%;"  >
+                    <option>Payment System </option>
+
+                                     <option>Cheque</option>
+                                     <option>Cash</option>
                  </select>
               </div>
             </div>
@@ -256,7 +255,7 @@
 
                       <div class="row" id='showProduct' style="padding-left:5px;padding-right:5px;">
 
-                        @foreach ($products as $item)
+                        {{-- @foreach ($products as $item)
                         <div class="data col-sm-3">
                             <div class="card bg-info ">
                                  <div class="card-body">
@@ -270,7 +269,7 @@
                    </div>
                  </div>
                </div>
-                       @endforeach
+                       @endforeach --}}
 
 
                       </div>
@@ -300,14 +299,36 @@
      });
  </script>
 
-
 <script>
+    var accessToken = '';
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{!! route('token') !!}",
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log('got data from token  ..');
+                console.log(JSON.stringify(data));
+                accessToken = JSON.stringify(data);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    });
+</script>
 
-    var e = document.getElementById("customer_id");
-    var strUser = e.options[e.selectedIndex].text;
-    console.log(strUser);
 
-    </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+
 
 
 

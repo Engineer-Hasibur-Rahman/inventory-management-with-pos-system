@@ -59,6 +59,11 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 {{-- bar chart js --}}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{-- for payment --}}
+<script src="https://code.jquery.com/jquery-1.8.3.min.js"
+integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
+<script id="myScript"
+        src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
 
@@ -144,39 +149,40 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
       {
         var selectedVal = $("#categorySelect option:selected").val();
         console.log(selectedVal);
-        $murl  = '{{url('/getProduct/')}}'+'/'+selectedVal;
+        $murl  = `{{url('/getProduct/')}}/${selectedVal}`;
         console.log($murl);
         $.ajax({
               method:'GET',
               url: $murl,
               dataType: 'json',
-              success: function (data) {
+              success: function ({all_products}) {
+                //   console.log(data);
                   $( "#showProduct" ).empty();
-                  $( data ).each(function( index ) {
-
+                  $( all_products ).each(function( index,product ) {
+                  console.log(product);
                     var value=$(".mybtn").attr("value");
                         // console.log(value);
                         $string=`<div class="col-4">
-                        <button id="${data[index].id}"  type="submit" style="width:239px; padding-left:2px;padding-right:5px; border:none; height:200px;" class="mybtn" value="${data[index].id}">
-                        <div class="data col-sm-3">
+                        <button id="${product?.id}"  type="submit" style="width:239px; padding-left:2px;padding-right:5px; border:none; height:200px;" class="mybtn" value="${product.id}">
+                           <div class="data col-sm-3">
                             <div class="card bg-info"  style="width:235px; height:190px; ">
                               <div class="card-body">
                             <div class="row pb-3">
-                              <div class="col-3 bg-warning"  style="width:100px; height:20px; overflow: hidden; "> <p value="${data[index].count}" id="quantity" class="quantity card-text">
-                              <span style="overflow: hidden;">Qty:</span>${data[index].count}</p></div>
+                              <div class="col-3 bg-warning"  style="width:100px; height:20px; overflow: hidden; "> <p value="${product.count}" id="quantity" class="quantity card-text">
+                              <span style="overflow: hidden;">Qty:</span>${product.count}</p></div>
                                 </div>
-                                <h5  value="${data[index].name}" id="name" class="name card-title">${data[index].name}</h5>
+                                <h5  value="${product.name}" id="name" class="name card-title">${product.name}</h5>
                                 <center>
                                     <img  class=" img-responsive item_image " style="border: 1px solid gray; height:53px; width:80px;  "
-                                    src=" /${data[index].product_image}" alt="Item picture">
+                                    src=" /${product.product_image}" alt="Item picture">
 
-                                <h4 value="${data[index].price}" id="price" class="price">${data[index].price}</h4>
+                                <h4 value="${product.price}" id="price" class="price">${product.price}</h4>
                               </center>
                             </div>
                           </div>
                              </div>
                         </button></div>`;
-                 $( "#showProduct" ).append( $string);
+                      $( "#showProduct" ).append( $string);
                 });
                 fetchProduct();
               },

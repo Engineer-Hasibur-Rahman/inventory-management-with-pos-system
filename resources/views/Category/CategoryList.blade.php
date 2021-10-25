@@ -10,9 +10,10 @@
 
        <!-- Start Content-->
        <div class="container-fluid ">
-           <div class="row" style="padding-top: 50px">
-            <div class="col-2"></div>
-               <div class="col-8">
+           <div class="row">
+            <div class="col-lg-4">
+            </div>
+               <div class="col-4  p-3">
                    <div class="card">
                        <div class="card-body">
                            <h4 class="header-title">Category List</h4>

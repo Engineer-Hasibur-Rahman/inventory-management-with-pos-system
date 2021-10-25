@@ -17,47 +17,32 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-
     public function downloadPDF(Request $req){
 
+        $customer_id=$req->customer_id;
+        //payment
+        $payment=$req->payment;
 
         $purchases = Purchase::all();
 
         $carts = Cart::content();
-
-
-        // dd($carts);
-        $day = Carbon::today();
-        $today= $day->toDateString();
+        dd($carts);
 
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
         $cartTax= Cart::tax();
         $cartSubTotal=Cart::subtotalFloat();
-        $user=Auth::user()->name;
 
-
-    //create sales pos starts
-    foreach($carts as $cart){
-        $pos=new SalesPos;
-        $pos->stock= $cartQty;
-        $pos->item_name= $cart->name;
-        $pos->created_by=$user;
-        $pos->customer_name='NAME';
-        $pos->price=$cart->price;
-        $pos->quantity=$cart->qty;
-        $pos->sales_date=$today;
-
-        $pos->discount=0;
-        $pos->tex=$cart->tax;
-        $pos->save();
-
-
-    }
-
-        Cart::destroy();
-
-       $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax','today','user'))->setPaper(array(0,0,204,600));
+        $pdf=PDF::loadView('Pdf.DownloadPurchase',compact('purchases','carts','cartQty','cartTotal','cartSubTotal','cartTax'))->setPaper(array(0,0,204,600));
+        // $pdf->setPaper('A4','landscape');
         return $pdf->stream('purchases.pdf') ;
     }
+
+    public function destroy_pos($id){
+        $pos=SalesPos::find($id);
+        $pos->delete();
+        return redirect()->back();
+
+    }
+
 }
