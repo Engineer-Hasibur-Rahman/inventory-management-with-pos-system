@@ -64,36 +64,7 @@
 integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
 <script id="myScript"
         src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> --}}
 
-{{-- chart script --}}
-{{-- <script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Product Id', 'Sales Price', 'Sales Product Quantity'],
-
-  @php
-    foreach($salesPos as $product) {
-    echo "['".$product->item_name."', ".$product->price.", ".$product->quantity."],";
-    }
-  @endphp
-  ]);
-
-  var options = {
-    chart: {
-  title: 'Product Graph ',
-  subtitle: 'Price, and Quantity: @php echo $salesPos[0]->created_at @endphp',
-    },
-    bars: 'vertical'
-  };
-  var chart = new google.charts.Bar(document.getElementById('bar-chart'));
-  chart.draw(data, google.charts.Bar.convertOptions(options));
-    }
-  </script> --}}
 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -101,6 +72,69 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
 <!-- noster notify js function  start -->
 
 </body>
+
+
+
+{{-- ///////toastar start//////// --}}
+<script>
+
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info')}}"
+    switch (type) {
+
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+              break;
+              default:
+            break;
+    }
+
+    @endif
+    </script>
+ <script>
+  $(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+    });
+  });
+</script>
+{{-- ///////toastar end//////// --}}
+
+
+
+
+
 
 
 
@@ -130,7 +164,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                                 <td>\
                                 <center>\
                             <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
-                             <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
+                             <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:45px;" >  \
                             <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\

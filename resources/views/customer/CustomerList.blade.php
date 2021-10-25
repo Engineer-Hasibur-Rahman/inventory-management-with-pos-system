@@ -7,8 +7,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                  
-
                             <h4 class="header-title text-center p-4 ">Customer list</h4>
                             <div class="text-end">
                             <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Customer</button>

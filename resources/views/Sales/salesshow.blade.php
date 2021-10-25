@@ -3,10 +3,12 @@
 <div class="content-page center">
     <div class="content">
 
+   
+
         <!-- Start Content-->
         <div class="container-fluid">
 
-            <div class="row">
+            <div class="row" style="padding: 30px;">
                 <div class="col-6">
                     <div class="card">
                         <div class="row">
@@ -177,6 +179,7 @@
 
                                      <option>Cheque</option>
                                      <option>Cash</option>
+                                    
                  </select>
               </div>
             </div>
@@ -213,10 +216,15 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <button type="submit" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button type="submit" id="pay" name="pay" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                        <a style="color: white"> Pay All</a>
+                                        <a style="color: white"  > Pay All</a>
                                       </button>
+                                      @error('pay')
+                                      <span class="text-danger">{{ $message }}</span>
+                                      @enderror
+
+
                                 </div>
 
 

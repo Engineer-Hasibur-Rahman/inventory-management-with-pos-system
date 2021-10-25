@@ -72,9 +72,9 @@
 
                                         <td class="text-end">
 
-                                     <a href="{{ route('manager.edit',$manager) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
+                                     <a href="{{ route('manager.edit',$manager) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fas fa-edit"></i> </a>
 
-                           <a href="" class="btn btn-danger btn-sm" id="delete">Delete</a>
+                           <a href="#"  class="btn btn-danger btn-sm" id="delete" ><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
