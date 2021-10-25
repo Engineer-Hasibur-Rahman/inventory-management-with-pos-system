@@ -21,8 +21,8 @@
                                                     @endforeach
                                    </select> --}}
                                   <span class="input-group-addon pointer" data-toggle="modal" data-target="#customer-modal" title="New Customer?">
-                                    <button type="button" class="btn btn-primary" style="background: #4E46A1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                                      <a href="#"><i class="fas fa-user"></i></a>
+                                    <button type="button" class="btn btn-success" style="background: #73e5e9" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                                      <a href="#"><i style="color: white" class="fas fa-user"></i></a>
                                     </button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog">
@@ -32,7 +32,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                            <form method="POST" action="{{route('CustomerStored')}}">
+                                            <form method="POST" action="{{route('CustomerStored')}}" enctype="multipart/form-data">
                                               @csrf
                                               <div class="row">
                                                 <input id="customer_id" type="text" name="customer_id" hidden>
@@ -68,17 +68,10 @@
                                                 @endif
                                               </div>
                                               <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">City</label>
-                                                <input type="text"   name="city" class="form-control" id="city">
-                                                @if($errors->has('city'))
-                                                <div style="color:red"> {{$errors->first('city')}}</div>
-                                                @endif
-                                              </div>
-                                              <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">Country</label>
-                                                <input type="text"  name="country" class="form-control" id="country">
-                                                @if($errors->has('country'))
-                                                <div style="color:red"> {{$errors->first('country')}}</div>
+                                                <label for="message-text" class="col-form-label">Image</label>
+                                                <input type="file" name="image" parsley-trigger="change" value="{{old('image')}}"  class="form-control" id="image" />
+                                                @if($errors->has('image'))
+                                                <div style="color:red"> {{$errors->first('image')}}</div>
                                                 @endif
                                               </div>
                                               </div>
@@ -199,7 +192,7 @@
                         {{-- making the count dynamic --}}
                         <div class="row">
                                 <div class="col-sm-4">
-                                    <button type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button  type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                        Hold
                                       </button>
@@ -213,7 +206,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <button type="submit" id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
+                                    <button type="submit"  id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                         <a style="color: white"> Pay All</a>
                                       </button>

@@ -14,7 +14,9 @@
         <div class="container-fluid">
             <div class="row " style="padding-top:30px;">
                 <div class="col-12">
+
                     <div class="card p-4">
+
 
                         <form method="POST" action="">
                             @csrf

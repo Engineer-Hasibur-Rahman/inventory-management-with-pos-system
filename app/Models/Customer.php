@@ -13,8 +13,7 @@ class Customer extends Model
         'customer_name',
         'email',
         'phone',
-        'city',
-        'country',
+        'image',
         'address',
     ];
 }

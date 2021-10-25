@@ -28,16 +28,14 @@ public function CustomerStore(Request $request){
                     'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
                     'email' => 'required|email',
                     'phone' => 'digits:11',
-                    'city' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-                    'country' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+
                     'address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
                 ],[
 
 
                     'customer_name.required' => 'Input The name  in Correctly',
                     'phone.required' => 'Input The phone  in Correctly',
-                    'city.required' => 'Input The city  in Correctly',
-                    'country.required' => 'Input The country  in Correctly',
+
                     'address.required' => 'Input The address  in Correctly',
 
                 ]);
@@ -46,11 +44,12 @@ public function CustomerStore(Request $request){
                 $customer->customer_name=$request->customer_name;
                 $customer->email=$request->email;
                 $customer->phone=$request->phone;
-                $customer->city=$request->city;
-                $customer->country=$request->country;
+                $newImageName=time().'-'.$request->customer_name.'.'.$request->image->extension();
+                $image=$request->image->move(public_path('admin_img'),$newImageName);
+                $customer->image=$newImageName;
                 $customer->address=$request->address;
                 $customer->save();
-                
+
                 $notification = array(
                 'message' => 'Customer created',
                 'alert-type' => 'success',
@@ -95,8 +94,6 @@ public function CustomerStore(Request $request){
                 'customer_name' => 'required',
                 'email' => 'required|email',
                 'phone' => 'required',
-                'city' => 'required',
-                'country' => 'required',
                 'address' => 'required',
             ]);
 
@@ -107,8 +104,14 @@ public function CustomerStore(Request $request){
                   $customer->customer_name=$request->input('customer_name');
                   $customer->email=$request->input('email');
                   $customer->phone=$request->input('phone');
-                  $customer->city=$request->input('city');
-                  $customer->country=$request->input('country');
+                  if($request->hasFile('image') && $request->image->isValid()){
+                    if(file_exists(public_path('admin_img/'.$customer->image))){
+                        unlink(public_path('admin_img/'.$customer->image));
+                    }
+                    $newImageName=time().'-'.$request->customer_name.'.'.$request->image->extension();
+                    $image=$request->image->move(public_path('admin_img'),$newImageName);
+                    $customer->image=$newImageName;
+                }
                   $customer->address=$request->input('address');
 
 
