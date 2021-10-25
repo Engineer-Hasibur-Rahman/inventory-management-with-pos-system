@@ -33,7 +33,9 @@
     .barcode p.name{
         margin:-2px 0;
     }
-
+    .barcode p.sku{
+        margin-top:4px;
+    }
 </style>
 
 <body>
@@ -62,7 +64,7 @@
                                 <p class="name">Name: {{$Purchase_item->product->name}}</p>
                                 <p class="price">Price: {{$Purchase_item->product->price}} BDT </p>
                                 <img src="data:image/png;base64,' . {{DNS1D::getBarcodePNG(strval($Purchase_item->product->id), 'C128',2,40,array(1,1,1))}} . '" alt="barcode"   />
-                                <p class="name">P: {{$product_code++}}</p>
+                                <p class="sku">P: {{$product_code++}}</p>
                             </div>
 
                             {{-- <img src="data:image/png;base64,' . {{DNS1D::getBarcodePNG($id, 'C128',2,40,array(1,1,1))}} . '" alt="barcode"   /> --}}

@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\SalesPos;
+use App\Models\Stock;
 use PDF;
 use Gloudemans\Shoppingcart\Facades\Cart;
 class PosController extends Controller
@@ -17,7 +18,7 @@ class PosController extends Controller
 
         $products=Product::all();
         $purcahse=Purchase::all();
-       
+
 
         $customers=Customer::all();
         // $this->search();
@@ -38,7 +39,7 @@ class PosController extends Controller
         {
             $products=Product::all();
             return response()->json($products);
-              
+
         }else
         {
             $purcahse=Purchase::all();
@@ -65,6 +66,17 @@ class PosController extends Controller
 
         }
     }
+
+
+            public function getstock($id){
+
+                $stock_info=Stock::where('product_id',$id)->first();
+              $current_stock=(int)$stock_info->product_stock_count;
+
+                // return $current_stock;
+                 return response()->json(['stock'=>$current_stock]);
+            }
+
 
     public function storeProductPos(Request $request,$id){
 
@@ -158,7 +170,14 @@ public function AddMiniCart() {
 	} // end mehtod
 
 public function AddToCart(Request $request, $id) {
-        Cart::add(['id' => $request->id,
+
+    $stock_info=Stock::where('product_id',$id)->first();
+    dd($stock_info->product_stock_count);
+
+
+        Cart::add([
+            'stock_count'=>$stock_info->product_stock_count,
+            'id' => $request->id,
         'name' => $request->name,
         'qty' => $request->quantity,
          'price' =>$request->price,
