@@ -25,11 +25,11 @@ public function CustomerStore(Request $request){
 
 
                 $validateData = $request->validate([
-                    'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+                    'customer_name' => 'required',
                     'email' => 'required|email',
-                    'phone' => 'digits:11',
+                    'phone' => 'required|numeric|min:6|max:11',
 
-                    'address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+                    'address' => 'required',
                 ],[
 
 

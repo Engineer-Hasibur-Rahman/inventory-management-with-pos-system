@@ -18,14 +18,14 @@ class SupplierController extends Controller
       
     // validation 
         $request->validate([
-          'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'father_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'permanent_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'mother_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'present_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'password' =>'required|string|min:8',
-          'mobile_number' => 'digits:11',
+          'name' => 'required',
+          'father_name' => 'required',
+          'permanent_address' => 'required',
+          'mother_name' => 'required',
+          'present_address' => 'required',
+          'username' => 'required',
+          'password' =>'required|string|min:6|max:8',
+          'mobile_number' => 'required|min:6|max:11',
           'image' => 'required|mimes:jpg,png',      
           ],[ 
             'name.required' => 'Input The name  in Correctly',
