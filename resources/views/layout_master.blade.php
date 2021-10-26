@@ -123,32 +123,36 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
     }
     @endif
     </script>
- <script>
-  $(function(){
-    $(document).on('click','#delete',function(e){
-        e.preventDefault();
-        var link = $(this).attr("href");
-                  Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Delete This Data?",
-                    icon: 'warning',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085D6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      window.location.href = link
-                      Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
-                    }
-                  })
+  {{-- ///////toastar starts//////// --}}
+  <script>
+    $(function(){
+      $(document).on('click','#delete',function(e){
+          e.preventDefault();
+          var link = $(this).attr("href");
+                    Swal.fire({
+                      width: 400,
+                      padding: '3em',
+                      customClass: 'swal-height',
+                      title: 'Are you sure?',
+                      icon: 'info',
+                      showCancelButton: false,
+                      confirmButtonColor: '#3085D6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.href = link
+                        Swal.fire(
+                          'Deleted!',
+                          'Your file has been deleted.',
+                          'success'
+                        )
+                      }
+                    })
+      });
     });
-  });
-</script>
+  </script>
+  {{-- ///////toastar end//////// --}}
 {{-- ///////toastar end//////// --}}
 
 
