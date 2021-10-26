@@ -164,10 +164,10 @@ public function StoreAdmin(AdminRequest   $request)
 {
 
     $validateData = $request->validate([
-        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'username' => 'required',
+        'fullname' => 'required',
         'email' => 'required|email',
-        'password' =>'required|string|min:8',
+        'password' =>'required|string|min:6|max:8',
         'image' => 'required|mimes:jpg,png',
     ],[
      'username.required' => 'Input The username  in Correctly',
@@ -351,10 +351,10 @@ public function ManagerStore(ManagerRequest $request){
 // validation
     $request->validate([
 
-        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'username' => 'required',
+        'fullname' => 'required',
         'email' => 'required',
-        'password' => 'required|string|min:8',
+        'password' => 'required|string|min:6|max:8',
         'username' => 'required',
         'image' =>'required|mimes:jpg,png',
       ],

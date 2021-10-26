@@ -47,8 +47,8 @@
                                         <td>{{$admin->email}}</td>
 
                                         <td>
-                                    <a href="/edit/admin/{{$admin->id}}" class="btn btn-primary">Edit</a>
-                                    <a href="/delete/admin/{{$admin->id}}" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="/edit/admin/{{$admin->id}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="/delete/admin/{{$admin->id}}" class="btn btn-danger" id="delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

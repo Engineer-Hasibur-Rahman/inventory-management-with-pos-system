@@ -6,7 +6,7 @@
     <div class="content">
         <!-- Start Content-->
      <div class="container-fluid">
- <div class="row">
+ <div class="row" style="padding:30px;">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
@@ -97,7 +97,6 @@
                          @enderror
                     </div>
                     </div>
-
                      <div class=" text-center p-4">
                         <button class="btn btn-primary waves-effect waves-light"  id="submit" type="submit">SupplierSubmit</button>
                         <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>

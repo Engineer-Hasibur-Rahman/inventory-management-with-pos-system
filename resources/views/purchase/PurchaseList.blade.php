@@ -27,13 +27,6 @@
                 <input id="print_quantity"  class="form-control-sm" type="text">
                 <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Print</button>
               </div>
-
-
-
-
-
-
-
         </div>
         <div class="modal-footer">
 
@@ -73,8 +66,6 @@
                                 <tbody>
                                     @foreach($purchases as $purchase)
                                     <tr>
-
-
                                         <td>{{ $purchase->purchase_date }}</td>
                                         <td>{{ $purchase->product->name }}</td>
                                         <td>{{ $purchase->product_quantity }}</td>
@@ -82,22 +73,16 @@
                                         <td>{{ $purchase->purchase_unit }}</td>
                                         <td>{{ $purchase->purchase_note }}</td>
                                         <td> <a href="#"   class="btn btn-success barcode" data-id="{{$purchase->product->id}}">Generate</a></td>
-
-
-
-
                                         <td class="">
-
-                                    <a href="{{ route('edit.purchase',$purchase->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('edit.purchase',$purchase->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     {{-- <button class="btn btn-danger"  id="message" onclick="delete({{$product->id}})">Delete</button> --}}
-                                    <a href="{{ route('delete.purchase',$purchase->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('delete.purchase',$purchase->id) }}" id="delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
                 </div><!-- end col-->
