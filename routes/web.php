@@ -96,7 +96,8 @@ Route::get('/show', [UserController::class, 'Managershow'])->name('show.manager'
 // Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/edit/{id}', [UserController::class, 'ManagerEdit'])->name('manager.edit');
 Route::post('/edit/{id}', [UserController::class, 'ManagerUpdate'])->name('ManagerUpdate');
-Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
+// Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
+Route::get('manager/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
 /// manager end////
 
 //pdf start//
