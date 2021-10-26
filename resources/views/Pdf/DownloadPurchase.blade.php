@@ -8,9 +8,6 @@
 </head>
 <style>
     #invoice-POS{
-
-
-
 h1{
   font-size: 1.5em;
   color: #222;
@@ -26,15 +23,12 @@ p{
   color: #666;
   line-height: 1.2em;
 }
-
 #top, #mid,#bot{ /* Targets all id with 'col-' */
   border-bottom: 1px solid #EEE;
 }
-
 #top{min-height: 100px;}
 #mid{min-height: 80px;}
 #bot{min-height: 50px;}
-
 #top .logo{
   //float: left;
 	height: 60px;
@@ -75,32 +69,24 @@ td{
 .service{border-bottom: 1px solid #EEE;}
 .item{width: 24mm;}
 .itemtext{font-size: .5em;}
-
 #legalcopy{
   margin-top: 5mm;
 }
-
-
-
 }
 </style>
 <body>
     @php
     $demo=App\Models\Company::all();
-
 @endphp
 @foreach ($demo as $data)
     <div id="invoice-POS">
-
         <center id="top">
-
           <div class=""> <img src="{{public_path('admin_img/'.$data->company_logo)}}" height="50px" width="200px" alt="eXCELIT LOGO
             "></div>
           <div class="info">
             <h2>{{$data->company_name}}</h2>
           </div><!--End Info-->
         </center><!--End InvoiceTop-->
-
         <div id="mid">
           <div class="info">
             <h2>Contact Info</h2>
@@ -114,8 +100,6 @@ td{
             <p>sales_date: {{$today}}</p>
             <p>created_by : {{$user}}</p>
             <p>Payment_type: {{$payment}}</p>
-
-
         </div>
         </div><!--End Invoice Mid-->
 
@@ -129,29 +113,9 @@ td{
                                     <td class="Hours"><h2>Qty</h2></td>
                                     <td class="Hours"><h2>Vat</h2></td>
 
-<<<<<<< HEAD
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Amount</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">{{$cartTotal}}</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Discount</p></td>
-                                    <td class="tableitem"><p class="itemtext">3</p></td>
-                                    <td class="tableitem"><p class="itemtext">$225.00</p></td>
-                                </tr>
-
-                                <tr class="service">
-                                    <td class="tableitem"><p class="itemtext">Tax</p></td>
-                                    <td class="tableitem"><p class="itemtext">5</p></td>
-                                    <td class="tableitem"><p class="itemtext">{{$cartTax}}</p></td>
-                                </tr>
-=======
                                     <td class="Rate"><h2>Sub Total</h2></td>
                                 </tr>
 
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
 
                                 @foreach ($carts as $cart)
                                 <tr class="service">
@@ -171,11 +135,7 @@ td{
                                     <td></td>
                                     <td></td>
                                     <td class="Rate"><h2>Total</h2></td>
-<<<<<<< HEAD
-                                    <td class="payment"><h2>{{$cartSubTotal}}</h2></td>
-=======
                                     <td class="payment"><h2>{{$cartTotal}}</h2></td>
->>>>>>> 9ab0fab7d77ded471f1a620c860e1f06db57e0bd
                                 </tr>
 
                             </table>
@@ -188,6 +148,5 @@ td{
 
                     </div><!--End InvoiceBot-->
       </div><!--End Invoice-->
-
 </body>
 </html>

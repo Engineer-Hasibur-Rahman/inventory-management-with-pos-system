@@ -101,7 +101,55 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
 <!-- noster notify js function  start -->
 
 </body>
-
+{{-- ///////toastar start//////// --}}
+<script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info')}}"
+    switch (type) {
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+            break;
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+            break;
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+            break;
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+              break;
+              default:
+            break;
+    }
+    @endif
+    </script>
+ <script>
+  $(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+    });
+  });
+</script>
+{{-- ///////toastar end//////// --}}
 
 
 
@@ -130,7 +178,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                                 <td>\
                                 <center>\
                             <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
-                             <input type="text" value="'+ item.qty +'" min="1" max="5" disabled="" style="width:25px;" >  \
+                             <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
                             <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\
@@ -168,8 +216,8 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                             <div class="card bg-info"  style="width:235px; height:190px; ">
                               <div class="card-body">
                             <div class="row pb-3">
-                              <div class="col-3 bg-warning"  style="width:100px; height:20px; overflow: hidden; "> <p value="${product.count}" id="quantity" class="quantity card-text">
-                              <span style="overflow: hidden;">Qty:</span>${product.count}</p></div>
+                              <div class="col-3 bg-warning"  style="width:100px; height:20px; overflow: hidden;"><p value="${product.count}" id="quantity" class="quantity card-text">
+                              <span style="overflow: hidden;">Qty:</span> ${product.count}</p></div>
                                 </div>
                                 <h5  value="${product.name}" id="name" class="name card-title">${product.name}</h5>
                                 <center>
@@ -203,29 +251,6 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
 
                 var stud_id = $(this).val();
 
-                //****************
-
-
-                    axios.get(`/getstock/${stud_id}`)
-                .then(function ({data:{stock}}) {
-                    // handle success
-                    alert(stock);
-
-
-
-
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .then(function () {
-                    // always executed
-                });
-
-
-                //*****************
-
                 var id=$(this).attr("id");
                 console.log(id);
                     console.log(('#'+id+' '+'.name'));
@@ -240,7 +265,6 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                     console.log($quantity);
                     $stock=1;
                  data = {
-
                 'id':  $id,
                 'name':  $name,
                 'price':  $price,
@@ -255,6 +279,7 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                     }
 
                 });
+
                 $posturl= "{{url('/products-pos')}}"+'/'+$id;
                  console.log($posturl);
              $.ajax({
