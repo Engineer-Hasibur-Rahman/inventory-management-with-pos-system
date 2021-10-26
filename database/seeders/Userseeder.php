@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\SalesPos;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\SuperAdmin;
 use Illuminate\Support\Facades\Hash;
 
@@ -58,6 +60,38 @@ class Userseeder extends Seeder
       $SalesPos->total_amount=0;
       $SalesPos->grand_total=0;
       $SalesPos->save();
+
+
+
+
+
+
+
+
+      Category::insert([
+
+        'category_name'=> ""
+
+
+
+
+
+      ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

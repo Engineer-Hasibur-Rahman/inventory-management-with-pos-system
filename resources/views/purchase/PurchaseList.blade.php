@@ -56,6 +56,7 @@
                                 <thead>
                                     <tr>
                                         <th>purchase_date</th>
+                                        <th>Product Name</th>
                                         <th>product_quantity</th>
                                         <th>purchase_price</th>
 
@@ -75,6 +76,7 @@
 
 
                                         <td>{{ $purchase->purchase_date }}</td>
+                                        <td>{{ $purchase->product->name }}</td>
                                         <td>{{ $purchase->product_quantity }}</td>
                                         <td>{{ $purchase->purchase_price }}</td>
                                         <td>{{ $purchase->purchase_unit }}</td>
