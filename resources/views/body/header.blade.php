@@ -46,6 +46,20 @@
          src="https://code.jquery.com/jquery-3.6.0.min.js"
          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
          crossorigin="anonymous"></script>
+         <style>
+            .swal2-icon.swal2-info{
+               font-size: 15px ! important;
+           },
+
+           .swal-height {
+           height: 40vh;
+           }
+
+   </style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2edaa075fdab046f5616434d815e751f3fa3964e
 
     </head>
 

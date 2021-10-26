@@ -130,11 +130,11 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
           e.preventDefault();
           var link = $(this).attr("href");
                     Swal.fire({
-                      width: 400,
-                      padding: '3em',
-                      customClass: 'swal-height',
-                      title: 'Are you sure?',
-                      icon: 'info',
+                    width: 400,
+                    padding: '3em',
+                    customClass: 'swal-height',
+                    title: 'Are you sure?',
+                    icon: 'error',
                       showCancelButton: false,
                       confirmButtonColor: '#3085D6',
                       cancelButtonColor: '#d33',
@@ -152,7 +152,8 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
       });
     });
   </script>
-  {{-- ///////toastar end//////// --}}
+ 
+ 
 {{-- ///////toastar end//////// --}}
 
 
