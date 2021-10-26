@@ -82,7 +82,7 @@
                                         <div style="color:red"> {{$errors->first('image')}}</div>
                                         @endif
 
-                                        <p><img id="outputt" width="200" /></p>
+                                        <p><img id="output" width="200" /></p>
                                       </div>
 
                                       </div>
@@ -147,7 +147,7 @@
                                         {{-- <label class="col-form-label" for="file" style="cursor: pointer;">Upload Image</label>
                                         <input type="file"  accept="image/*" name="image" id="file"  class="form-control"  onchange="loadFile(event)" style="display: none;"> --}}
 
-                                 <p><img id="output" width="200" /></p>
+                                 {{-- <p><img id="output" width="200" /></p> --}}
                                       </div>
                                       </div>
                                       </div>

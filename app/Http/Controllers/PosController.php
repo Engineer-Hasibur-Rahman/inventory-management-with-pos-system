@@ -78,17 +78,33 @@ class PosController extends Controller
             }
 
 
-    public function storeProductPos(Request $request,$id){
+            public function storeProductPos(Request $request,$id){
 
-        Cart::add(['id' => $request->id,
-        'name' => $request->name,
-        'qty' => 1,
-         'price' =>$request->price,
-         'stock' =>$request->stock,
-         'weight' => 550]);
+                $product=Product::where('id',$id)->first();
+                $stock=Stock::where('product_id',$id)->first();
+                $stock_count=$stock->product_stock_count;
+                $this->AddMiniCart();
+                $cartQty = Cart::count();
 
-		return response()->json(['success' => 'Successfully Added on Your Cart']);
-    }
+                if ($stock_count>$cartQty){
+
+                        Cart::add(['id' => $request->id,
+                        'name' => $request->name,
+                        'qty' => 1,
+                        'price' =>$request->price,
+                        'stock' =>$request->stock,
+                        'weight' => 550]);
+
+
+
+                return response()->json(['success' => 'Successfully Added on Your Cart']);
+
+                 }
+
+
+
+
+            }
 
     public function CustomerSto(Request $request){
 
