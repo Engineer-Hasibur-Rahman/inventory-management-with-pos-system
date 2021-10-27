@@ -20,14 +20,11 @@
 
           <div class="form-group mx-sm-1 mb-1">
 
-
-            <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
-            <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
-
-
-
-                <label for="">Ary you want to Approve this Return ??</label>
+                <label for="">Are you want to Approve this Return ??</label>
+                <button id="submit"    data-dismiss="modal" class="btn btn-success mb-2">Yes</button>
+              <button id="closemodal"  data-dismiss="modal" class="btn btn-danger mb-2">No</button>
               </div>
+
 
 
 
@@ -101,11 +98,13 @@
                                     <a href="{{ route('edit.return.product',$list->product->id) }}" class="btn btn-primary">Edit</a>
                                     @endif
                                     <a href="{{ route('delete.return.product',$list->id) }}" id="delete" class="btn btn-danger">Delete</a>
+                                    @if ($user->can('admin.create'))    {{-- only Super admin can approve this  --}}
 
                                     @if ($list->approve_status!=1)
 
-                                      <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Aprove</a>
+                                      <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Approve</a>
 
+                                      @endif
                                       @endif
                                     @endif
                                         </td>
