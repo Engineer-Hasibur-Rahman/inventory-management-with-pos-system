@@ -334,7 +334,7 @@ function fetchpos() {
                             <button type="submit" class="btn btn-success btn-sm count" id="'+item.rowId+'"  value="' + item.qty + '"   onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\
-                                <td>' + item.weight + '</td>\
+                                <td>' + item.price + '</td>\
                                 <td>' + item.tax + '</td>\
                                 <td>' + item.subtotal + '</td>\
                                 <td><button type="submit"><a href="/minicart/product-remove/'+item.rowId+'"><i class="fa fa-trash"></i></a></button></td>\

@@ -359,6 +359,11 @@ public function ApprovereturnProduct($id){
 
 
 public function Approveconfirm(Request $request){
+
+    if(is_null($this->user) || !$this->user->can('admin.create')){
+        abort('403','You dont have acces!!!!');
+    }
+
     $r_id=$request->input('r_id');
     $p_id= $request->input('purchase_id');
     $stock= $request->input('product_stock');
