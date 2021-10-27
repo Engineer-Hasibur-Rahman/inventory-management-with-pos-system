@@ -138,8 +138,8 @@
             {{-- //////check --}}
 
             <div class="row">
-        
-         
+
+
              <div class="col-sm-6 p-2 ">
                 <form method="POST" action="{{route('download.pdf')}}">
                     @csrf
@@ -224,6 +224,7 @@
                         <div class="col-md-6">
                           <h5>Category Select <span class="text-danger">*</span></h5>
                           <select class="form-control select2" id="categorySelect" name="category_id"  style="width: 100%;"  >
+                            <option disabled selected>Select Category</option>
                             <option value="all">All Product</option>
                             @foreach($categorys as $category)
 

@@ -122,7 +122,7 @@ class PosController extends Controller
         $validateData = $request->validate([
             'customer_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric|min:6|max:11',
+            'phone' => 'required|min:6|max:11',
 
             'address' => 'required',
         ],[
@@ -143,6 +143,7 @@ class PosController extends Controller
         $customer->image=$newImageName;
         $customer->address=$request->address;
         $customer->save();
+
         $notification = array(
         'message' => 'Customer created',
         'alert-type' => 'success',
