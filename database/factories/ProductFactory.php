@@ -27,7 +27,7 @@ class ProductFactory extends Factory
                 'product_code' => $this->faker->ean8,
                 'name' => $this->faker->word,
                 'squ_code' => $this->faker->unique()->ean8,
-
+'product_image'=>"1712137985910213.jpg",
                 'price' => 100,
                 'count' => 20,
                 'product_satus' => 0,
