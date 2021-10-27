@@ -138,81 +138,78 @@
             {{-- //////check --}}
 
             <div class="row">
-            <div class="col-md-7 p-2">
-                <div class="checkbox icheck">
-                   <div class="icheckbox_square-blue checked" aria-checked="false" aria-disabled="false" style="position: relative;">
-                    <input type="checkbox" checked="" class="form-control" id="send_sms" name="send_sms"
-                    style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                    </ins>
-                  </div>
-                  <label for="sales_discount" class=" control-label">
-                    <label for="send_sms">Send SMS to Customer</label>
-                     <i class="hover-q " data-container="body" data-toggle="popover" data-placement="top"
-                        data-content="If checkbox is Disabled! You need to enable it from SMS -> SMS API <br><b>Note:<i>Walk-in Customer will not receive SMS!</i></b>"
-                      data-html="true" data-trigger="hover" data-original-title="Do you wants to send SMS ?" title="">
-                       <i class="fa fa-info-circle text-maroon text-black hover-q"></i>
-                     </i>
-                   </label>
-               </div>
-             </div>
-             <div class="col-sm-5 p-2">
+        
+         
+             <div class="col-sm-6 p-2 ">
                 <form method="POST" action="{{route('download.pdf')}}">
                     @csrf
                 <select  class="form-control select2" id="customer_id" name="customer_id"  style="width: 100%;"  >
+
+                  <option disabled selected  >Select Coustomer</option>
+
                     <option>All Customer </option>
                                  @foreach($customers as $customer)
                                      <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                   @endforeach
                  </select>
-                 <select class="form-control select2"  id="payment" name="payment"  style="width: 100%;"  >
-                    <option>Payment System </option>
+                 @error('customer_id')
+                 <span class="text-danger">{{ $message }}</span>
+         @enderror
+                 <br>
 
-                                     <option>Cheque</option>
-                                     <option>Cash</option>
+
+                 <select class="form-control select2"  id="payment" name="payment"  style="width: 100%;"  >
+                  <option  disabled selected >Select Payment Option </option>
+
+                                   <option>Cash</option>
+                                     <option>Bank</option>
+                                     <option>Cart</option>
+
                  </select>
+                 @error('payment')
+                 <span class="text-danger">{{ $message }}</span>
+         @enderror
               </div>
             </div>
-            {{-- ////end --}}
-                    {{-- making the count dynamic --}}
-                        <div class="row">
-                          <div class="col-md-4 text-right p-2">
-                                  <label> Quantity:</label><br>
-                                  ৳ <span style="font-size: 19px;"  id="cartQty" class="tot_amt text-bold"></span>
-                          </div>
-                          <div class="col-md-4 text-right p-2">
-                                  <label>Total Amount:</label><br>
-                                  ৳ <span style="font-size: 19px;" id="cartSubTotal" class="tot_amt text-bold"></span></div>
+            {{-- end --}}
 
 
-                          <div class="col-md-4 text-right p-2">
-                                  <label>Grand Total:</label><br>
-                                  ৳ <span style="font-size: 19px;"  id="cartTotal" class="tot_grand text-bold"></span></div>
-                        </div>
                         {{-- making the count dynamic --}}
                         <div class="row">
-                                <div class="col-sm-4">
-                                    <button  type="button" id="" name="" class="btn btn-danger btn-block btn-flat btn-lg show_payments_modal" >
-                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                       Hold
-                                      </button>
+                                <div class="col-sm-3">
+
+                                  <label> Quantity:</label>
+                                   <span style="font-size: 19px;"  id="cartQty" class="tot_amt text-bold btn btn-success btn-lg"></span>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                  <label> Total Amount:</label>
+                                  <span style="font-size: 19px;"  id="cartSubTotal" class="tot_amt text-bold btn btn-success btn-lg"></span>
+
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <button type="button" disabled="disabled" id="bKash_button" name="" class="btn btn-success btn-block btn-flat btn-lg show_payments_modal" >
-                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                         Cash
-                                      </button>
+                                  <label> Grand Total:</label>
+                                  <span style="font-size: 19px;"  id="cartTotal" class="tot_amt text-bold btn btn-success btn-lg"></span>
+
                                 </div>
 
 
 
 
-                                <div class="col-sm-4">
-                                    <button type="submit"  id="" name="" class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
-                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                        <a style="color: white"> Pay All</a>
+                                <div class="col-sm-2">
+                                    <button type="submit"  id="pay"  class="btn btn-primary btn-block btn-flat btn-lg show_payments_modal" >
+
+                                        <a style="color: white"> Order Submit</a>
+
+
+                                        @if($errors->has('pay'))
+                                        <div style="color:red"> {{$errors->first('pay')}}</div>
+                                        @endif
                                       </button>
+
                                 </div>
 
 

@@ -52,19 +52,19 @@ return $next($request);
   public function StoreProduct(Request $request)
   {
        $validateData = $request->validate([
-           'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-           'price' => 'required|numeric|gt:0',
+           'name' => 'required',
+           'price' => 'required',
            'product_code' => 'required',
-           'squ_code' => 'required|numeric|gt:0',
-           'count' => 'required|numeric|gt:0',
-           'image' => 'required|mimes:jpg,png', 
+           'squ_code' => 'required',
+           'count' => 'required',
+           'image' => 'required|mimes:jpg,png',
        ],[
         'name.required' => 'Input The name  in Correctly',
         'price.required' => 'Input The price  in Correctly',
         'count.required' => 'Input The count  in Correctly',
         'squ_code.required' => 'Input The squ_code  in Correctly',
         'image.required' => 'Input The supplier Img',
-         
+
 
        ]);
       $image = $request->file('image');
@@ -347,6 +347,11 @@ public function ApprovereturnProduct($id){
 
 
 public function Approveconfirm(Request $request){
+
+    if(is_null($this->user) || !$this->user->can('admin.create')){
+        abort('403','You dont have acces!!!!');
+    }
+
     $r_id=$request->input('r_id');
     $p_id= $request->input('purchase_id');
     $stock= $request->input('product_stock');

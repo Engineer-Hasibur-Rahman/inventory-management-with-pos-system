@@ -100,6 +100,10 @@ $manager = Role::create(['name'=>'Manager']);
 
         $sadmin->assignRole('admin');
 
+        $sadmin= User::find(3);
+
+        $sadmin->assignRole('Manager');
+
 
 
     }
