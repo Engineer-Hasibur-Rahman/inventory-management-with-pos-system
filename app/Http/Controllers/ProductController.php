@@ -138,12 +138,17 @@ public function StoreReturnProduct(Request $request)
     //dd( $getpurchaseid);
     $returnproduct->purchase_id=$getpurchaseid[0];
 
-        if($request->quantity > $stock_number->product_stock_count){
+        if($request->quantity > $stock_number->product_stock_count  ){
             return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
-        }else{
+        }elseif($request->quantity<0){
 
+            return redirect()->back()->with('quantity','NOT A VALID INPUT !! PRODUCT Remaining :'.$stock_number->product_stock_count);
+
+        }
+        else{
 
             $returnproduct->return_quantiy=$request->quantity;
+
         }
 
 
@@ -323,27 +328,15 @@ public function ApprovereturnProduct($id){
 
 
         $return_product =ProductReturn::where('id',$id)->first();
-        $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first()->pluck('product_stock_count');
-        $p_stock=Purchase::where('id',$return_product->purchase_id)->first()->pluck('product_quantity');
 
-
-
-
-
-
+        $product_stock=Stock::where('purchases_id',$return_product->purchase_id)->first();
+        //dd( $product_stock->product_stock_count);
+        $p_stock=Purchase::where('id',$return_product->purchase_id)->first();
 
         if($return_product->approve_status!=1){
-
-
-            $product_stock=((int)$product_stock[0]-(int)$return_product->return_quantiy);
-            $p_stock=((int)$p_stock[0]-(int)$return_product->return_quantiy);
-
-
-
+            $product_stock=((int)$product_stock->product_stock_count-(int)$return_product->return_quantiy);
+            $p_stock=((int)$p_stock->product_quantity-(int)$return_product->return_quantiy);
             $returnCollection = array("r_id"=>$id, "product_stock"=> $product_stock,"purchase_id"=>$return_product->purchase_id,"purchase_stock"=>$p_stock);
-
-
-
             return  response()->json(compact('returnCollection'));
 
 
@@ -359,20 +352,27 @@ public function ApprovereturnProduct($id){
 
 
 public function Approveconfirm(Request $request){
-
+//    dd($request->all());
     if(is_null($this->user) || !$this->user->can('admin.create')){
         abort('403','You dont have acces!!!!');
     }
 
-    $r_id=$request->input('r_id');
-    $p_id= $request->input('purchase_id');
-    $stock= $request->input('product_stock');
+    // array:4 [
+    //     "r_id" => "32"
+    //     "product_stock" => 40
+    //     "purchase_id" => 4
+    //     "purchase_stock" => 40
+    //   ]
+    $r_id =$request->input('r_id');
+    $p_id = $request->input('purchase_id');
+    $stockQuantity = $request->input('product_stock');
 
 
-    Stock::where('purchases_id',$p_id)->update(['product_stock_count' => $stock]);
-
-      ProductReturn::where('id',$r_id)->update(['approve_status' => 1]);
-    Purchase::where('id',$p_id)->update(['product_quantity' => $stock]);
+    $stock = Stock::where('purchases_id',$p_id)->first();
+    $stock->update(['product_stock_count' => $stockQuantity]);
+    // ->update(['product_stock_count' => $stock])
+    ProductReturn::where('id',$r_id)->update(['approve_status' => 1]);
+    Purchase::where('id',$p_id)->update(['product_quantity' => $stockQuantity]);
 
 
 }

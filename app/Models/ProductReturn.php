@@ -11,7 +11,7 @@ class ProductReturn extends Model
 {
     use HasFactory;
 
-
+    protected $fillable   = ['product_id','supplier_id','purchase_id','return_quantiy','approve_status'];
 
 
 

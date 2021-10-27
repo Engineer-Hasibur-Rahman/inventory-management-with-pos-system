@@ -102,7 +102,7 @@
 
                                     @if ($list->approve_status!=1)
 
-                                      <a href="#" name="app" id="approve" value="{{$list->id}}" class="btn btn-success">Approve</a>
+                                      <a href="#" name="app"  data-returnid="{{$list->id}}" class="btn btn-success approve">Approve</a>
 
                                       @endif
                                       @endif
@@ -135,99 +135,43 @@
   <script>
 
  $(function(){
+        let rCollection="";
+        let approveButtons = document.querySelectorAll('.approve');
+        approveButtons.forEach(approveButton=>{
+            approveButton.addEventListener('click',function(event){
+                let returnId = this.dataset.returnid;
+                console.log(returnId)
+                axios.get(`/approve/returnproduct/${returnId}`)
+                .then(function ({data:{returnCollection}}) {
+                        console.log(returnCollection);
+                        rCollection=returnCollection
+                        //console.log(rCollection);
+                        $('#mymodal').modal('show');
+                        $('#closemodal').click(function(){
+                            $('#mymodal').modal('hide');
+                        });
 
-let rCollection="";
-  $('#approve').click(function(){
+                }).catch(function (error) {
+                    // handle error
+                    console.log(error);
+            });
 
-//get data
-var returnId = $(this).attr("value");
-
-//console.log(returnId);
-
-//alert(returnId);
-
-    axios.get(`/approve/returnproduct/${returnId}`)
-    .then(function ({data:{returnCollection}}) {
-    // handle success
- //alert(returnCollection.product_stock)
- console.log(returnCollection);
-rCollection=returnCollection
-console.log(rCollection);
-
-$('#mymodal').modal('show');
-$('#closemodal').click(function(){
-    $('#mymodal').modal('hide');
-
-});
-
-
-$('#submit').click(function(){
+            })
+        });
 
 
-
-
-    var url="/approve/returnproduct";
-                axios.post(url,returnCollection)
-                .then(function (response) {
-
-
-                    console.log(response.data);
-
-                location.reload();
-                //location.reload();
-                })
-                .catch(function (error) {
-                    console.log(error.response.data);
-                });
-
-
-$('#mymodal').modal('hide');
-
-});
-
-
-
-
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
+        $('#submit').click(function(){
+            var url="/approve/returnproduct";
+            axios.post(url,rCollection)
+            .then(function (response) {
+                 location.reload();
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+            });
+            $('#mymodal').modal('hide');
+        });
   });
-
-  //end get
-
-
-
-
-
-
-
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- });
-
-
-
-
-
-
-
   </script>
 
 
