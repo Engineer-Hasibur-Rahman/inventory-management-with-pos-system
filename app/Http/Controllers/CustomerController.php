@@ -27,7 +27,7 @@ public function CustomerStore(Request $request){
                 $validateData = $request->validate([
                     'customer_name' => 'required',
                     'email' => 'required|email',
-                    'phone' => 'required|numeric|min:6|max:11',
+                    'phone' => 'required|min:6|max:11',
 
                     'address' => 'required',
                 ],[

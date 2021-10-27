@@ -37,8 +37,18 @@ class PosController extends Controller
 
         if($id=='all')
         {
-            $products=Product::all();
-            return response()->json($products);
+
+            $purcahse=Purchase::all();
+            $all_products=collect([]);
+            foreach($purcahse as $p){
+                $product_id= $p->product_id;
+                $product=Product::where('id',$product_id)->first();
+                // array_push($all_products,$products);
+                $all_products->push($product);
+            }
+            // return json_encode($all_products);
+            return response()->json(compact('all_products'));
+
 
         }else
         {
@@ -65,6 +75,7 @@ class PosController extends Controller
 
 
         }
+
     }
 
 
@@ -203,14 +214,33 @@ public function AddToCart(Request $request, $id) {
 
     }
 
+
+
+
  // Cart Increment
- public function CartIncrement($rowId){
+ public function cartIncrement($rowId){
+
     $row = Cart::get($rowId);
+    $count= $row->qty;
+    $id= $row->id;
 
 
-    Cart::update($rowId, $row->qty+1);
 
-    return response()->json('increment');
+    $stock=Stock::where('product_id', $id)->first();
+
+
+    $stock_count=$stock->product_stock_count;
+    $count= $row->qty;
+    if ($count<$stock_count){
+        Cart::update($rowId,$count+1);
+        return response()->json('increment');
+
+
+    }
+
+
+
+
 
 } // end mehtod
 
