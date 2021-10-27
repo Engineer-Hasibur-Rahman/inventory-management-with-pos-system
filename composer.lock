@@ -1178,6 +1178,18 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+            "version": "v8.68.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "08781be9c1e3f83b0c38ce9539e1dc4664e33a14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
+                "reference": "08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
+=======
             "version": "v8.67.0",
             "source": {
                 "type": "git",
@@ -1188,6 +1200,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
                 "reference": "fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
                 "shasum": ""
             },
             "require": {
@@ -1279,6 +1292,7 @@
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.198.1).",
                 "brianium/paratest": "Required to run tests in parallel (^6.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.13.3|^3.1.2).",
+                "ext-bcmath": "Required to use the multiple_of validation rule.",
                 "ext-ftp": "Required to use the Flysystem FTP driver.",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
                 "ext-memcached": "Required to use the memcache cache driver.",
@@ -1345,6 +1359,22 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+            "time": "2021-10-26T12:52:38+00:00"
+        },
+        {
+            "name": "laravel/sanctum",
+            "version": "v2.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sanctum.git",
+                "reference": "e610647b04583ace6b30c8eb74cee0a866040420"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/e610647b04583ace6b30c8eb74cee0a866040420",
+                "reference": "e610647b04583ace6b30c8eb74cee0a866040420",
+=======
             "time": "2021-10-22T13:27:12+00:00"
         },
         {
@@ -1359,6 +1389,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sanctum/zipball/0b8664bb065f080e93c209f1ae1b78b5a9e13f15",
                 "reference": "0b8664bb065f080e93c209f1ae1b78b5a9e13f15",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
                 "shasum": ""
             },
             "require": {
@@ -1409,7 +1440,11 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
+<<<<<<< HEAD
+            "time": "2021-10-26T18:23:26+00:00"
+=======
             "time": "2021-10-19T15:33:22+00:00"
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
         },
         {
             "name": "laravel/serializable-closure",
@@ -6420,16 +6455,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.12.0",
+            "version": "v1.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "80f6cd93844e87ebc2e7310f9a9b9917473f5eb0"
+                "reference": "1acae00ddb5c6ec4a2957fe42c0004f13cd17a7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/80f6cd93844e87ebc2e7310f9a9b9917473f5eb0",
-                "reference": "80f6cd93844e87ebc2e7310f9a9b9917473f5eb0",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/1acae00ddb5c6ec4a2957fe42c0004f13cd17a7a",
+                "reference": "1acae00ddb5c6ec4a2957fe42c0004f13cd17a7a",
                 "shasum": ""
             },
             "require": {
@@ -6476,7 +6511,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-10-12T15:38:11+00:00"
+            "time": "2021-10-26T21:37:54+00:00"
         },
         {
             "name": "mockery/mockery",

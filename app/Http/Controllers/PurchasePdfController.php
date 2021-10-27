@@ -48,10 +48,13 @@ class PurchasePdfController extends Controller
 
     //create sales pos starts
     foreach($carts as $cart){
+      
         $pos=new SalesPos;
+    
         $pos->stock= $cartQty;
         $pos->item_name= $cart->name;
-        $product=Product::where('name','=', $pos->item_name)->first();
+        $product_id=$cart->id;
+        $product=Product::where('id','=',$product_id)->first();
         //dd($product);
         $p_id=$product->id;
 
@@ -70,7 +73,7 @@ class PurchasePdfController extends Controller
 
 
         $stock_decresed=Stock::where('product_id',  $p_id)->first();
-dd( $stock_decresed);
+// dd( $stock_decresed);
        $value= $stock_decresed->product_stock_count-$cart->qty;
 
        $stock_decresed->product_stock_count= $value;
