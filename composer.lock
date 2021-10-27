@@ -260,6 +260,7 @@
             "time": "2021-01-18T23:55:30+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "dflydev/dot-access-data",
             "version": "v3.0.1",
             "source": {
@@ -271,12 +272,26 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/0992cc19268b259a39e86f296da5f0677841f42c",
                 "reference": "0992cc19268b259a39e86f296da5f0677841f42c",
+=======
+            "name": "doctrine/inflector",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/inflector.git",
+                "reference": "8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89",
+                "reference": "8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "phpstan/phpstan": "^0.12.42",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
                 "scrutinizer/ocular": "1.6.0",
@@ -289,6 +304,16 @@
                     "dev-main": "3.x-dev"
                 }
             },
+=======
+                "doctrine/coding-standard": "^8.2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "vimeo/psalm": "^4.10"
+            },
+            "type": "library",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
             "autoload": {
                 "psr-4": {
                     "Dflydev\\DotAccessData\\": "src/"
@@ -1253,6 +1278,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v8.68.0",
             "source": {
                 "type": "git",
@@ -1263,6 +1289,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
                 "reference": "08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
+=======
+            "version": "v8.67.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "fc52acafd069aedc079bf8f17d1a4af4ef489b1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
+                "reference": "fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
                 "shasum": ""
             },
             "require": {
@@ -1421,6 +1459,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2021-10-26T12:52:38+00:00"
         },
         {
@@ -1435,6 +1474,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sanctum/zipball/e610647b04583ace6b30c8eb74cee0a866040420",
                 "reference": "e610647b04583ace6b30c8eb74cee0a866040420",
+=======
+            "time": "2021-10-22T13:27:12+00:00"
+        },
+        {
+            "name": "laravel/sanctum",
+            "version": "v2.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sanctum.git",
+                "reference": "0b8664bb065f080e93c209f1ae1b78b5a9e13f15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/0b8664bb065f080e93c209f1ae1b78b5a9e13f15",
+                "reference": "0b8664bb065f080e93c209f1ae1b78b5a9e13f15",
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
                 "shasum": ""
             },
             "require": {
@@ -1485,7 +1540,11 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
+<<<<<<< HEAD
             "time": "2021-10-26T18:23:26+00:00"
+=======
+            "time": "2021-10-19T15:33:22+00:00"
+>>>>>>> 24d53decbcbd07f281d7e487c9731c8d250fe4b9
         },
         {
             "name": "laravel/serializable-closure",

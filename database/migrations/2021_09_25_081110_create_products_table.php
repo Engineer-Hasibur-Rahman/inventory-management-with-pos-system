@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('product_code');
             $table->string('name');
             $table->string('squ_code');
-            $table->string('product_image');
+            $table->string('product_image')->nullable();
             $table->integer('price');
             $table->integer('count');
             $table->integer('product_satus')->default(0);

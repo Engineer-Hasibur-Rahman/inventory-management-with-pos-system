@@ -22,14 +22,14 @@ class PosController extends Controller
 
         $customers=Customer::all();
         // $this->search();
-        return view('Sales.salesshow', compact('categorys','sales','products', 'customers'));
+        return view('sales.salesshow', compact('categorys','sales','products', 'customers'));
         $products = Product::where('category_id' )->get();
-        return view('Sales.salesshow', compact('categorys','sales','products','customers'));
+        return view('sales.salesshow', compact('categorys','sales','products','customers'));
     }
     public function SalesList(){
         $sales = SalesPos::all();
         // $products = Product::all();
-        return view('Sales.salesList', compact('sales'));
+        return view('sales.salesList', compact('sales'));
     }
     public function getPorduct($id)
     {
@@ -37,8 +37,18 @@ class PosController extends Controller
 
         if($id=='all')
         {
-            $products=Product::all();
-            return response()->json($products);
+
+            $purcahse=Purchase::all();
+            $all_products=collect([]);
+            foreach($purcahse as $p){
+                $product_id= $p->product_id;
+                $product=Product::where('id',$product_id)->first();
+                // array_push($all_products,$products);
+                $all_products->push($product);
+            }
+            // return json_encode($all_products);
+            return response()->json(compact('all_products'));
+
 
         }else
         {
@@ -65,6 +75,7 @@ class PosController extends Controller
 
 
         }
+
     }
 
 
@@ -109,11 +120,11 @@ class PosController extends Controller
     public function CustomerSto(Request $request){
 
         $validateData = $request->validate([
-            'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+            'customer_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'digits:11',
+            'phone' => 'required|numeric|min:6|max:11',
 
-            'address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+            'address' => 'required',
         ],[
 
 
@@ -203,14 +214,33 @@ public function AddToCart(Request $request, $id) {
 
     }
 
+
+
+
  // Cart Increment
- public function CartIncrement($rowId){
+ public function cartIncrement($rowId){
+
     $row = Cart::get($rowId);
+    $count= $row->qty;
+    $id= $row->id;
 
 
-    Cart::update($rowId, $row->qty+1);
 
-    return response()->json('increment');
+    $stock=Stock::where('product_id', $id)->first();
+
+
+    $stock_count=$stock->product_stock_count;
+    $count= $row->qty;
+    if ($count<$stock_count){
+        Cart::update($rowId,$count+1);
+        return response()->json('increment');
+
+
+    }
+
+
+
+
 
 } // end mehtod
 
@@ -227,7 +257,7 @@ public function AddToCart(Request $request, $id) {
 public function  SalesReport(){
     $pos=SalesPos::all();
     $tpdf="";
-    return view('Sales.salesreport')->with('pos',$pos)
+    return view('sales.salesreport')->with('pos',$pos)
                                     ->with('tpdf',$tpdf);
 }
 public function  Report(Request $req){
@@ -235,25 +265,25 @@ public function  Report(Request $req){
     if($req->daily){
         $pos=SalesPos::whereDate('sales_date', date('Y-m-d'))->get();
         $dpdf="";
-        return view('Sales.salesreport')->with('pos',$pos)
+        return view('sales.salesreport')->with('pos',$pos)
                                ->with('dpdf',$dpdf);
     }
     elseif($req->month){
         $pos=  SalesPos::whereMonth('sales_date', date('m'))->get();
         $mpdf="";
-        return view('Sales.salesreport')->with('pos',$pos)
+        return view('sales.salesreport')->with('pos',$pos)
                                ->with('mpdf',$mpdf);
     }
     elseif($req->year){
         $pos=  SalesPos::whereYear('sales_date', date('Y'))->get();
         $ypdf="";
-        return view('Sales.salesreport')->with('pos',$pos)
+        return view('sales.salesreport')->with('pos',$pos)
                                ->with('ypdf',$ypdf);
     }
     elseif($req->total){
         $pos=SalesPos::all();
         $tpdf="";
-        return view('Sales.salesreport')->with('pos',$pos)
+        return view('sales.salesreport')->with('pos',$pos)
                                ->with('tpdf',$tpdf);
     }
 }

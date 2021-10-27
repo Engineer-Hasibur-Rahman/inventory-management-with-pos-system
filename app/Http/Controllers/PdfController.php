@@ -17,9 +17,7 @@ class PdfController extends Controller
     }
        $product=Product::all();
        return view('pdf',compact('product'));
-    //    $pdf = PDF::loadView('pdf', $product);
-    //    return $pdf->download('products.pdf');
-    //     return view('pdf.CreatePdf');
+
     }
 
 
@@ -33,7 +31,7 @@ class PdfController extends Controller
        $pdf = PDF::loadView('pdf.DownloadPurchase', $product);
 
        return $pdf->download();
-    //    return view('pdf',compact('product'));\
+
     return back();
     }
 

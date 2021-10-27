@@ -52,19 +52,19 @@ return $next($request);
   public function StoreProduct(Request $request)
   {
        $validateData = $request->validate([
-           'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-           'price' => 'required|numeric|gt:0',
+           'name' => 'required',
+           'price' => 'required',
            'product_code' => 'required',
-           'squ_code' => 'required|numeric|gt:0',
-           'count' => 'required|numeric|gt:0',
-           'image' => 'required|mimes:jpg,png', 
+           'squ_code' => 'required',
+           'count' => 'required',
+           'image' => 'required|mimes:jpg,png',
        ],[
         'name.required' => 'Input The name  in Correctly',
         'price.required' => 'Input The price  in Correctly',
         'count.required' => 'Input The count  in Correctly',
         'squ_code.required' => 'Input The squ_code  in Correctly',
         'image.required' => 'Input The supplier Img',
-         
+
 
        ]);
       $image = $request->file('image');
@@ -93,11 +93,11 @@ return $next($request);
     }
   public function showProduct(){
     $products = Product::all();
-    return view('Product.ProductList', compact('products'));
+    return view('product.ProductList', compact('products'));
 }
   public function showretuenProduct(){
 
-    return view('Product.ReturnProductList');
+    return view('product.ReturnProductList');
 } //end method
 
 
@@ -205,10 +205,13 @@ public function UpdateProduct(Request $request,$id)
     'count' => 'required',
 
 ]);
-      $image = $request->file('image');
-      $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-      Image::make($image)->resize(917,1000)->save('products/'.$name_gen);
-      $save_url = 'products/'.$name_gen;
+    //   $image = $request->file('image');
+    //   $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    //   Image::make($image)->resize(917,1000)->save('products/'.$name_gen);
+    //   $save_url = 'products/'.$name_gen;
+
+
+
           $product=Product::find($id);
           $product->name=$request->name;
           $product->category_id=$request->category_id;
@@ -217,12 +220,21 @@ public function UpdateProduct(Request $request,$id)
           $product->squ_code=$request-> squ_code;
           $product->count=$request->count;
 
+          if($request->hasFile('image') && $request->image->isValid()){
+            if(file_exists(public_path('products/'.$product->product_image))){
+                unlink(public_path('products/'.$product->product_image));
+            }
+            $newImageName=time().'-'.$request->name.'.'.$request->image->extension();
+            $image=$request->image->move(public_path('products'),$newImageName);
+            $product->product_image=$newImageName;
+        }
+
           if($request->count<5){
 
             $product->stock_alart=0;
           }
 
-          $product->product_image= $save_url;
+
           $product->product_satus= 1;
           $product->save();
           $notification = array(

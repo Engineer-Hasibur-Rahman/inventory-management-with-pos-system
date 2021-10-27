@@ -10,24 +10,24 @@ class SupplierController extends Controller
 {
    public function SupplierView(){
         $suppliers = Supplier::latest()->get();
-        return view('Supplier.AddSupplier',compact('suppliers'));
+        return view('supplier.AddSupplier',compact('suppliers'));
     }
 
   // Store Supplier
-  public function SupplierStore(Request $request){   
-      
-    // validation 
+  public function SupplierStore(Request $request){
+
+    // validation
         $request->validate([
-          'name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'father_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'permanent_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'mother_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'present_address' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-          'password' =>'required|string|min:8',
-          'mobile_number' => 'digits:11',
-          'image' => 'required|mimes:jpg,png',      
-          ],[ 
+          'name' => 'required',
+          'father_name' => 'required',
+          'permanent_address' => 'required',
+          'mother_name' => 'required',
+          'present_address' => 'required',
+          'username' => 'required',
+          'password' =>'required|string|min:6|max:8',
+          'mobile_number' => 'required|min:6|max:11',
+          'image' => 'required|mimes:jpg,png',
+          ],[
             'name.required' => 'Input The name  in Correctly',
             'password.required' => 'Input The password  in Correctly',
             'father_name.required' => 'Input The father_name  in Correctly',
@@ -37,37 +37,34 @@ class SupplierController extends Controller
             'username.required' => 'Input The username  in Correctly',
             'mobile_number.required' => 'Input The mobile_number  in Correctly',
             'image.required' => 'Input The supplier Img',
-         
+
           ]);
 
 
-          // img upload and save
-          $image = $request->file('image');
-          $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-          Image::make($image)->resize(870,370)->save('upload/image/'.$name_gen);
-          $save_url = 'upload/image/'.$name_gen;
+        $supplier= new Supplier;
+        $supplier->name=$request->name;
+        $supplier->father_name=$request->father_name;
+        $supplier->mother_name=$request->mother_name;
+        $supplier->permanent_address=$request->permanent_address;
+        $supplier->present_address=$request->present_address;
+        $supplier->email=$request->email;
+        $supplier->mobile_number=$request->mobile_number;
+        $supplier->username=$request->username;
+        $supplier->password=$request->password;
 
-       // Brand Insert    
-          Supplier::insert([
-           'name' => $request->name,
-           'father_name' => $request->father_name,
-           'mother_name' => $request->mother_name,
-           'permanent_address' => $request->permanent_address,
-           'present_address' => $request->present_address,
-           'email' => $request->email,
-           'mobile_number' => $request->mobile_number,
-           'image' => $request->image,
-           'username' => $request->username,
-           'password' => $request->password,
-           'image' => $save_url,
-          ]);
+        $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
+        $image=$request->image->move(public_path('admin_img'),$newImageName);
+        $supplier->image=$newImageName;
+
+        $supplier->save();
+
 
           $notification = array(
             'message' =>  'Supplier Add Sucessyfuly',
             'alert-type' => 'success'
-        ); 
+        );
 
-        return redirect()->back()->with($notification); 
+        return redirect()->back()->with($notification);
   } // end metho
 
 
@@ -78,27 +75,41 @@ class SupplierController extends Controller
 
         $suppliers = Supplier::findOrFail($id);
 
-        return view('Supplier.SupplierEdit',compact('suppliers'));
+        return view('supplier.SupplierEdit',compact('suppliers'));
         }
 
  public function SupplierUpdate(Request $request,$id){
-     Supplier::findOrFail($id)->update([
-           'name' => $request->name,
-           'father_name' => $request->father_name,
-           'mother_name' => $request->mother_name,
-           'permanent_address' => $request->permanent_address,
-           'present_address' => $request->present_address,
-           'email' => $request->email,
-           'mobile_number' => $request->mobile_number,
-           'image' => $request->image,
-           'username' => $request->username,
-        
-         
-          ]);
+
+
+    $supplier=Supplier::find($id);
+    $supplier->name=$request->name;
+    $supplier->father_name=$request->father_name;
+    $supplier->mother_name=$request->mother_name;
+    $supplier->permanent_address=$request->permanent_address;
+    $supplier->present_address=$request->present_address;
+    $supplier->email=$request->email;
+    $supplier->mobile_number=$request->mobile_number;
+    $supplier->username=$request->username;
+
+
+
+    if($request->hasFile('image') && $request->image->isValid()){
+                if(file_exists(public_path('admin_imggit'.$supplier->image))){
+                    unlink(public_path('admin_img/'.$supplier->image));
+                }
+                $newImageName=time().'-'.$request->username.'.'.$request->image->extension();
+                $image=$request->image->move(public_path('admin_img'),$newImageName);
+                $supplier->image=$newImageName;
+            }
+
+            $supplier->save();
+
+
+
       $notification = array(
             'message' =>  'Supplier Update Sucessyfuly',
             'alert-type' => 'success'
-        ); 
+        );
        return redirect()->back()->with($notification);
 
     }
@@ -109,7 +120,7 @@ class SupplierController extends Controller
       //supplier show
         public function Suppliershow(){
         $suppliers = Supplier::latest()->get();
-        return view('Supplier.SupplierList', compact('suppliers'));
+        return view('supplier.SupplierList', compact('suppliers'));
     }
 
 
@@ -118,8 +129,8 @@ class SupplierController extends Controller
           $notification = array(
             'message' =>  'Supplier deleted Sucessyfuly',
             'alert-type' => 'success'
-        ); 
-          return redirect()->back()->with($notification); 
+        );
+          return redirect()->back()->with($notification);
 
     }
 

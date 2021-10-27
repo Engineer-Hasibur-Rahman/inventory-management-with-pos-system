@@ -15,7 +15,7 @@
 
                             @if(session('update'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              <strong>{{session('update')}}</strong> 
+                              <strong>{{session('update')}}</strong>
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             @endif
@@ -23,7 +23,7 @@
 
                             @if(session('delete'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              <strong>{{session('delete')}}</strong> 
+                              <strong>{{session('delete')}}</strong>
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             @endif
@@ -32,7 +32,7 @@
                         <div class="card-body">
 
                             <h4 class="header-title">SupplierList</h4>
-                           
+
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -51,8 +51,8 @@
                                 <tbody>
                                     @foreach($suppliers as  $supplier)
                                     <tr>
-                                        <td> 
-                                         <img src="{{ asset($supplier->image) }}" alt="" class="img-thumbnail" height="90" width="90">
+                                        <td>
+                                         <img src="{{('/admin_img/'.$supplier->image)}}" alt="" class="img-thumbnail" height="90" width="90">
                                         </td>
                                         <td>{{$supplier->name}}</td>
                                         <td>{{$supplier->father_name}}</td>
@@ -62,7 +62,7 @@
                                         <td>{{$supplier->email}}</td>
                                         <td>{{$supplier->mobile_number}}</td>
                                         <td>{{$supplier->username}}</td>
-                                       
+
                                         <td class="text-end">
 
                                      <a href="{{url('supplier/edit/'.$supplier->id)}}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i> Edit</a>
@@ -73,7 +73,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            
+
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
                 </div><!-- end col-->

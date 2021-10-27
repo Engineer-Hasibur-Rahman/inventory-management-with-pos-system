@@ -164,10 +164,10 @@ public function StoreAdmin(AdminRequest   $request)
 {
 
     $validateData = $request->validate([
-        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'username' => 'required',
+        'fullname' => 'required',
         'email' => 'required|email',
-        'password' =>'required|string|min:8',
+        'password' =>'required|string|min:6|max:8',
         'image' => 'required|mimes:jpg,png',
     ],[
      'username.required' => 'Input The username  in Correctly',
@@ -321,7 +321,7 @@ public function DeleteAdmin($id)
     }
 
         $managers = Manager::latest()->get();
-        return view('Manager.AddManager',compact('managers'));
+        return view('manager.AddManager',compact('managers'));
 } // end mathod
 
 public function Managershow(){
@@ -330,7 +330,7 @@ public function Managershow(){
         abort('403','You dont have acces!!!!');
     }
     $Managershow = Manager::latest()->get();
-    return view('Manager.Manager_show',compact('Managershow'));
+    return view('manager.Manager_show',compact('Managershow'));
 }
 
 
@@ -341,7 +341,7 @@ public function ManagerStore(ManagerRequest $request){
     ->first();
     if($manager){
     $request->session()->flash('msg', 'Email is already exist');
-    return view('Manager.AddManager');
+    return view('manager.AddManager');
     }
     else{
 
@@ -351,10 +351,10 @@ public function ManagerStore(ManagerRequest $request){
 // validation
     $request->validate([
 
-        'username' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
-        'fullname' => 'required|regex:/^[\pL\s\-]+$/u|max:255|unique:users,name,',
+        'username' => 'required',
+        'fullname' => 'required',
         'email' => 'required',
-        'password' => 'required|string|min:8',
+        'password' => 'required|string|min:6|max:8',
         'username' => 'required',
         'image' =>'required|mimes:jpg,png',
       ],
@@ -418,7 +418,7 @@ public function ManagerStore(ManagerRequest $request){
 }
 else {
     $request->session()->flash('msgg', 'Password is not matched');
-    return view('Manager.AddManager');
+    return view('manager.AddManager');
  }
     }
     return redirect('/show')->with($notification);
@@ -430,9 +430,13 @@ else {
     // Manager  edit
     public function ManagerEdit($id){
     $manager = Manager::findOrFail($id);
-    return view('Manager.Manager_edit',compact('manager'));
+    return view('manager.Manager_edit',compact('manager'));
     }
 
+
+
+
+    // manager update
     public function ManagerUpdate(Request $request){
 
 
@@ -496,7 +500,7 @@ else {
         'username' => $request->username,
         'fullname' => $request->fullname,
         'email' => $request->email,
-        'password' => $request->password,
+
 
 
 

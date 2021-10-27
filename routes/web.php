@@ -96,7 +96,8 @@ Route::get('/show', [UserController::class, 'Managershow'])->name('show.manager'
 // Route::post('/store', [UserController::class, 'ManagerStore'])->name('manager.store');
 Route::get('/edit/{id}', [UserController::class, 'ManagerEdit'])->name('manager.edit');
 Route::post('/edit/{id}', [UserController::class, 'ManagerUpdate'])->name('ManagerUpdate');
-Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
+// Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
+Route::get('manager/delete/{id}', [UserController::class, 'destroy'])->name('manager.delete');
 /// manager end////
 
 //pdf start//
@@ -130,17 +131,6 @@ Route::get('/get/barcode/{id}/{print_quantity}', [PurchaseController::class, 'Ba
 
 
 
-
-
-
-
-});
-
-
-Route::get('/test', function () {
-    return  view('welcome');
-});
-///// purchase start///
 Route::get('/add/purchase',   [PurchaseController::class,   'AddPurchase'])->name('add.purchase');
 Route::get('/show/purchase',   [PurchaseController::class,   'showPurchase'])->name('show.purchase');
 Route::post('/add/purchase',  [PurchaseController::class, 'StorePurchase'])->name('store.purchase');
@@ -238,4 +228,22 @@ Route::resource('orders', OrderController::class);
 
 
 Route::post('token',[PaymentController::class, 'token'])->name('token');
+
+
+
+
+Route::get('/getstock/{id}', [PosController::class,'getstock']);
+
+
+
+
+
+});
+
+
+Route::get('/test', function () {
+    return  view('welcome');
+});
+///// purchase start///
+
 
