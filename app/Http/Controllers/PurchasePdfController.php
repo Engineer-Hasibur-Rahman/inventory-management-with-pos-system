@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\PosRequest;
 use App\Models\Purchase;
 use App\Models\Customer;
 use App\Models\SalesPos;
@@ -23,14 +24,16 @@ class PurchasePdfController extends Controller
         return view('Pdf.PurchasePdf',compact('purchases'));
     }
 
-    public function downloadPDF(Request $req){
+    public function downloadPDF(PosRequest $req){
 
+//dd($req->all());
         $customer_id=$req->customer_id;
         //payment
         $payment=$req->payment;
 
         $purchases = Purchase::all();
         $carts = Cart::content();
+        //dd($carts);
         $customer=Customer::where('id','=',$customer_id)->first();
         $customer_name=$customer->customer_name;
         $day = Carbon::today();
@@ -45,10 +48,14 @@ class PurchasePdfController extends Controller
 
     //create sales pos starts
     foreach($carts as $cart){
+      
         $pos=new SalesPos;
+    
         $pos->stock= $cartQty;
         $pos->item_name= $cart->name;
-        $product=Product::where('name','=', $pos->item_name)->first();
+        $product_id=$cart->id;
+        $product=Product::where('id','=',$product_id)->first();
+        //dd($product);
         $p_id=$product->id;
 
         $product_code=$product->product_code;
@@ -66,7 +73,7 @@ class PurchasePdfController extends Controller
 
 
         $stock_decresed=Stock::where('product_id',  $p_id)->first();
-
+// dd( $stock_decresed);
        $value= $stock_decresed->product_stock_count-$cart->qty;
 
        $stock_decresed->product_stock_count= $value;

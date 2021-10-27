@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('phone');
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->string('address');
             $table->timestamps();
