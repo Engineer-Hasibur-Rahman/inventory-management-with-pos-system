@@ -239,3 +239,8 @@ Route::resource('orders', OrderController::class);
 
 Route::post('token',[PaymentController::class, 'token'])->name('token');
 
+
+
+
+Route::get('/getstock/{id}', [PosController::class,'getstock']);
+

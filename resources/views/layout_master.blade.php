@@ -180,10 +180,10 @@ integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBE
                                 <td>' + item.name + '</td>\
                                 <td>' + item.qty + '</td>\
                                 <td>\
-                                <center>\
+                                <center id="'+item.rowId+'">\
                             <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
-                             <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
-                            <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
+                             <input class="getQ" type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
+                             <button type="submit" class="btn btn-success btn-sm count" id="'+item.rowId+'"  value="' + item.qty + '"   onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\
                                 <td>' + item.price + '</td>\
@@ -327,10 +327,10 @@ function fetchpos() {
                                 <td>' + item.name + '</td>\
                                 <td>' + item.qty + '</td>\
                                 <td>\
-                                <center>\
-                            <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'" onclick="cartDecrement(this.id)" >-</button> \
+                                <center id="'+item.rowId+'">\
+                            <button type="submit" class="btn btn-danger btn-sm" id="'+item.rowId+'"   onclick="cartDecrement(this.id)" >-</button> \
                              <input type="text" value="' + item.qty + '" min="1" max="100" disabled="" style="width:25px;" >  \
-                            <button type="submit" class="btn btn-success btn-sm" id="'+item.rowId+'" onclick="cartIncrement(this.id)" >+</button>   \
+                            <button type="submit" class="btn btn-success btn-sm count" id="'+item.rowId+'"  value="' + item.qty + '"   onclick="cartIncrement(this.id)" >+</button>   \
                              </center>\
                             </td>\
                                 <td>' + item.weight + '</td>\
@@ -345,15 +345,33 @@ function fetchpos() {
                 });
             }
     function cartIncrement(rowId){
+        var count=$('#'+rowId+' '+'.count').val();
+        console.log(('#'+rowId+' '+'.count'));
+
+        // data = {
+
+        //         'q':$val,
+        //     }
+
+
+
+
+
+
+
         $.ajax({
             type:'GET',
             url: "/cart-increment/"+rowId,
+
+            // data: data,
             dataType:'json',
             success:function(data){
                 fetchpos();
+                console.log("/cart-increment/"+rowId);
 
             }
         });
+
     }
     function cartDecrement(rowId){
         $.ajax({
