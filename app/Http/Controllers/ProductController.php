@@ -273,12 +273,16 @@ $stock_number=Stock::where('product_id',$request->product_name)->first();
 
         if($request->quantity > $stock_number->product_stock_count){
             return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
-        }else{
+        }elseif($request->quantity<0 ){
 
+            return redirect()->back()->with('quantity','Not A VALID INPUT !! Product Remaining :'.$stock_number->product_stock_count);
 
-            $product->return_quantiy=$request->quantity;
         }
+else{
 
+    $product->return_quantiy=$request->quantity;
+
+}
 
 
 
@@ -357,12 +361,7 @@ public function Approveconfirm(Request $request){
         abort('403','You dont have acces!!!!');
     }
 
-    // array:4 [
-    //     "r_id" => "32"
-    //     "product_stock" => 40
-    //     "purchase_id" => 4
-    //     "purchase_stock" => 40
-    //   ]
+
     $r_id =$request->input('r_id');
     $p_id = $request->input('purchase_id');
     $stockQuantity = $request->input('product_stock');
