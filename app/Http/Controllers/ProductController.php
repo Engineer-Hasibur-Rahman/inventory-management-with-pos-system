@@ -142,7 +142,7 @@ public function StoreReturnProduct(Request $request)
             return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
         }elseif($request->quantity<0){
 
-            return redirect()->back()->with('quantity','NOT A VALID INPUT !! PRODUCT Remaining :'.$stock_number->product_stock_count);
+            return redirect()->back()->with('quantity','NOT A VALID INPUT !! PRODUCT Remaining : '.$stock_number->product_stock_count);
 
         }
         else{
@@ -275,7 +275,8 @@ $stock_number=Stock::where('product_id',$request->product_name)->first();
             return redirect()->back()->with('quantity','Not enough quantity available for return !! Product Remaining :'.$stock_number->product_stock_count);
         }elseif($request->quantity<0 ){
 
-            return redirect()->back()->with('quantity','Not A VALID INPUT !! Product Remaining :'.$stock_number->product_stock_count);
+         dd($request->quantity);
+            return redirect()->back()->with('quantity',"Not A VALID INPUT  Product Remaining : -".$stock_number->product_stock_count);
 
         }
 else{

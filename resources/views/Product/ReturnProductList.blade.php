@@ -140,7 +140,7 @@
         approveButtons.forEach(approveButton=>{
             approveButton.addEventListener('click',function(event){
                 let returnId = this.dataset.returnid;
-                console.log(returnId)
+                //console.log(returnId)
                 axios.get(`/approve/returnproduct/${returnId}`)
                 .then(function ({data:{returnCollection}}) {
                         console.log(returnCollection);
